@@ -8,6 +8,15 @@ const app = document.querySelector("#app")
 
 const initial = [{hello:"hello world"}]
 
+// creates an array of numbers, gets starting number and length
+const newNumberArray = (s=0, l=26) => Array((s + (l - 1)) - s + 1).fill().map((_, idx) => s + idx)
+
+// converts number to character
+const getCharacter = (val) => String.fromCharCode(val + 65)
+// converts array of numbers to letters
+const getLettersArr = (r) => r.map((el, i) => getCharacter(el))
+
+
 const Head = ({val, action}) => {
   console.log(val)
   const clicky = () => {
@@ -21,8 +30,16 @@ const Head = ({val, action}) => {
     </h1>
   )
 }
-
-console.log("initial", initial[0].hello);
+//
+const DatalistItem = ({val}) => {
+  return (
+      <datalist id="browsers">
+        <option
+          value={`${val}`}
+        ></option>
+    </datalist>
+  )
+}
 
 class App extends React.Component {
   constructor(props) {
