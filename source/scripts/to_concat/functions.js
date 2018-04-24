@@ -32,14 +32,32 @@ const Head = ({val, action}) => {
 }
 //
 const DatalistItem = ({val}) => {
+const LetterBoardItem = ({item, key, active}) => {
+  console.log(item, active);
   return (
-      <datalist id="browsers">
-        <option
-          value={`${val}`}
-        ></option>
-    </datalist>
+    <p
+      className= {active ? "letter active": "letter"}
+    >
+    {`${item}`}
+    </p>
   )
 }
+
+const LetterBoard = ({r}) => {
+  return (
+    <div
+      className="letter-board"
+    >
+       { r.map((el, i) =>
+         <LetterBoardItem
+           active = {true}
+           item={el}
+           key={i}
+         />)
+       }
+    </div>
+    )
+  }
 
 class App extends React.Component {
   constructor(props) {
