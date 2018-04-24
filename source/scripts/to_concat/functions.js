@@ -2,6 +2,7 @@
 
 import React, { Component } from "../../../node_modules/react"
 import ReactDOM from "../../../node_modules/react-dom"
+import Chance from "../../../node_modules/chance"
 import { Children, PropTypes } from 'react'
 
 const app = document.querySelector("#app")
@@ -29,6 +30,15 @@ const Head = ({val, action}) => {
       {`${val}`}
     </h1>
   )
+}
+const constantRandom = (seed) => new Chance(seed)
+
+const shuffle = (a, chance) =>  {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(chance.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
 }
 //
 const DatalistItem = ({val}) => {
