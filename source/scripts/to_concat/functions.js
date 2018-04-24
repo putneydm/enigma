@@ -78,6 +78,8 @@ class App extends React.Component {
       <Head
         val = {this.state.initial[0].hello}
         action = {this.clicker}
+      <LetterBoard
+        r = {this.state.letters}
       />
     )
   }
