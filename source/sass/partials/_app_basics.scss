@@ -48,4 +48,27 @@ $note-default: #FFFFE0;
   align-items: center;
   justify-content: center;
   position: relative;
+  border:1px solid red;
+}
+.letter-board {
+  width:100vw;
+  height: 100vh;
+  display:flex;
+  flex-wrap: wrap;
+  border:1px solid red;
+  align-items:flex-start;
+  justify-content: center;
+}
+.letter {
+  border:1px solid blue;
+  flex-basis:calc(100vw/29);
+  height:calc(100vw/29);
+  text-align: center;
+  padding:15px;
+  border-radius: 50%;
+  margin:2px;
+  flex-shrink: 1;
+}
+.letter.active {
+  border:1px solid green;
 }
