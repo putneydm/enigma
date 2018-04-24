@@ -62,7 +62,7 @@ const LetterBoard = ({r}) => {
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { initial }
+    this.state = { initial, letters}
     this.clicker = this.clicker.bind(this)
 
   }
