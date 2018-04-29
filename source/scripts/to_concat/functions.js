@@ -4,6 +4,8 @@ import React, { Component } from "../../../node_modules/react"
 import ReactDOM from "../../../node_modules/react-dom"
 import Chance from "../../../node_modules/chance"
 import { Children, PropTypes } from 'react'
+import {structuredData, lettersData, constantRandom, shuffle} from "./modules/helper_functions"
+
 
 const app = document.querySelector("#app")
 
