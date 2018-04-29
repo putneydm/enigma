@@ -82,6 +82,29 @@ const Rotors = ({ count, r }) => {
 
   )
 }
+const Plugboard = ({ count, r }) => {
+  console.log(count, r);
+  return (
+    <div
+      className = "rotor-container"
+    >
+      {count.map((el, i) => {
+        return (
+          <div>
+            <Dropdown
+              r = {r}
+              key = {i}
+            />
+            <Dropdown
+              r = {r}
+              key = {i + 26}
+            />
+          </div>
+        )
+      })}
+    </div>
+
+  )
 }
 //
 const DatalistItem = ({val}) => {
