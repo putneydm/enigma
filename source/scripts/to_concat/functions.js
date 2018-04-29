@@ -49,6 +49,22 @@ const shuffle = (a, chance) =>  {
         [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
+const Dropdown = ({r}) => {
+  return (
+    <select>
+      {r.map((el, i) => {
+        return (
+          <option
+              key = {i}
+              value={i}
+            >
+              {`${el}`}
+          </option>
+        )
+      })}
+    </select>
+  )
+}
 }
 //
 const DatalistItem = ({val}) => {
