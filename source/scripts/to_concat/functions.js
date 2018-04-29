@@ -65,6 +65,23 @@ const Dropdown = ({r}) => {
     </select>
   )
 }
+const Rotors = ({ count, r }) => {
+  return (
+    <div
+      className = "rotor-container"
+    >
+      {count.map((el, i) => {
+        return (
+          <Dropdown
+            r = {r}
+            key = {i}
+          />
+        )
+      })}
+    </div>
+
+  )
+}
 }
 //
 const DatalistItem = ({val}) => {
