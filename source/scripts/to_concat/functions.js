@@ -41,14 +41,6 @@ const Head = ({val, action}) => {
     </h1>
   )
 }
-const constantRandom = (seed) => new Chance(seed)
-
-const shuffle = (a, chance) =>  {
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(chance.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
 const Dropdown = ({r}) => {
   return (
     <select>
