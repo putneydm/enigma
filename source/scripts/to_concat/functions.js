@@ -19,6 +19,14 @@ const getCharacter = (val) => String.fromCharCode(val + 65)
 // converts array of numbers to letters
 const getLettersArr = (r) => r.map((el, i) => getCharacter(el))
 
+const numbersArr = newNumberArray(0, 26)
+const lettersArr = getLettersArr(numbersArr)
+
+const rotors = newNumberArray(1, 3)
+const plugs = newNumberArray(1, 13)
+const plugboardArr = lettersData(lettersArr)
+
+console.log("p", plugboardArr);
 
 const Head = ({val, action}) => {
   console.log(val)
