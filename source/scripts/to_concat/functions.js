@@ -10,13 +10,11 @@ import {structuredData, lettersData, constantRandom, shuffle} from "./modules/he
 const app = document.querySelector("#app")
 
 const initial = [{hello:"hello world"}]
-
 // creates an array of numbers, gets starting number and length
 const newNumberArray = (s=0, l=26) => Array((s + (l - 1)) - s + 1).fill().map((_, idx) => s + idx)
-
 // converts number to character
 const getCharacter = (val) => String.fromCharCode(val + 65)
-// converts array of numbers to letters
+// converts array of numbers to numbersArr
 const getLettersArr = (r) => r.map((el, i) => getCharacter(el))
 
 const numbersArr = newNumberArray(0, 26)
@@ -27,6 +25,7 @@ const plugs = newNumberArray(1, 13)
 const plugboardArr = lettersData(lettersArr)
 
 console.log("p", plugboardArr);
+
 
 const Head = ({val, action}) => {
   console.log(val)
@@ -136,10 +135,8 @@ const Plugboard = ({ count, r, f }) => {
 
   )
 }
-//
-const DatalistItem = ({val}) => {
+
 const LetterBoardItem = ({item, key, active}) => {
-  console.log(item, active);
   return (
     <p
       className= {active ? "letter active": "letter"}
@@ -148,7 +145,6 @@ const LetterBoardItem = ({item, key, active}) => {
     </p>
   )
 }
-
 const LetterBoard = ({r}) => {
   return (
     <div
@@ -164,17 +160,18 @@ const LetterBoard = ({r}) => {
     </div>
     )
   }
-
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { initial, letters}
+    this.state = { initial, numbersArr, rotors, plugs, plugboardArr}
     this.clicker = this.clicker.bind(this)
-
+    this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
   }
   componentWillMount() {
+      console.log("pl", this.state);
   }
   componentDidMount() {
+
   }
   clicker(val) {
     console.log("click", val);
