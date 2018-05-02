@@ -57,6 +57,38 @@ const Dropdown = ({r}) => {
     </select>
   )
 }
+const PlugboardDropdown = ({r, f, id}) => {
+  const clicky = (e) => {
+    e.preventDefault()
+    f(e.target.id, e.target.value)
+  }
+  console.log(Array.isArray(r));
+  return (
+    <select
+      onChange={clicky}
+      id = {id}
+      defaultValue="def"
+    >
+      <option
+        disabled = "true"
+        hidden = "true"
+        value = "def"
+      >
+        Choose letter
+      </option>
+      {r.map((el, i) => {
+        return (
+          <option
+            key = {i}
+            value={i}
+          >
+            {`${el.val}`}
+          </option>
+        )
+      })}
+    </select>
+  )
+}
 const Rotors = ({ count, r }) => {
   return (
     <div
@@ -74,22 +106,28 @@ const Rotors = ({ count, r }) => {
 
   )
 }
-const Plugboard = ({ count, r }) => {
-  console.log(count, r);
+const Plugboard = ({ count, r, f }) => {
   return (
     <div
       className = "rotor-container"
     >
       {count.map((el, i) => {
         return (
-          <div>
-            <Dropdown
+          <div
+            key = {i + 100 + r.length}
+            className = "plugboard-pair"
+          >
+            <PlugboardDropdown
               r = {r}
               key = {i}
+              f = {f}
+              id = {`l${i}`}
             />
-            <Dropdown
+            <PlugboardDropdown
               r = {r}
-              key = {i + 26}
+              key = {i + r.length}
+              f = {f}
+              id = {`r${i}`}
             />
           </div>
         )
