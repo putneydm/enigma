@@ -1,8 +1,8 @@
 const structuredData = (val1, val2) => {
-    const d = {val: val1, bool: val2, cc: undefined}
+    const d = {val: val1, cc: val2}
     return d
 }
-const lettersData = (r) => r.map((el) => structuredData(el, false))
+const lettersData = (r) => r.map((el) => structuredData(el, undefined))
 
 const constantRandom = (seed) => new Chance(seed)
 
