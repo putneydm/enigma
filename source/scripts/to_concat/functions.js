@@ -6,7 +6,6 @@ import Chance from "../../../node_modules/chance"
 import { Children, PropTypes } from 'react'
 import {structuredData, lettersData, constantRandom, shuffle} from "./modules/helper_functions"
 
-
 const app = document.querySelector("#app")
 
 const initial = [{hello:"hello world"}]
@@ -24,7 +23,9 @@ const rotors = newNumberArray(1, 3)
 const plugs = newNumberArray(1, 13)
 const plugboardArr = lettersData(lettersArr)
 
-console.log("p", plugboardArr);
+// const privateMethod = new Symbol('privateMethod');
+
+// console.log("p", plugboardArr);
 
 
 const Head = ({val, action}) => {
@@ -61,7 +62,7 @@ const PlugboardDropdown = ({r, f, id}) => {
     e.preventDefault()
     f(e.target.id, e.target.value)
   }
-  console.log(Array.isArray(r));
+  // console.log(Array.isArray(r));
   return (
     <select
       onChange={clicky}
@@ -102,7 +103,6 @@ const Rotors = ({ count, r }) => {
         )
       })}
     </div>
-
   )
 }
 const Plugboard = ({ count, r, f }) => {
@@ -168,7 +168,7 @@ class App extends React.Component {
     this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
   }
   componentWillMount() {
-      console.log("pl", this.state);
+      // console.log("pl", this.state);
   }
   componentDidMount() {
 
