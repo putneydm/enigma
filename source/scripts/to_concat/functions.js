@@ -176,20 +176,14 @@ class App extends React.Component {
   clicker(val) {
     console.log("click", val);
   }
-  _handleLetterReset(id, r) {
-    let lettersArr = { ...r }
-    Object.entries(lettersArr).forEach(
-      ([key, value]) => {
-        value.cc = value.cc === id ? undefined: value.cc
-      });
-    return lettersArr
-  }
   handleLetterboardArray(id, val) {
     let pbr = { ...this.state }
-    pbr.plugboardArr = this._handleLetterReset(id, pbr.plugboardArr)
-    pbr.plugboardArr[val].bool = true
-    pbr.plugboardArr[val].cc = id
-    console.log("PBR", pbr.plugboardArr);
+    val = parseInt(val)
+    const foo = pbr.plugboardArr.map((el, i) => {
+      el.cc = el.cc === id ? undefined : i === val ? id : el.cc
+      el.bool = i === val ? true: el.bool
+      return el
+    })
     this.setState({ pbr })
   }
   render() {
