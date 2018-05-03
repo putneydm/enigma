@@ -21,7 +21,7 @@ var concat = require('gulp-concat'),
 //css
 var sass = require('gulp-sass'),
     cleanCSS = require('gulp-clean-css'),
-    scsslint = require('gulp-scss-lint'),
+    // scsslint = require('gulp-scss-lint'),
     autoprefixer = require('gulp-autoprefixer'),
     cssbeautify = require('gulp-cssbeautify');
 
@@ -252,7 +252,7 @@ gulp.task('lint', function() {
 // lints and minifies css, moves to testing and dist
 gulp.task('css', function() {
   gulp.src([paths.styles.input, paths.styles.exclude])
-  .pipe(scsslint())
+  // .pipe(scsslint())
    .pipe(sass())
    .pipe(autoprefixer({
       browsers: ['last 2 versions'],
