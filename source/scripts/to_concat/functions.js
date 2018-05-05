@@ -77,10 +77,12 @@ const PlugboardDropdown = ({r, f, id}) => {
         Choose letter
       </option>
       {r.map((el, i) => {
+        console.log(el.cc, id, el.cc===id)
         return (
           <option
             key = {i}
             value={i}
+            disabled={!el.cc?false:true}
           >
             {`${el.val}`}
           </option>
