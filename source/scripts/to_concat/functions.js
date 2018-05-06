@@ -179,6 +179,12 @@ class App extends React.Component {
     console.log("click", val);
   }
 
+  }
+  handleConvert() {
+    const keypress = {...this.state.status, result: this.state.status.keypress }
+    this.setState({status: keypress})
+    console.log("status", this.state.status.result);
+  }
   handleKeyPress() {
     document.addEventListener('keydown', (event) => {
       console.log("key");
