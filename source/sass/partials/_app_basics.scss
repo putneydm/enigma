@@ -42,7 +42,6 @@ $note-default: #FFFFE0;
 }
 .main {
   width:100vw;
-  height:100vh;
   margin:auto;
   display: flex;
   align-items: center;
@@ -51,32 +50,53 @@ $note-default: #FFFFE0;
   border:1px solid red;
 }
 .letter-board {
-  width:100vw;
-  height: 100vh;
+  width:100%;
   display:flex;
   flex-wrap: wrap;
-  border:1px solid red;
+  // border:1px solid red;
   align-items:flex-start;
   justify-content: center;
+  margin:0 0 80px 0;
 }
 .letter {
   border:1px solid blue;
-  flex-basis:calc(100vw/29);
-  height:calc(100vw/29);
+  width:70px;
+  height:70px;
   text-align: center;
-  padding:15px;
+  padding:25px;
   border-radius: 50%;
   margin:2px;
   flex-shrink: 1;
 }
 .letter.active {
-  border:1px solid green;
+  border:2px solid orange;
 }
 .rotor-container {
-  border:13px solid orange;
   width:100vw;
-  height:100vh;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  padding:40px 0 10px;
+  margin:0 0 80px;
+}
+.plugboard-container {
+  // border:1px solid blue;
+  display:flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 .plugboard-pair {
-  border:1px solid red;
+  // border:1px solid red;
+  padding:2px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 50%;
+  flex-shink:0;
+
+  select {
+    margin:5px;
+    flex-basis: 33%
+  }
 }
