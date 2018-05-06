@@ -176,7 +176,8 @@ class App extends React.Component {
       // console.log("pl", this.state);
   }
   componentDidMount() {
-
+    this.handleKeyPress()
+    // this.handleConvert()
   }
   clicker(val) {
     console.log("click", val);
