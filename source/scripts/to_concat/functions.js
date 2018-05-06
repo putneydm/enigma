@@ -113,7 +113,7 @@ const Rotors = ({ count, r }) => {
 const Plugboard = ({ count, r, f }) => {
   return (
     <div
-      className = "rotor-container"
+      className = "plugboard-container"
     >
       {count.map((el, i) => {
         return (
