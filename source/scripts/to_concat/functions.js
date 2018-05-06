@@ -150,14 +150,15 @@ const LetterBoardItem = ({item, key, active}) => {
     </p>
   )
 }
-const LetterBoard = ({r}) => {
+const LetterBoard = ({r, active}) => {
+  console.log("active", active);
   return (
     <div
       className="letter-board"
     >
        { r.map((el, i) =>
          <LetterBoardItem
-           active = {true}
+           active = {el === active}
            item={el}
            key={i}
          />)
