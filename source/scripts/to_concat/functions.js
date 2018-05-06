@@ -191,19 +191,21 @@ class App extends React.Component {
       //   val = {this.state.initial[0].hello}
       //   action = {this.clicker}
       // />
-      // <LetterBoard
-      //   r = {this.state.numbersArr}
-      // />
+
       <div>
-      <Rotors
-        count = {this.state.plugs}
-        r = {this.state.numbersArr}
-      />
-      <Plugboard
-        count = {this.state.plugs}
-        r = {this.state.plugboardArr}
-        f = {this.handleLetterboardArray}
-      />
+        <Rotors
+          count = {this.state.rotors}
+          r = {this.state.numbersArr}
+        />
+        <LetterBoard
+          r = {this.state.numbersArr}
+          active = {this.state.status.result}
+        />
+        <Plugboard
+          count = {this.state.plugs}
+          r = {this.state.plugboardArr}
+          f = {this.handleLetterboardArray}
+        />
     </div>
     )
   }
