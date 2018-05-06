@@ -179,6 +179,16 @@ class App extends React.Component {
     console.log("click", val);
   }
 
+  handleKeyPress() {
+    document.addEventListener('keydown', (event) => {
+      console.log("key");
+      this.handleKeyPressValue(event)
+      this.handleConvert()
+    })
+    // document.addEventListener('keyup', (event) => {
+    //   this.handleKeyPressValue(undefined)
+    // })
+  }
   handleLetterboardArray(id, val) {
     const pbr= [... this.state.plugboardArr].map((el, i) => {
       return {...el, cc: el.cc === id ? undefined : i === parseInt(val) ? id : el.cc}
