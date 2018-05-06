@@ -103,6 +103,7 @@ const Rotors = ({ count, r }) => {
           <Dropdown
             r = {r}
             key = {i}
+            id = {`rtr${i}`}
           />
         )
       })}
