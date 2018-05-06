@@ -22,6 +22,8 @@ const lettersArr = getLettersArr(numbersArr)
 const rotors = newNumberArray(1, 3)
 const plugs = newNumberArray(1, 13)
 const plugboardArr = lettersData(lettersArr)
+// const keypress = undefined
+const status = {keypress: undefined, result: undefined}
 
 // const privateMethod = new Symbol('privateMethod');
 
@@ -165,7 +167,7 @@ const LetterBoard = ({r}) => {
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { initial, numbersArr, rotors, plugs, plugboardArr}
+    this.state = { initial, numbersArr, rotors, plugs, plugboardArr, status}
     this.clicker = this.clicker.bind(this)
     this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
   }
