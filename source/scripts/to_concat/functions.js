@@ -47,6 +47,7 @@ const Dropdown = ({r}) => {
   return (
     <select>
       {r.map((el, i) => {
+        console.log("rotors");
         return (
           <option
               key = {i}
@@ -79,7 +80,6 @@ const PlugboardDropdown = ({r, f, id}) => {
         Choose letter
       </option>
       {r.map((el, i) => {
-        console.log(el.cc, id, el.cc===id)
         return (
           <option
             key = {i}
@@ -137,11 +137,11 @@ const Plugboard = ({ count, r, f }) => {
         )
       })}
     </div>
-
   )
 }
 
-const LetterBoardItem = ({item, key, active}) => {
+const LetterBoardItem = ({item, active}) => {
+  console.log(active);
   return (
     <p
       className= {active ? "letter active": "letter"}
@@ -166,6 +166,7 @@ const LetterBoard = ({r, active}) => {
     </div>
     )
   }
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -175,6 +176,7 @@ class App extends React.Component {
   }
   componentWillMount() {
       // console.log("pl", this.state);
+
   }
   componentDidMount() {
     this.handleKeyPress()
