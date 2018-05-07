@@ -113,7 +113,8 @@ const PlugboardDropdown = ({r, f, id}) => {
     </select>
   )
 }
-const Rotors = ({ count, r }) => {
+const Rotors = ({ count, r, f }) => {
+  // console.log(count);
   return (
     <div
       className = "rotor-container"
@@ -121,9 +122,11 @@ const Rotors = ({ count, r }) => {
       {count.map((el, i) => {
         return (
           <Dropdown
+            val = {el.val}
             r = {r}
             key = {i}
             id = {`rtr${i}`}
+            f = {f}
           />
         )
       })}
@@ -161,7 +164,7 @@ const Plugboard = ({ count, r, f }) => {
 }
 
 const LetterBoardItem = ({item, active}) => {
-  console.log(active);
+  // console.log(active);
   return (
     <p
       className= {active ? "letter active": "letter"}
@@ -171,7 +174,7 @@ const LetterBoardItem = ({item, active}) => {
   )
 }
 const LetterBoard = ({r, active}) => {
-  console.log("active", active);
+  // console.log("active", active);
   return (
     <div
       className="letter-board"
