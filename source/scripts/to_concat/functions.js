@@ -48,11 +48,26 @@ const Head = ({val, action}) => {
     </h1>
   )
 }
-const Dropdown = ({r}) => {
+const Dropdown = ({val, r, id, f}) => {
+  const clicky = (e) => {
+    e.preventDefault()
+    f(id, e.target.value)
+  }
   return (
-    <select>
+    <select
+      onChange={clicky}
+      id = {id}
+      value = {val}
+    >
+      <option
+        disabled = "true"
+        hidden = "true"
+        value = "def"
+      >
+        Rotor pos
+      </option>
       {r.map((el, i) => {
-        console.log("rotors");
+        // console.log("rotors");
         return (
           <option
               key = {i}
