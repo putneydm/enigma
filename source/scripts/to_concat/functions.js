@@ -193,6 +193,7 @@ class App extends React.Component {
     this.state = { initial, numbersArr, rotors, plugs, plugboardArr, status}
     this.clicker = this.clicker.bind(this)
     this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
+    this.setRotorPos = this.setRotorPos.bind(this)
   }
   componentWillMount() {
       // console.log("pl", this.state);
@@ -260,6 +261,7 @@ class App extends React.Component {
         <Rotors
           count = {this.state.rotors}
           r = {this.state.numbersArr}
+          f = {this.setRotorPos}
         />
         <LetterBoard
           r = {this.state.numbersArr}
