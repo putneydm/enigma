@@ -205,7 +205,23 @@ class App extends React.Component {
   clicker(val) {
     console.log("click", val);
   }
-
+  advanceRotors() {
+    const rotorPos = [... this.state.rotors]
+    const rAdjust  = (rotor) => rotor < 25? rotor + 1: 0
+    const foo = rotorPos.map((el, i, r) => {
+      const pivot = i > 0 ? r[i-1].p === r[i-1].val: true
+      if (el.id === "rtr2") {
+        console.log(r[i-1].p, r[i-1].val, r[i-1])
+      }
+      return pivot? {...el, val: rAdjust(el.val)}: el
+    })
+    this.setState({ rotors: foo })
+  }
+  setRotorPos(id, val) {
+    const rotorPos = [... this.state.rotors].map((el, i) => {
+      return {...el, val: el.id === id? parseInt(val): el.val}
+    })
+    this.setState({ rotors: rotorPos })
   }
   handleConvert() {
     const keypress = {...this.state.status, result: this.state.status.keypress }
