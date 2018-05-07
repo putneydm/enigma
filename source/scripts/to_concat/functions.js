@@ -19,11 +19,16 @@ const getLettersArr = (r) => r.map((el, i) => getCharacter(el))
 const numbersArr = newNumberArray(0, 26)
 const lettersArr = getLettersArr(numbersArr)
 
-const rotors = newNumberArray(1, 3)
+// const rotors = newNumberArray(1, 3)
 const plugs = newNumberArray(1, 13)
 const plugboardArr = lettersData(lettersArr)
-// const keypress = undefined
-const status = {keypress: undefined, result: undefined}
+
+const rotors = newNumberArray(1, 3).map((el, i) => {
+  return { val: 0, id:`rtr${i}`, p:12 }
+})
+console.log("rotorArr", rotors);
+
+const status = {keypress: undefined, result: undefined, rotors: {}}
 
 // const privateMethod = new Symbol('privateMethod');
 
