@@ -226,12 +226,17 @@ class App extends React.Component {
   handleConvert() {
     const keypress = {...this.state.status, result: this.state.status.keypress }
     this.setState({status: keypress})
-    console.log("status", this.state.status.result);
+    // console.log("status", this.state.status.result);
+  }
+  handleKeyPressValue(e) {
+    const keypress = {...this.state.status, keypress: e.keyCode - 65 }
+    this.setState({status: keypress})
   }
   handleKeyPress() {
     document.addEventListener('keydown', (event) => {
-      console.log("key");
+      // console.log("key");
       this.handleKeyPressValue(event)
+      this.advanceRotors()
       this.handleConvert()
     })
     // document.addEventListener('keyup', (event) => {
