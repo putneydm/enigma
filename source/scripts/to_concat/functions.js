@@ -10,7 +10,7 @@ const app = document.querySelector("#app")
 
 const initial = [{hello:"hello world"}]
 // creates an array of numbers, gets starting number and length
-const newNumberArray = (s=0, l=26) => Array((s + (l - 1)) - s + 1).fill().map((_, idx) => s + idx)
+const newNumberArray = (s=0, l=26) => Array((s + (l - 1)) - s + 1).fill().map((_, idx) => parseInt(s + idx))
 // converts number to character
 const getCharacter = (val) => String.fromCharCode(val + 65)
 // converts array of numbers to numbersArr
