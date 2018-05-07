@@ -78,6 +78,10 @@ $note-default: #FFFFE0;
   justify-content: center;
   padding:40px 0 10px;
   margin:0 0 80px;
+  flex-direction:row-reverse;
+    select {
+      margin:0 5px;
+    }
 }
 .plugboard-container {
   // border:1px solid blue;
