@@ -210,31 +210,19 @@ class App extends React.Component {
     console.log("click", val);
   }
   advanceRotors() {
-
-
-  const rotors = [{val:22, p:8}, {val:8, p:17}, {val:1, p:22}]
-
-  let rotorInc = rotors.map((el) => el.p)
-
-  // rotorInc[0]++
-
-  const newRotors = (r, rotorInc) => r.map((el, i) =>{
-    console.log("remainder", el.p > el.val? el.p - el.val: 25 - (el.val - el.p));
-  })
-
-  newRotors(rotors, rotorInc)
-
-
-    // const rotorPos = [... this.state.rotors]
-    // const rAdjust  = (rotor) => rotor < 25? rotor + 1: 0
-    // const foo = rotorPos.map((el, i, r) => {
-    //   const pivot = i > 0 ? r[i-1].p === r[i-1].val: true
-    //   if (el.id === "rtr2") {
-    //     console.log(r[i-1].p, r[i-1].val, r[i-1])
-    //   }
-    //   return pivot? {...el, val: rAdjust(el.val)}: el
-    // })
-    // this.setState({ rotors: foo })
+    let a, b, c
+    [a, b, c] = [...this.state.rotors]
+    a = {...a, val:a.val < 25 ? a.val + 1: 0}
+    a.val === a.p && b.val === b.p - 1 ? (
+      b = {...b, val:b.val < 25 ? b.val + 1: 0},
+      c = {...c, val:c.val < 25 ? c.val + 1: 0}
+    ) :
+    a.val === a.p && b.val !== b.p - 1 ? (
+      b = {...b, val:b.val < 25 ? b.val + 1: 0}
+    ) : (
+      a = a
+    )
+    this.setState({ rotors: [a, b, c] })
   }
   setRotorPos(id, val) {
     const rotorPos = [... this.state.rotors].map((el, i) => {
