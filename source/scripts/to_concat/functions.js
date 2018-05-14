@@ -13,23 +13,16 @@ const initial = [{hello:"hello world"}]
 const numbersArr = newNumberArray(0, 26)
 const lettersArr = getLettersArr(numbersArr)
 const pivots = [20, 6, 17, 5, 15, 9]
-// const rotorCount = newNumberArray(1, 6)
-// const rotors = newNumberArray(1, 3)
 const plugs = newNumberArray(1, 13)
 const plugboardArr = lettersData(lettersArr)
-
 const rotors = newNumberArray(1, 3).map((el, i) => {
   return { val: 0, id:i, p:pivots[i], sel:i<3?i:undefined }
 })
-// const rotorCount = newNumberArray(1, 6)
-
 const rotorCount = newNumberArray(1, 6).map((el, i) => {
   return { val: i, sel:i<3?true:false }
 })
-
 const status = {keypress: undefined, result: undefined, rotors: {}}
 
-// const privateMethod = new Symbol('privateMethod');
 
 // console.log("p", plugboardArr);
 
