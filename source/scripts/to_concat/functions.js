@@ -4,29 +4,28 @@ import React, { Component } from "../../../node_modules/react"
 import ReactDOM from "../../../node_modules/react-dom"
 import Chance from "../../../node_modules/chance"
 import { Children, PropTypes } from 'react'
-import {structuredData, lettersData, constantRandom, shuffle} from "./modules/helper_functions"
+import {structuredData, lettersData, constantRandom, shuffle, newNumberArray, getCharacter, getLettersArr} from "./modules/helper_functions"
 
 const app = document.querySelector("#app")
 
 const initial = [{hello:"hello world"}]
-// creates an array of numbers, gets starting number and length
-const newNumberArray = (s=0, l=26) => Array((s + (l - 1)) - s + 1).fill().map((_, idx) => parseInt(s + idx))
-// converts number to character
-const getCharacter = (val) => String.fromCharCode(val + 65)
-// converts array of numbers to numbersArr
-const getLettersArr = (r) => r.map((el, i) => getCharacter(el))
 
 const numbersArr = newNumberArray(0, 26)
 const lettersArr = getLettersArr(numbersArr)
-
+const pivots = [20, 6, 17, 5, 15, 9]
+// const rotorCount = newNumberArray(1, 6)
 // const rotors = newNumberArray(1, 3)
 const plugs = newNumberArray(1, 13)
 const plugboardArr = lettersData(lettersArr)
 
 const rotors = newNumberArray(1, 3).map((el, i) => {
-  return { val: 0, id:`rtr${i}`, p:12 }
+  return { val: 0, id:i, p:pivots[i], sel:i<3?i:undefined }
 })
-console.log("rotorArr", rotors);
+// const rotorCount = newNumberArray(1, 6)
+
+const rotorCount = newNumberArray(1, 6).map((el, i) => {
+  return { val: i, sel:i<3?true:false }
+})
 
 const status = {keypress: undefined, result: undefined, rotors: {}}
 
@@ -114,7 +113,7 @@ const PlugboardDropdown = ({r, f, id}) => {
   )
 }
 const Rotors = ({ count, r, f }) => {
-  // console.log(count);
+  // console.log("count", count);
   return (
     <div
       className = "rotor-container"
@@ -162,6 +161,58 @@ const Plugboard = ({ count, r, f }) => {
     </div>
   )
 }
+const RotorSelectorDropdown = ({r, f, id, sel}) => {
+  const clicky = (e) => {
+    e.preventDefault()
+    f(parseInt(e.target.id), parseInt(e.target.value))
+  }
+  // console.log("r", r );
+  return (
+    <select
+      onChange={clicky}
+      id = {id}
+      value={sel}
+    >
+      <option
+        disabled = "true"
+        hidden = "true"
+        value = "def"
+      >
+        Choose Rotor
+      </option>
+      {r.map((el, i, r) => {
+        return (
+          <option
+            key = {i}
+            value={i}
+            disabled={el.sel}
+          >
+            {el.val+1}
+          </option>
+        )
+      })}
+    </select>
+  )
+}
+const RotorSelector = ({ count, r, f }) => {
+  return (
+    <div
+      className = "rotor-selector"
+    >
+      {count.map((el, i) => {
+        return (
+          <RotorSelectorDropdown
+            r = {r}
+            key = {i}
+            f = {f}
+            id = {i}
+            sel = {el.sel}
+          />
+        )
+      })}
+    </div>
+  )
+}
 
 const LetterBoardItem = ({item, active}) => {
   // console.log(active);
@@ -193,9 +244,10 @@ const LetterBoard = ({r, active}) => {
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { initial, numbersArr, rotors, plugs, plugboardArr, status}
+    this.state = { initial, numbersArr, rotors, plugs, plugboardArr, status, rotorCount}
     this.clicker = this.clicker.bind(this)
     this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
+    this.setRotorNumber = this.setRotorNumber.bind(this)
     this.setRotorPos = this.setRotorPos.bind(this)
   }
   componentWillMount() {
@@ -213,22 +265,26 @@ class App extends React.Component {
     let a, b, c
     [a, b, c] = [...this.state.rotors]
     a = {...a, val:a.val < 25 ? a.val + 1: 0}
-    a.val === a.p && b.val === b.p - 1 ? (
-      b = {...b, val:b.val < 25 ? b.val + 1: 0},
-      c = {...c, val:c.val < 25 ? c.val + 1: 0}
-    ) :
-    a.val === a.p && b.val !== b.p - 1 ? (
-      b = {...b, val:b.val < 25 ? b.val + 1: 0}
-    ) : (
-      a = a
-    )
+    b = a.val === a.p ? {...b, val:b.val < 25 ? b.val + 1: 0}: b
+    c = a.val === a.p && b.val === b.p ? {...c, val:c.val < 25 ? c.val + 1: 0}: c
     this.setState({ rotors: [a, b, c] })
   }
   setRotorPos(id, val) {
+    console.log("rotor pos");
     const rotorPos = [... this.state.rotors].map((el, i) => {
       return {...el, val: el.id === id? parseInt(val): el.val}
     })
     this.setState({ rotors: rotorPos })
+  }
+  setRotorNumber(id, val) {
+    let fooBar = [...this.state.rotorCount]
+    let barBar = [...this.state.rotors][id].sel
+    fooBar[barBar].sel = !fooBar[barBar].sel
+    fooBar[val].sel = !fooBar[val].sel
+    const foo = [...this.state.rotors].map((el, i) => {
+      return {...el, sel:el.id===id? val: el.sel}
+    })
+    this.setState({ rotors:foo, rotorCount:fooBar })
   }
   handleConvert() {
     const keypress = {...this.state.status, result: this.state.status.keypress }
@@ -251,7 +307,7 @@ class App extends React.Component {
     // })
   }
   handleLetterboardArray(id, val) {
-    const pbr= [... this.state.plugboardArr].map((el, i) => {
+    const pbr= [...this.state.plugboardArr].map((el, i) => {
       return {...el, cc: el.cc === id ? undefined : i === parseInt(val) ? id : el.cc}
     })
     this.setState({ plugboardArr: pbr })
@@ -264,6 +320,11 @@ class App extends React.Component {
       // />
 
       <div>
+        <RotorSelector
+          count = {this.state.rotors}
+          r = {this.state.rotorCount}
+          f = {this.setRotorNumber}
+        />
         <Rotors
           count = {this.state.rotors}
           r = {this.state.numbersArr}
