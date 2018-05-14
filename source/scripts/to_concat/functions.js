@@ -113,7 +113,7 @@ const Rotors = ({ count, r, f }) => {
             val = {el.val}
             r = {r}
             key = {i}
-            id = {`rtr${i}`}
+            id = {i}
             f = {f}
           />
         )
