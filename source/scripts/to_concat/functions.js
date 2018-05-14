@@ -24,8 +24,6 @@ const rotorCount = newNumberArray(1, 6).map((el, i) => {
 const status = {keypress: undefined, result: undefined, rotors: {}}
 
 
-// console.log("p", plugboardArr);
-
 
 const Head = ({val, action}) => {
   console.log(val)
@@ -59,7 +57,6 @@ const Dropdown = ({val, r, id, f}) => {
         Rotor pos
       </option>
       {r.map((el, i) => {
-        // console.log("rotors");
         return (
           <option
               key = {i}
@@ -106,7 +103,6 @@ const PlugboardDropdown = ({r, f, id}) => {
   )
 }
 const Rotors = ({ count, r, f }) => {
-  // console.log("count", count);
   return (
     <div
       className = "rotor-container"
@@ -159,7 +155,6 @@ const RotorSelectorDropdown = ({r, f, id, sel}) => {
     e.preventDefault()
     f(parseInt(e.target.id), parseInt(e.target.value))
   }
-  // console.log("r", r );
   return (
     <select
       onChange={clicky}
@@ -208,7 +203,6 @@ const RotorSelector = ({ count, r, f }) => {
 }
 
 const LetterBoardItem = ({item, active}) => {
-  // console.log(active);
   return (
     <p
       className= {active ? "letter active": "letter"}
@@ -263,7 +257,6 @@ class App extends React.Component {
     this.setState({ rotors: [a, b, c] })
   }
   setRotorPos(id, val) {
-    console.log("rotor pos");
     const rotorPos = [... this.state.rotors].map((el, i) => {
       return {...el, val: el.id === id? parseInt(val): el.val}
     })
@@ -282,7 +275,6 @@ class App extends React.Component {
   handleConvert() {
     const keypress = {...this.state.status, result: this.state.status.keypress }
     this.setState({status: keypress})
-    // console.log("status", this.state.status.result);
   }
   handleKeyPressValue(e) {
     const keypress = {...this.state.status, keypress: e.keyCode - 65 }
