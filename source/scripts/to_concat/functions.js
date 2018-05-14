@@ -300,11 +300,6 @@ class App extends React.Component {
   }
   render() {
     return (
-      // <Head
-      //   val = {this.state.initial[0].hello}
-      //   action = {this.clicker}
-      // />
-
       <div>
         <RotorSelector
           count = {this.state.rotors}
