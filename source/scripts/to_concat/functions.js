@@ -291,9 +291,6 @@ class App extends React.Component {
         console.log("Fail")
       )
     })
-    // document.addEventListener('keyup', (event) => {
-    //   this.handleKeyPressValue(undefined)
-    // })
   }
   handleLetterboardArray(id, val) {
     const pbr= [...this.state.plugboardArr].map((el, i) => {
