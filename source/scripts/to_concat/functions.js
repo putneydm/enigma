@@ -282,11 +282,14 @@ class App extends React.Component {
     this.setState({status: keypress})
   }
   handleKeyPress() {
-    document.addEventListener('keydown', (event) => {
-      // console.log("key");
-      this.handleKeyPressValue(event)
-      this.advanceRotors()
-      this.handleConvert()
+    document.addEventListener('keydown', (e) => {
+      e.keyCode >=65 && e.keyCode <=90? (
+        this.handleKeyPressValue(e),
+        this.advanceRotors(),
+        this.handleConvert()
+      ) : (
+        console.log("Fail")
+      )
     })
     // document.addEventListener('keyup', (event) => {
     //   this.handleKeyPressValue(undefined)
