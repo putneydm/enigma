@@ -265,10 +265,11 @@ class App extends React.Component {
   setRotorNumber(id, val) {
     let fooBar = [...this.state.rotorCount]
     let barBar = [...this.state.rotors][id].sel
+    let pivot = [...this.state.pivots][val]
     fooBar[barBar].sel = !fooBar[barBar].sel
     fooBar[val].sel = !fooBar[val].sel
     const foo = [...this.state.rotors].map((el, i) => {
-      return {...el, sel:el.id===id? val: el.sel}
+      return {...el, sel:el.id===id? val: el.sel, p:el.id===id? pivot: el.p,  val: el.id===id? 0: el.val}
     })
     this.setState({ rotors:foo, rotorCount:fooBar })
   }
