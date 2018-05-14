@@ -231,7 +231,7 @@ const LetterBoard = ({r, active}) => {
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { initial, numbersArr, rotors, plugs, plugboardArr, status, rotorCount}
+    this.state = { initial, numbersArr, rotors, plugs, plugboardArr, status, rotorCount, pivots}
     this.clicker = this.clicker.bind(this)
     this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
     this.setRotorNumber = this.setRotorNumber.bind(this)
