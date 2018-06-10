@@ -12,6 +12,7 @@ import {Rotors} from "./modules/components/rotors"
 import {LetterBoard} from "./modules/components/letterboard"
 import {RotorSelector} from "./modules/components/rotorselector"
 import {RingSelector} from "./modules/components/ringSelector"
+import {SaveButton} from "./modules/components/save-buttons"
 
 const app = document.querySelector("#app")
 
@@ -24,6 +25,9 @@ class App extends React.Component {
     this.setRotorNumber = this.setRotorNumber.bind(this)
     this.setRotorPos = this.setRotorPos.bind(this)
     this.setRingPosition = this.setRingPosition.bind(this)
+    this.handleSettingsSave = this.handleSettingsSave.bind(this)
+    this.handleSettingsRetrieve = this.handleSettingsRetrieve.bind(this)
+    this.handleSettingsClear = this.handleSettingsClear.bind(this)
   }
   componentWillMount() {
       // console.log("pl", this.state);
@@ -87,6 +91,18 @@ class App extends React.Component {
       )
     })
   }
+  handleSettingsSave(e) {
+    const machineSetup = {plugboardArr: {...this.state.plugboardArr},rotors: {...this.state.rotors}}
+    localStorage.setItem('machineSettings', JSON.stringify(machineSetup))
+  }
+  handleSettingsRetrieve (e)  {
+    const machineSetup = JSON.parse(localStorage.getItem('machineSettings')) || false
+    this.setState({rotors:machineSetup?Object.values(machineSetup.rotors): this.state.rotors, plugboardArr:machineSetup?Object.values(machineSetup.plugboardArr):this.state.plugboardArr})
+  }
+  handleSettingsClear(e) {
+    console.log("clear");
+    localStorage.clear()
+  }
   handleLetterboardArray(id, val) {
     const pbr= [...this.state.plugboardArr].map((el, i) => {
       return {...el, cc: el.cc === id ? undefined : i === parseInt(val) ? id : el.cc}
@@ -114,6 +130,11 @@ class App extends React.Component {
           count = {this.state.rotors}
           r = {this.state.numbersArr}
           f = {this.setRingPosition}
+        />
+        <SaveButton
+          f1 = {this.handleSettingsSave}
+          f2 = {this.handleSettingsRetrieve}
+          f3 = {this.handleSettingsClear}
         />
         <LetterBoard
           r = {this.state.numbersArr}
