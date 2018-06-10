@@ -36,7 +36,7 @@ const Dropdown = ({val, r, id, f}) => {
 const Rotors = ({ count, r, f }) => {
   return (
     <div
-      className = "rotor-container"
+      className = "rotor-selector"
     >
       {count.map((el, i) => {
         return (
