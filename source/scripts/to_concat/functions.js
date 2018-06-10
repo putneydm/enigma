@@ -11,6 +11,7 @@ import {Plugboard} from "./modules/components/plugboard"
 import {Rotors} from "./modules/components/rotors"
 import {LetterBoard} from "./modules/components/letterboard"
 import {RotorSelector} from "./modules/components/rotorselector"
+import {RingSelector} from "./modules/components/ringSelector"
 
 const app = document.querySelector("#app")
 
@@ -22,6 +23,7 @@ class App extends React.Component {
     this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
     this.setRotorNumber = this.setRotorNumber.bind(this)
     this.setRotorPos = this.setRotorPos.bind(this)
+    this.setRingPosition = this.setRingPosition.bind(this)
   }
   componentWillMount() {
       // console.log("pl", this.state);
@@ -47,6 +49,13 @@ class App extends React.Component {
       return {...el, val: el.id === id? parseInt(val): el.val}
     })
     this.setState({ rotors: rotorPos })
+  }
+  setRingPosition(id, val) {
+    const foo = [...this.state.rotors].map((el, i) => {
+      return {...el, r:id === i?parseInt(val):el.r}
+    })
+    console.log(foo)
+    this.setState( {rotors: foo})
   }
   setRotorNumber(id, val) {
     let fooBar = [...this.state.rotorCount]
@@ -100,6 +109,11 @@ class App extends React.Component {
           count = {this.state.rotors}
           r = {this.state.numbersArr}
           f = {this.setRotorPos}
+        />
+        <RingSelector
+          count = {this.state.rotors}
+          r = {this.state.numbersArr}
+          f = {this.setRingPosition}
         />
         <LetterBoard
           r = {this.state.numbersArr}
