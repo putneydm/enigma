@@ -29,6 +29,7 @@ class App extends React.Component {
     this.handleSettingsSave = this.handleSettingsSave.bind(this)
     this.handleSettingsRetrieve = this.handleSettingsRetrieve.bind(this)
     this.handleSettingsClear = this.handleSettingsClear.bind(this)
+    this.handleClearDialog = this.handleClearDialog.bind(this)
   }
   componentWillMount() {
       // console.log("pl", this.state);
