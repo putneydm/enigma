@@ -13,6 +13,7 @@ import {LetterBoard} from "./modules/components/letterboard"
 import {RotorSelector} from "./modules/components/rotorselector"
 import {RingSelector} from "./modules/components/ringSelector"
 import {SaveButton} from "./modules/components/save-buttons"
+import {Dialog} from "./modules/components/dialog"
 
 const app = document.querySelector("#app")
 
