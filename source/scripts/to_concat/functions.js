@@ -154,7 +154,8 @@ class App extends React.Component {
         <SaveButton
           f1 = {this.handleSettingsSave}
           f2 = {this.handleSettingsRetrieve}
-          f3 = {this.handleSettingsClear}
+          f3 = {this.handleClearDialog}
+          status = {this.state.buttonStatus}
         />
         <LetterBoard
           r = {this.state.numbersArr}
@@ -164,6 +165,12 @@ class App extends React.Component {
           count = {this.state.plugs}
           r = {this.state.plugboardArr}
           f = {this.handleLetterboardArray}
+        />
+        <Dialog
+          text = "Are you sure you want to delete this?"
+          vis = {this.state.buttonStatus}
+          f = {this.handleClearDialog}
+          f2 = {this.handleSettingsClear}
         />
     </div>
     )
