@@ -107,3 +107,13 @@ $note-default: #FFFFE0;
     margin:5px;
   }
 }
+.dialog {
+  top:33vh;
+  border:1px solid blue;
+}
+.dialog::backdrop {
+    background: red;
+    width:100vw;
+    height:100vh;
+    border:1px solid red;
+}
