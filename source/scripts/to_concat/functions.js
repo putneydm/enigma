@@ -32,7 +32,7 @@ class App extends React.Component {
   }
   componentWillMount() {
       // console.log("pl", this.state);
-
+      this.handleButtonStates("Save")
   }
   componentDidMount() {
     this.handleKeyPress()
@@ -42,7 +42,6 @@ class App extends React.Component {
     console.log("click", val);
   }
   advanceRotors() {
-    // let a, b, c
     let [a, b, c] = [...this.state.rotors]
     a = {...a, val:a.val < 25 ? a.val + 1: 0}
     b = a.val === a.p ? {...b, val:b.val < 25 ? b.val + 1: 0}: b
@@ -53,13 +52,14 @@ class App extends React.Component {
     const rotorPos = [... this.state.rotors].map((el, i) => {
       return {...el, val: el.id === id? parseInt(val): el.val}
     })
+    this.handleButtonStates("Update")
     this.setState({ rotors: rotorPos })
   }
   setRingPosition(id, val) {
     const foo = [...this.state.rotors].map((el, i) => {
       return {...el, r:id === i?parseInt(val):el.r}
     })
-    console.log(foo)
+    this.handleButtonStates("Update")
     this.setState( {rotors: foo})
   }
   setRotorNumber(id, val) {
@@ -71,6 +71,7 @@ class App extends React.Component {
     const foo = [...this.state.rotors].map((el, i) => {
       return {...el, sel:el.id===id? val: el.sel, p:el.id===id? pivot: el.p,  val: el.id===id? 0: el.val}
     })
+    this.handleButtonStates("Update")
     this.setState({ rotors:foo, rotorCount:fooBar })
   }
   handleConvert() {
@@ -93,21 +94,39 @@ class App extends React.Component {
     })
   }
   handleSettingsSave(e) {
+    // console.log(e.target.value);
     const machineSetup = {plugboardArr: {...this.state.plugboardArr},rotors: {...this.state.rotors}}
     localStorage.setItem('machineSettings', JSON.stringify(machineSetup))
+    this.handleButtonStates(e.target.value)
   }
   handleSettingsRetrieve (e)  {
     const machineSetup = JSON.parse(localStorage.getItem('machineSettings')) || false
     this.setState({rotors:machineSetup?Object.values(machineSetup.rotors): this.state.rotors, plugboardArr:machineSetup?Object.values(machineSetup.plugboardArr):this.state.plugboardArr})
+    this.handleButtonStates(e.target.value)
   }
   handleSettingsClear(e) {
-    console.log("clear");
     localStorage.clear()
+    this.handleClearDialog()
+    this.handleButtonStates(e.target.value)
+  }
+  localStorageStatus() {
+    return localStorage.getItem('machineSettings')?true:false
+  }
+  handleButtonStates(val) {
+    const saveStatus = !this.localStorageStatus()
+    const save = val === "Save" || val === "Get" || val === "Yes"?true: val === "Update"? false: this.state.buttonStatus.save
+    const dialog = val === "Clear"? true:false
+    this.setState({buttonStatus:{save:save, get:saveStatus, clear:saveStatus, dialog:dialog}})
+  }
+  handleClearDialog() {
+    const dialog = {...this.state.buttonStatus, dialog: !this.state.buttonStatus.dialog, save: this.state.buttonStatus.save, get:this.state.buttonStatus.dialog.get, clear:this.state.buttonStatus.clear }
+    this.setState({buttonStatus: dialog})
   }
   handleLetterboardArray(id, val) {
-    const pbr= [...this.state.plugboardArr].map((el, i) => {
+    const pbr = [...this.state.plugboardArr].map((el, i) => {
       return {...el, cc: el.cc === id ? undefined : i === parseInt(val) ? id : el.cc}
     })
+    this.handleButtonStates("Update")
     this.setState({ plugboardArr: pbr })
   }
   render() {
