@@ -13,5 +13,6 @@ const rotorCount = newNumberArray(1, 6).map((el, i) => {
   return { val: i, sel:i<3?true:false }
 })
 const status = {keypress: undefined, result: undefined, rotors: {}}
+const buttonStatus = {save:false, get:false, clear:false, dialog:false}
 
 export {initial, numbersArr, lettersArr, pivots, plugs, plugboardArr, rotors, rotorCount, status}

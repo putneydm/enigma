@@ -3,7 +3,7 @@ import ReactDOM from "../../../node_modules/react-dom"
 import { Children, PropTypes } from 'react'
 
 // lettersData
-import {initial, numbersArr, lettersArr, pivots, plugs, plugboardArr, rotors, rotorCount, status} from "./modules/variables"
+import {initial, numbersArr, lettersArr, pivots, plugs, plugboardArr, rotors, rotorCount, status, buttonStatus} from "./modules/variables"
 
 // components
 import {Head} from "./modules/components/head"
