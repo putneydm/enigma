@@ -21,5 +21,7 @@ const newNumberArray = (s=0, l=26) => Array((s + (l - 1)) - s + 1).fill().map((_
 const getCharacter = (val) => String.fromCharCode(val + 65)
 // converts array of numbers to numbersArr
 const getLettersArr = (r) => r.map((el, i) => getCharacter(el))
+//flattens array of objects into an array
+const flatten = (r) => r.reduce((array, elem) => ([...array, ...Object.values(elem)]), [])
 
-export {lettersData, shuffle, newNumberArray, getLettersArr,}
+export {lettersData, shuffle, newNumberArray, getLettersArr, flatten}
