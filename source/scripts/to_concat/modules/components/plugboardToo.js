@@ -1,0 +1,75 @@
+import React, { Component } from "../../../../../node_modules/react"
+import ReactDOM from "../../../../../node_modules/react-dom"
+
+
+const PlugboardDropdownToo = ({ r, id, f, item, index, selected, def }) => {
+    const clicky = (e) => {
+      e.preventDefault()
+      f(item, index, e.target.value)
+    }
+    return (
+      <select
+        onChange={clicky}
+        id = {id}
+        value= {def?def:"def"}
+      >
+        <option
+          disabled = "true"
+          hidden = "true"
+          value = "def"
+        >
+          Choose letter
+        </option>
+        {r.map((el, i) => {
+          return (
+            <option
+              key = {i}
+              value={el}
+              disabled={selected.some(le => el === le && el !== def)}
+            >
+              {`${el}`}
+            </option>
+          )
+        })}
+      </select>
+    )
+  }
+
+
+const PlugboardToo = ({ plugs, count, f, selected }) => {
+  return (
+    <div
+      className = "plugboard-container"
+    >
+      {plugs.map((el, i) => {
+        return (
+          <div
+            key = {i + 100 + plugs.length}
+            className = "plugboard-pair"
+          >
+            <PlugboardDropdownToo
+              r = {count}
+              key = {i}
+              f = {f}
+              selected = {selected}
+              def = {el.ccOne}
+              index = {i}
+              item = {"ccOne"}
+            />
+            <PlugboardDropdownToo
+              r = {count}
+              key = {i + plugs.length}
+              f = {f}
+              selected = {selected}
+              def = {el.ccTwo}
+              index = {i}
+              item = {"ccTwo"}
+            />
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+export {PlugboardToo}
