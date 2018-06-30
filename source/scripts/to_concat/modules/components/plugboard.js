@@ -1,60 +1,69 @@
 import React, { Component } from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
 
-const PlugboardDropdown = ({r, f, id}) => {
-  const clicky = (e) => {
-    e.preventDefault()
-    f(e.target.id, e.target.value)
-  }
-  return (
-    <select
-      onChange={clicky}
-      id = {id}
-      defaultValue="def"
-    >
-      <option
-        disabled = "true"
-        hidden = "true"
-        value = "def"
+
+const PlugboardDropdown = ({ r, id, f, item, index, selected, def }) => {
+    const clicky = (e) => {
+      e.preventDefault()
+      f(item, index, e.target.value)
+    }
+    return (
+      <select
+        onChange={clicky}
+        id = {id}
+        value= {def?def:"def"}
       >
-        Choose letter
-      </option>
-      {r.map((el, i) => {
-        return (
-          <option
-            key = {i}
-            value={i}
-            disabled={!el.cc?false:true}
-          >
-            {`${el.val}`}
-          </option>
-        )
-      })}
-    </select>
-  )
-}
-const Plugboard = ({ count, r, f }) => {
+        <option
+          disabled = "true"
+          hidden = "true"
+          value = "def"
+        >
+          Choose letter
+        </option>
+        {r.map((el, i) => {
+          return (
+            <option
+              key = {i}
+              value={el}
+              disabled={selected.some(le => el === le && el !== def)}
+            >
+              {`${el}`}
+            </option>
+          )
+        })}
+      </select>
+    )
+  }
+
+
+const Plugboard = ({ plugs, count, f, selected }) => {
   return (
     <div
       className = "plugboard-container"
     >
-      {count.map((el, i) => {
+      {plugs.map((el, i) => {
         return (
           <div
-            key = {i + 100 + r.length}
+            key = {i + 100 + plugs.length}
             className = "plugboard-pair"
           >
             <PlugboardDropdown
-              r = {r}
+              r = {count}
               key = {i}
               f = {f}
-              id = {`l${i}`}
+              selected = {selected}
+              def = {el.ccOne}
+              index = {i}
+              item = {"ccOne"}
             />
             <PlugboardDropdown
-              r = {r}
-              key = {i + r.length}
+              r = {count}
+              key = {i + plugs.length}
               f = {f}
-              id = {`r${i}`}
+              selected = {selected}
+              def = {el.ccTwo}
+              index = {i}
+              item = {"ccTwo"}
             />
           </div>
         )
@@ -62,4 +71,5 @@ const Plugboard = ({ count, r, f }) => {
     </div>
   )
 }
+
 export {Plugboard}

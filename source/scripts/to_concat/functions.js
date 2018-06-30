@@ -3,27 +3,26 @@ import ReactDOM from "../../../node_modules/react-dom"
 import { Children, PropTypes } from 'react'
 
 // lettersData
-import {initial, numbersArr, lettersArr, pivots, plugs, plugboardArr, rotors, rotorCount, status, buttonStatus, plugsToo} from "./modules/variables"
+import {initial, numbersArr, lettersArr, pivots, plugboardArr, rotors, rotorCount, status, buttonStatus, plugs} from "./modules/variables"
 
 import {flatten} from "./modules/helper_functions"
 
 // components
 import {Head} from "./modules/components/head"
-import {Plugboard} from "./modules/components/plugboard"
 import {Rotors} from "./modules/components/rotors"
 import {LetterBoard} from "./modules/components/letterboard"
 import {RotorSelector} from "./modules/components/rotorselector"
 import {RingSelector} from "./modules/components/ringSelector"
 import {SaveButton} from "./modules/components/save-buttons"
 import {Dialog} from "./modules/components/dialog"
-import {PlugboardToo} from "./modules/components/plugboardtoo"
+import {Plugboard} from "./modules/components/plugboard"
 
 const app = document.querySelector("#app")
 
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { initial, numbersArr, rotors, plugs, plugboardArr, status, rotorCount, pivots, buttonStatus, plugsToo}
+    this.state = { initial, numbersArr, rotors, plugboardArr, status, rotorCount, pivots, buttonStatus, plugs}
     this.clicker = this.clicker.bind(this)
     this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
     this.setRotorNumber = this.setRotorNumber.bind(this)
@@ -98,13 +97,13 @@ class App extends React.Component {
   }
   handleSettingsSave(e) {
     // console.log(e.target.value);
-    const machineSetup = {plugboardArr: {...this.state.plugsToo},rotors: {...this.state.rotors}}
+    const machineSetup = {plugboardArr: {...this.state.plugs},rotors: {...this.state.rotors}}
     localStorage.setItem('machineSettings', JSON.stringify(machineSetup))
     this.handleButtonStates(e.target.value)
   }
   handleSettingsRetrieve (e)  {
     const machineSetup = JSON.parse(localStorage.getItem('machineSettings')) || false
-    this.setState({rotors:machineSetup?Object.values(machineSetup.rotors): this.state.rotors, plugsToo:machineSetup?Object.values(machineSetup.plugboardArr):this.state.plugsToo})
+    this.setState({rotors:machineSetup?Object.values(machineSetup.rotors): this.state.rotors, plugs:machineSetup?Object.values(machineSetup.plugboardArr):this.state.plugs})
     this.handleButtonStates(e.target.value)
   }
   handleSettingsClear(e) {
@@ -127,11 +126,11 @@ class App extends React.Component {
   }
   handleLetterboardArray(item, index, val) {
     val = parseInt(val)
-    const pbr =[...this.state.plugsToo].map((el, i) =>{
+    const pbr =[...this.state.plugs].map((el, i) =>{
       return index === i ? {...el, ccOne: item === "ccOne"? val:el.ccOne, ccTwo: item === "ccTwo"? val:el.ccTwo}: el
     })
     this.handleButtonStates("Update")
-    this.setState({ plugsToo: pbr })
+    this.setState({ plugs: pbr })
   }
   render() {
     return (
@@ -165,16 +164,11 @@ class App extends React.Component {
           r = {this.state.numbersArr}
           active = {this.state.status.result}
         />
-        {/* <Plugboard
-          count = {this.state.plugs}
-          r = {this.state.plugboardArr}
-          f = {this.handleLetterboardArray}
-        /> */}
-        <PlugboardToo
+        <Plugboard
           count = {this.state.numbersArr}
-          plugs = {this.state.plugsToo}
+          plugs = {this.state.plugs}
           f = {this.handleLetterboardArray}
-          selected = {flatten(this.state.plugsToo)}
+          selected = {flatten(this.state.plugs)}
         />
         <Dialog
           text = "Are you sure you want to delete this?"
