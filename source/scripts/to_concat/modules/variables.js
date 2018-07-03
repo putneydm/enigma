@@ -3,7 +3,7 @@ import {lettersData, shuffle, getLettersArr, newNumberArray} from "./helper_func
 const initial = [{hello:"hello world"}]
 const numbersArr = newNumberArray(0, 26)
 const lettersArr = getLettersArr(numbersArr)
-const pivots = [20, 6, 17, 5, 15, 9]
+const seedVal = [20, 6, 17, 5, 15, 9]
 // const plugs = newNumberArray(1, 6)
 
 const plugs = newNumberArray(1, 6).map((el, i) => {
