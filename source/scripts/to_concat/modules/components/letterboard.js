@@ -17,7 +17,7 @@ const LetterBoard = ({r, active}) => {
     >
        { r.map((el, i) =>
          <LetterBoardItem
-           active = {el === active}
+           active = {i === active}
            item={el}
            key={i}
          />)
