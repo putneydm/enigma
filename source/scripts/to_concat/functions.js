@@ -137,13 +137,13 @@ class App extends React.Component {
           f = {this.setRotorNumber}
         />
         <RotorSelector
-          count = {this.state.rotors}
-          r = {this.state.rotorCount}
+          rotors = {this.state.rotors}
+          r = {this.state.rotorsArr}
           f = {this.setRotorNumber}
         />
         <Rotors
           count = {this.state.rotors}
-          r = {this.state.numbersArr}
+          r = {this.state.lettersArr}
           f = {this.setRotorPos}
         />
         <RingSelector
