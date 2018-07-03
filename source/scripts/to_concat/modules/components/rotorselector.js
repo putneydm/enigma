@@ -1,7 +1,7 @@
 import React, { Component } from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
 
-const RotorSelectorDropdown = ({r, f, id, sel}) => {
+const RotorSelectorDropdown = ({ r, rotor, f, id, rotorsArr }) => {
   const clicky = (e) => {
     e.preventDefault()
     f(parseInt(e.target.id), parseInt(e.target.value))
@@ -10,7 +10,7 @@ const RotorSelectorDropdown = ({r, f, id, sel}) => {
     <select
       onChange={clicky}
       id = {id}
-      value={sel}
+      value={rotor}
     >
       <option
         disabled = "true"
@@ -19,33 +19,34 @@ const RotorSelectorDropdown = ({r, f, id, sel}) => {
       >
         Choose Rotor
       </option>
-      {r.map((el, i, r) => {
+      {r.map((el, i) => {
         return (
           <option
             key = {i}
             value={i}
-            disabled={el.sel}
+            disabled={rotorsArr.some(ele => ele.sel === i)}
           >
-            {el.val+1}
+            {i+1}
           </option>
         )
       })}
     </select>
   )
 }
-const RotorSelector = ({ count, r, f }) => {
+const RotorSelector = ({ rotors, r, f }) => {
   return (
     <div
       className = "rotor-selector"
     >
-      {count.map((el, i) => {
+      {rotors.map((el, i) => {
         return (
           <RotorSelectorDropdown
             r = {r}
+            rotor = {el.sel}
+            rotorsArr = {rotors}
             key = {i}
             f = {f}
             id = {i}
-            sel = {el.sel}
           />
         )
       })}

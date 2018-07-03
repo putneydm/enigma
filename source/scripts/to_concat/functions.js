@@ -64,16 +64,13 @@ class App extends React.Component {
     this.setState( {rotors: foo})
   }
   setRotorNumber(id, val) {
-    let fooBar = [...this.state.rotorCount]
-    let barBar = [...this.state.rotors][id].sel
-    let pivot = [...this.state.pivots][val]
-    fooBar[barBar].sel = !fooBar[barBar].sel
-    fooBar[val].sel = !fooBar[val].sel
-    const foo = [...this.state.rotors].map((el, i) => {
-      return {...el, sel:el.id===id? val: el.sel, p:el.id===id? pivot: el.p,  val: el.id===id? 0: el.val}
+    // const f = (this.state.seedVal, val) => this.state.seedVal.filter((el, i) => i === val)
+    const [pivot] = this.state.seedVal.filter((el, i) => i === val)
+    const rotors = this.state.rotors.map((el, i) => {
+      return i === id? {...el, sel:val, p:pivot}: el
     })
     this.handleButtonStates("Update")
-    this.setState({ rotors:foo, rotorCount:fooBar })
+    this.setState({...this.state, rotors: rotors})
   }
   handleConvert() {
     const keypress = {...this.state.status, result: this.state.status.keypress }
