@@ -158,11 +158,11 @@ class App extends React.Component {
           status = {this.state.buttonStatus}
         />
         <LetterBoard
-          r = {this.state.numbersArr}
+          r = {this.state.lettersArr}
           active = {this.state.status.result}
         />
         <Plugboard
-          count = {this.state.numbersArr}
+          count = {this.state.lettersArr}
           plugs = {this.state.plugs}
           f = {this.handleLetterboardArray}
           selected = {flatten(this.state.plugs)}
