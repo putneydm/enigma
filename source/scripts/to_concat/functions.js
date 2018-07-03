@@ -3,7 +3,7 @@ import ReactDOM from "../../../node_modules/react-dom"
 import { Children, PropTypes } from 'react'
 
 // lettersData
-import {initial, numbersArr, lettersArr, pivots, plugboardArr, rotors, rotorCount, status, buttonStatus, plugs} from "./modules/variables"
+import {initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr} from "./modules/variables"
 
 import {flatten} from "./modules/helper_functions"
 
@@ -22,7 +22,7 @@ const app = document.querySelector("#app")
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { initial, numbersArr, rotors, plugboardArr, status, rotorCount, pivots, buttonStatus, plugs}
+    this.state = { initial, numbersArr, lettersArr, rotors, plugboardArr, status, rotorsArr, seedVal, buttonStatus, plugs}
     this.clicker = this.clicker.bind(this)
     this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
     this.setRotorNumber = this.setRotorNumber.bind(this)
