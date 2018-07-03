@@ -11,7 +11,8 @@ const PlugboardDropdown = ({ r, id, f, item, index, selected, def }) => {
       <select
         onChange={clicky}
         id = {id}
-        value= {def?def:"def"}
+        value= {def !== null?def:"def"}
+        // value = {0}
       >
         <option
           disabled = "true"
@@ -24,8 +25,8 @@ const PlugboardDropdown = ({ r, id, f, item, index, selected, def }) => {
           return (
             <option
               key = {i}
-              value={el}
-              disabled={selected.some(le => el === le && el !== def)}
+              value={i}
+              disabled={selected.some((le) => i === le && i !== def)}
             >
               {`${el}`}
             </option>
