@@ -57,11 +57,11 @@ class App extends React.Component {
     this.setState({ rotors: rotorPos })
   }
   setRingPosition(id, val) {
-    const foo = [...this.state.rotors].map((el, i) => {
+    const ringPos = [...this.state.rotors].map((el, i) => {
       return {...el, r:id === i?parseInt(val):el.r}
     })
     this.handleButtonStates("Update")
-    this.setState( {rotors: foo})
+    this.setState( {rotors: ringPos})
   }
   setRotorNumber(id, val) {
     const [pivot] = this.state.seedVal.filter((el, i) => i === val)
