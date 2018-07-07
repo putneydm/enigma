@@ -2,7 +2,6 @@ import React, { Component } from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
 
 const RingDropdown = ({val, r, id, f}) => {
-  console.log("r", r)
   const clicky = (e) => {
     e.preventDefault()
     f(id, e.target.value)
