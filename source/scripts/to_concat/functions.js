@@ -64,10 +64,9 @@ class App extends React.Component {
     this.setState( {rotors: foo})
   }
   setRotorNumber(id, val) {
-    // const f = (this.state.seedVal, val) => this.state.seedVal.filter((el, i) => i === val)
     const [pivot] = this.state.seedVal.filter((el, i) => i === val)
     const rotors = this.state.rotors.map((el, i) => {
-      return i === id? {...el, sel:val, p:pivot}: el
+      return i === id? {...el, sel:val, p:pivot, cc:crosswires(pivot)}: el
     })
     this.handleButtonStates("Update")
     this.setState({...this.state, rotors: rotors})
