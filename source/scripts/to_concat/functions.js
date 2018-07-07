@@ -92,7 +92,6 @@ class App extends React.Component {
     })
   }
   handleSettingsSave(e) {
-    // console.log(e.target.value);
     const machineSetup = {plugboardArr: {...this.state.plugs},rotors: {...this.state.rotors}}
     localStorage.setItem('machineSettings', JSON.stringify(machineSetup))
     this.handleButtonStates(e.target.value)
