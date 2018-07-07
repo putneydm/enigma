@@ -15,6 +15,7 @@ const shuffle = (a, chance) =>  {
     }
     return a;
 }
+
 // creates an array of numbers, gets starting number and length
 const newNumberArray = (s=0, l=26) => Array((s + (l - 1)) - s + 1).fill().map((_, idx) => parseInt(s + idx))
 // converts number to character
