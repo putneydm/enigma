@@ -23,5 +23,7 @@ const getCharacter = (val) => String.fromCharCode(val + 65)
 const getLettersArr = (r) => r.map((el, i) => getCharacter(el))
 //flattens array of objects into an array
 const flatten = (r) => r.reduce((array, elem) => ([...array, ...Object.values(elem)]), [])
+// takes an seed value and returns a 26 value array shuffled the same way every time.
+const crosswires = seed => shuffle(newNumberArray(), constantRandom(seed))
 
-export {lettersData, shuffle, newNumberArray, getLettersArr, flatten}
+export {lettersData, shuffle, newNumberArray, getLettersArr, flatten, crosswires}
