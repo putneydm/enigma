@@ -15,9 +15,6 @@ const plugboardArr = lettersData(lettersArr)
 const rotors = newNumberArray(1, 3).map((el, i) => {
   return { val: 0, id:i, p:seedVal[i], sel:i<3?i:undefined, r:0 }
 })
-// const rotorCount = newNumberArray(1, 6).map((el, i) => {
-//   return { val: i, sel:i<3?true:false }
-// })
 const status = {keypress: undefined, result: undefined}
 const buttonStatus = {save:false, get:false, clear:false, dialog:false}
 
