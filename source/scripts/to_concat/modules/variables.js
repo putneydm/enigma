@@ -1,4 +1,4 @@
-import {lettersData, shuffle, getLettersArr, newNumberArray} from "./helper_functions"
+import {lettersData, shuffle, getLettersArr, newNumberArray, crosswires} from "./helper_functions"
 
 const initial = [{hello:"hello world"}]
 const numbersArr = newNumberArray(0, 26)
