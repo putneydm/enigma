@@ -28,3 +28,14 @@ const flatten = (r) => r.reduce((array, elem) => ([...array, ...Object.values(el
 const crosswires = seed => shuffle(newNumberArray(), constantRandom(seed))
 
 export {lettersData, shuffle, newNumberArray, getLettersArr, flatten, crosswires}
+const rounder = (sought, offset, length) => sought < offset? (length - offset) + sought: sought - offset
+const rounderBack = (sought, offset, length) => sought >= (length - offset)? sought - (length - offset): sought + offset
+
+//true = forward, false = backward
+const rotorPass = (el, step, bool = true) => {
+    const {cc, val, r} = {...el}
+    const offset = (val + r) % cc.length
+    const adjustedVal = rounder(step, offset, cc.length)
+    const crossWire = bool?cc[adjustedVal]: cc.indexOf(adjustedVal)
+    return rounderBack(crossWire, offset, cc.length)
+}
