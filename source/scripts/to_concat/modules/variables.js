@@ -5,8 +5,9 @@ const numbersArr = newNumberArray(0, 26)
 const lettersArr = getLettersArr(numbersArr)
 const rotorsArr = newNumberArray(1, 6)
 const seedVal = [20, 6, 17, 5, 15, 9]
-
-const plugs = newNumberArray(1, 6).map((el, i) => {ccOne:null, ccTwo:null})
+const plugs = newNumberArray(1, 6).map((el, i) => {
+  return {ccOne:null, ccTwo:null}
+})
 const reflector =  [4,9,12,25,0,11,24,23,21,1,22,5,2,17,16,20,14,13,19,18,15,8,10,7,6,3]
 
 const plugboardArr = lettersData(lettersArr)
