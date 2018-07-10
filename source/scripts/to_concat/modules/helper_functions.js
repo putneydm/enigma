@@ -38,5 +38,8 @@ const rotorPass = (el, step, bool = true) => {
     const crossWire = bool?cc[adjustedVal]: cc.indexOf(adjustedVal)
     return rounderBack(crossWire, offset, cc.length)
 }
-
-export {lettersData, shuffle, newNumberArray, getLettersArr, flatten, crosswires, rounder, rounderBack, rotorPass}
+const findPLugboardVal = (val, r) => {
+  const {ccOne, ccTwo} = r.find((el, i) => val === el.ccOne || val === el.ccTwo) || false
+  return ccOne && ccOne === val?ccTwo:ccTwo && ccTwo === val?ccOne:val
+}
+export {lettersData, shuffle, newNumberArray, getLettersArr, flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal}
