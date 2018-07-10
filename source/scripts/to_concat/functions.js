@@ -113,7 +113,7 @@ class App extends React.Component {
     localStorage.setItem('machineSettings', JSON.stringify(machineSetup))
     this.handleButtonStates(e.target.value)
   }
-  handleSettingsRetrieve (e)  {
+  handleSettingsRetrieve(e)  {
     const machineSetup = JSON.parse(localStorage.getItem('machineSettings')) || false
     this.setState({rotors:machineSetup?Object.values(machineSetup.rotors): this.state.rotors, plugs:machineSetup?Object.values(machineSetup.plugboardArr):this.state.plugs})
     this.handleButtonStates(e.target.value)
