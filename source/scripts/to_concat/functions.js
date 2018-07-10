@@ -45,8 +45,8 @@ class App extends React.Component {
   advanceRotors() {
     let [a, b, c] = [...this.state.rotors]
     a = {...a, val:a.val < 25 ? a.val + 1: 0}
-    b = a.val === a.p ? {...b, val:b.val < 25 ? b.val + 1: 0}: b
-    c = a.val === a.p && b.val === b.p ? {...c, val:c.val < 25 ? c.val + 1: 0}: c
+    b = a.val === a.r ? {...b, val:b.val < 25 ? b.val + 1: 0}: b
+    c = a.val === a.r && b.val === b.r ? {...c, val:c.val < 25 ? c.val + 1: 0}: c
     this.setState({ rotors: [a, b, c] })
   }
   setRotorPos(id, val) {
