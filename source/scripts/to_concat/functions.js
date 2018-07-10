@@ -72,21 +72,26 @@ class App extends React.Component {
     this.setState({...this.state, rotors: rotors})
   }
   handleConvert() {
-
     const startVal = this.state.status.keypress
-
     const [rotor1, rotor2, rotor3] = [...this.state.rotors]
+    const plugs = [...this.state.plugs]
 
-    const pass1 = rotorPass(rotor1, startVal)
+    //plugboard pass
+    const plugBoardOne = findPLugboardVal(startVal, plugs)
+    //pass through rotors forward
+    const pass1 = rotorPass(rotor1, plugBoardOne)
     const pass2 = rotorPass(rotor2, pass1)
     const pass3 = rotorPass(rotor3, pass2)
-
+    // pass through reflector
     const [rVal] = reflector.filter((el, i) => i === pass3)
-
+    // pass back through rotors
     const back3 = rotorPass(rotor3, rVal, false)
     const back2 = rotorPass(rotor2, back3, false)
     const back1 = rotorPass(rotor1, back2, false)
-    this.setState({status: {...this.state.status, result: back1 }})
+    // second pass through plugboard
+    const final = findPLugboardVal(back1, plugs)
+
+    this.setState({status: {...this.state.status, result: final }})
   }
   handleKeyPressValue(e) {
     const keypress = {...this.state.status, keypress: e.keyCode - 65 }
