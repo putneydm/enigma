@@ -5,7 +5,7 @@ import { Children, PropTypes } from 'react'
 // lettersData
 import {initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector} from "./modules/variables"
 
-import {flatten, crosswires, rounder, rounderBack, rotorPass} from "./modules/helper_functions"
+import {flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal} from "./modules/helper_functions"
 
 // components
 import {Head} from "./modules/components/head"
