@@ -73,19 +73,22 @@ $note-default: #FFFFE0;
 }
 .rotor-container, .rotor-selector {
   display:flex;
+  position: relative;
   align-items: center;
   flex-direction:row-reverse;
   justify-content: center;
   width:100%;
-  margin:0 0 80px;
+  max-width:300px;
+  margin:0 auto 80px;
   padding:40px 0 10px;
+  border:1px solid green;
     select {
       width:50px;
       margin:0 5px;
     }
 }
 .rotor-selector {
-  margin:0;
+  margin:0 auto;
 }
 .plugboard-container {
   // border:1px solid blue;
@@ -116,4 +119,116 @@ $note-default: #FFFFE0;
     width:100vw;
     height:100vh;
     border:1px solid red;
+}
+
+
+.forms-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  border:1px solid blue;
+   @media screen and (min-width:em(400)) {
+      flex-wrap: nowrap;
+    }
+}
+.notes-picker-icn {
+  font-family: $mono;
+  font-weight:700;
+  width:100%;
+  border:1px solid blue;
+  // max-width:300px;
+  flex-basis:100%;
+  height:50px;
+  position: relative;
+  // z-index: 2;
+  margin:0 0 20px 0;
+  // &:hover {
+  //   border:1px solid orange;
+  //   height:400px;
+  //   top:0px;
+  //   overflow-y: scroll;
+  //   position:absolute;
+  // }
+  @media screen and (min-width:em(400)) {
+    flex-basis:50%;
+    margin:0 15px 20px 0;
+  }
+  .notes-colors {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    // z-index: 1;
+    // width:300px;
+    height:65px;
+    background-color: white;
+    transition: opacity .2s;
+    margin:0;
+    padding:0;
+    li {
+      padding:15px 0;
+      border-bottom:1px solid $dark;
+      border-left:1px solid $dark;
+      border-right:1px solid $dark;
+      text-align: center;
+      order:1;
+      left:-100000000px;
+      opacity:0;
+      position:absolute;
+      width:100%;
+      list-style-type: none;
+      margin:0;
+      // z-index:2;
+      background-color: white;
+      cursor: pointer;
+    }
+    li.active {
+      order: 0;
+      // border:1px solid blue;
+      color: $dark;
+      opacity: 1;
+      left:0;
+    }
+  }
+  &:hover {
+    .notes-colors {
+      // top:-10px;
+      // left:-10px;
+      // opacity:1;
+      z-index: 2;
+      transition: opacity .2s;
+      li {
+        left:0;
+        opacity: 1;
+        transition: opacity .3s;
+        position:static;
+        &:hover {
+          background-color:$med;
+          transition: background-color .2s;
+          color:$dark;
+        }
+      }
+      li.active {
+        order:1;
+        color:white;
+        background-color: red;
+        &:hover {
+          background-color: $dark;
+          color:white;
+          transition: background-color .2s;
+        }
+      }
+      li.disabled {
+        color:white;
+        background-color: white;
+        cursor:not-allowed;
+        color:$light;
+        // &:hover {
+        //   background-color: $light;
+        //   color:white;
+        //   transition: background-color .2s;
+        // }
+      }
+    }
+  }
 }
