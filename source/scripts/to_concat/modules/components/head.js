@@ -1,17 +1,17 @@
 import React, { Component } from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
 
-const Head = ({val, action}) => {
+const Head=({ val, action }) => {
   console.log(val)
-  const clicky = () => {
+  const clicky=() => {
     action(val)
   }
   return (
     <h1
-      onClick={clicky}
+      onClick={ clicky }
     >
       {`${val}`}
     </h1>
   )
 }
-export {Head}
+export { Head }
