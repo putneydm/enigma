@@ -137,6 +137,7 @@ class App extends React.Component {
     this.setState({buttonStatus: dialog})
  }
   handleLetterboardArray(item, index, val) {
+    console.log("item", item,"index", index,"val", val);
     val = parseInt(val)
     const pbr =[...this.state.plugs].map((el, i) =>{
       return index === i ? {...el, ccOne: item === "ccOne"? val:el.ccOne, ccTwo: item === "ccTwo"? val:el.ccTwo}: el
@@ -156,15 +157,15 @@ class App extends React.Component {
           r = {this.state.rotorsArr}
           f = {this.setRotorNumber}
         />
-        <Rotors
-          count = {this.state.rotors}
-          r = {this.state.lettersArr}
-          f = {this.setRotorPos}
-        />
         <RingSelector
           count = {this.state.rotors}
           r = {this.state.numbersArr}
           f = {this.setRingPosition}
+        />
+        <Rotors
+          count = {this.state.rotors}
+          r = {this.state.lettersArr}
+          f = {this.setRotorPos}
         />
         <SaveButton
           f1 = {this.handleSettingsSave}
