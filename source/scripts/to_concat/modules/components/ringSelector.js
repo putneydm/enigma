@@ -1,6 +1,7 @@
 import React, {Component} from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
 import { RingDrop } from "./RingDrop"
+import { Label } from "./label"
 
 const RingDropdown=({val, r, id, f}) => {
   const clicky=(e) => {
@@ -8,13 +9,12 @@ const RingDropdown=({val, r, id, f}) => {
     f(id, e.target.value)
  }
   return (
-    <div
-      className="hidden"
-    >
+
     <select
       onChange={clicky}
       id={id}
       value={val}
+      className="hidden"
     >
       <option
         disabled="true"
@@ -34,7 +34,6 @@ const RingDropdown=({val, r, id, f}) => {
         )
      })}
     </select>
-  </div>
   )
 }
 
@@ -43,6 +42,9 @@ const RingSelector=({count, r, f}) => {
     <div
       className="rotor-selector"
     >
+      <Label
+        content="Set the locking ring positions"
+      />
       {count.map((el, i) => {
         return (
           <RingDrop

@@ -1,6 +1,7 @@
 import React, { Component } from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
 import { RingDrop } from "./RingDrop"
+import { Label } from "./label"
 
 // component that allows user to set the rotor position
 const Dropdown=({ val, r, id, f }) => {
@@ -43,6 +44,9 @@ const Rotors=({ count, r, f }) => {
     <div
       className="rotor-selector"
     >
+      <Label
+        content="Set the initial positions of the rotors"
+      />
       {count.map((el, i) => {
         return (
           <Dropdown

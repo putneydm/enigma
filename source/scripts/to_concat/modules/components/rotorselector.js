@@ -1,7 +1,7 @@
 import React, { Component } from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
-// import { RotorRingDrop } from "./rotorringdrop"
-
+import { RotorRingDrop } from "./rotorringdrop"
+import { Label } from "./label"
 // componet for selecting which rotor -- 1 through six -- to use
 const RotorSelectorDropdown=({ r, rotor, f, id, rotorsArr }) => {
   const clicky=(e) => {
@@ -41,6 +41,9 @@ const RotorSelector=({ rotors, r, f }) => {
     <div
       className="rotor-selector"
     >
+      <Label
+        content="Select which rotors to use"
+      />
       {rotors.map((el, i) => {
         return (
           <RotorRingDrop
