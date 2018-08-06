@@ -1,7 +1,7 @@
 import React, { Component } from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
 
-const Button=({ val, f, status }) => {
+const Button=({ val, f, status, primary=false}) => {
   // console.log("button", val, status)
   const clicky=(e) => {
     e.preventDefault()
@@ -10,7 +10,7 @@ const Button=({ val, f, status }) => {
   return (
     <button
       disabled={ status }
-      className="button"
+      className={ primary?"primary":"button"}
       onClick={ clicky }
       value={ val }
     >
