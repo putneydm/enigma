@@ -63,13 +63,22 @@ $note-default: #FFFFE0;
   width:70px;
   height:70px;
   margin:2px;
-  padding:25px;
+  padding:22px;
   text-align: center;
-  border:1px solid blue;
+  border:2px solid $light;
   border-radius: 50%;
+  font-size:20px;
+  font-weight:700;
+  color:$med;
 }
 .letter.active {
-  border:2px solid orange;
+  color:$white;
+  background-color:lighten($button, 55%);
+  box-shadow: inset -3px -3px 20px rgba($button, .4);
+  mix-blend-mode: multiply;
+  color:$black;
+  transition:color .2s, box-shadow .3s, background-color .4s;
+  border:2px solid rgba($button, .25);
 }
 .rotor-container, .rotor-selector {
   display:flex;
@@ -78,10 +87,9 @@ $note-default: #FFFFE0;
   flex-direction:row-reverse;
   justify-content: center;
   width:100%;
-  max-width:300px;
+  max-width:400px;
   margin:0 auto 80px;
-  padding:40px 0 10px;
-  border:1px solid green;
+  padding:0 0 20px;
     select {
       width:50px;
       margin:0 5px;
@@ -89,6 +97,12 @@ $note-default: #FFFFE0;
 }
 .rotor-selector {
   margin:0 auto;
+  flex-wrap: wrap;
+  label {
+    flex-basis: 100%;
+    flex-shrink: 0;
+    margin:0 0 12px;
+  }
 }
 .plugboard-container {
   // border:1px solid blue;
@@ -100,10 +114,11 @@ $note-default: #FFFFE0;
 .plugboard-pair {
   display: flex;
   align-items: center;
-  flex-basis: 50%;
+  flex-basis: 33%;
   justify-content: center;
   padding:2px 10px;
   flex-shink:0;
+  position: relative;
   select {
     flex-basis: 33%;
 
@@ -112,20 +127,32 @@ $note-default: #FFFFE0;
 }
 .dialog {
   top:33vh;
-  border:1px solid blue;
+  border:1px solid $light;
+  padding:60px 80px 80px;
+  border-radius: 4px;
+  z-index:200;
+  position: absolute;
+  background-color: $white;
+  box-shadow:0 30px 40px rgba($black, .3);
 }
-.dialog::backdrop {
-    background: red;
-    width:100vw;
-    height:100vh;
-    border:1px solid red;
+.backdrop {
+  background: $white;
+  width:0;
+  height:0;
+  position: absolute;
+  right:-100000000;
 }
-
-
+.backdrop.active {
+  background-color: rgba($white, .8);
+  width:100vw;
+  height:100vh;
+  position: fixed;
+  top:0;
+  transition: background-color .2s;
+}
 .forms-wrapper {
   display: flex;
   flex-wrap: wrap;
-  border:1px solid blue;
    @media screen and (min-width:em(400)) {
       flex-wrap: nowrap;
     }
@@ -133,21 +160,12 @@ $note-default: #FFFFE0;
 .notes-picker-icn {
   font-family: $mono;
   font-weight:700;
-  width:100%;
-  border:1px solid blue;
-  // max-width:300px;
-  flex-basis:100%;
+  // width:100%;
+  flex-basis:30%;
   height:50px;
   position: relative;
-  // z-index: 2;
-  margin:0 0 20px 0;
-  // &:hover {
-  //   border:1px solid orange;
-  //   height:400px;
-  //   top:0px;
-  //   overflow-y: scroll;
-  //   position:absolute;
-  // }
+  top:0;
+  margin:0 5px 20px;
   @media screen and (min-width:em(400)) {
     flex-basis:50%;
     margin:0 15px 20px 0;
@@ -158,18 +176,18 @@ $note-default: #FFFFE0;
     flex-direction: column;
     justify-content: flex-start;
     position: relative;
-    // z-index: 1;
-    // width:300px;
-    height:65px;
+    top:0;
+    height:50px;
     background-color: white;
     transition: opacity .2s;
     margin:0;
     padding:0;
+    border-top:1px solid $light;
     li {
       padding:15px 0;
-      border-bottom:1px solid $dark;
-      border-left:1px solid $dark;
-      border-right:1px solid $dark;
+      border-bottom:1px solid $light;
+      border-left:1px solid $light;
+      border-right:1px solid $light;
       text-align: center;
       order:1;
       left:-100000000px;
@@ -184,37 +202,40 @@ $note-default: #FFFFE0;
     }
     li.active {
       order: 0;
-      // border:1px solid blue;
       color: $dark;
       opacity: 1;
       left:0;
+      color:$button;
     }
   }
   &:hover {
     .notes-colors {
-      // top:-10px;
-      // left:-10px;
-      // opacity:1;
+      border-bottom:1px solid $light;
+      height:286px;
+      overflow-y:scroll;
       z-index: 2;
       transition: opacity .2s;
+      box-shadow: 0px 2px 8px 3px rgba(0, 0, 0, 0.2);
       li {
         left:0;
         opacity: 1;
         transition: opacity .3s;
         position:static;
         &:hover {
-          background-color:$med;
+          background-color:lighten($button, 50);
           transition: background-color .2s;
-          color:$dark;
+        }
+        &:last-child {
+          border-bottom:0px;
         }
       }
       li.active {
         order:1;
         color:white;
-        background-color: red;
+        background-color: $button;
         &:hover {
-          background-color: $dark;
-          color:white;
+          background-color: $button;
+          color:$white;
           transition: background-color .2s;
         }
       }
@@ -231,4 +252,38 @@ $note-default: #FFFFE0;
       }
     }
   }
+}
+
+button {
+  border:1px solid $button;
+  // padding:20px 45px;
+  background-color: $white;
+  border-radius: 4px;
+  font-size:14px;
+  color:$button;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  font-weight:200;
+  width:160px;
+  margin:0 5px 10px;
+  height:60px;
+  &:hover {
+    background-color: $button;
+    color:$white;
+    transition: background-color .2s, color.2s;
+  }
+  &:disabled {
+    border:1px solid $light;
+    color:$light;
+    &:hover {
+      background-color: $white;
+      color:$light;
+      cursor:not-allowed;
+    }
+  }
+}
+button.primary {
+  border:1px solid $button;
+  font-weight:500;
+  box-shadow: inset 0 0 0px 1.5px $button
 }
