@@ -83,7 +83,7 @@ const Plugboard=({ plugs, count, f, selected }) => {
         console.log("el",el);
         return (
           <div
-            key={ i + 100 + plugs.length }
+            // key={ i + 100 + plugs.length }
             className="plugboard-pair"
           >
             <PlugBoardDrop
