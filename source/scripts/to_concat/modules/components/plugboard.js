@@ -1,6 +1,7 @@
 import React, { Component } from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
 import { PlugBoardDrop } from "./rotorringdrop"
+import { Label } from "./label"
 
 // const RotorRingDrop=({ r, rotorVal, f, id, rotorsArr }) => {
 //   const clicky=(e) => {
@@ -75,6 +76,9 @@ const Plugboard=({ plugs, count, f, selected }) => {
     <div
       className="plugboard-container"
     >
+      <Label
+        content="Cross-connect letters in the plugboard"
+      />
       {plugs.map((el, i) => {
         console.log("el",el);
         return (
