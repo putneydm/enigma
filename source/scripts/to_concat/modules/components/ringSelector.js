@@ -48,22 +48,12 @@ const RingSelector=({count, r, f}) => {
       {count.map((el, i) => {
         return (
           <RingDrop
-            val={el.r}
+            val={ el.r }
             r={r}
             key={i}
             id={i}
             f={ f }
-          />
-        )
-     })}
-      {count.map((el, i) => {
-        return (
-          <RingDropdown
-            val={el.r}
-            r={r}
-            key={i}
-            id={i}
-            f={f}
+            active={ el.active }
           />
         )
      })}

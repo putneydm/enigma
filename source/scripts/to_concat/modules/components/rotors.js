@@ -66,6 +66,7 @@ const Rotors=({ count, r, f }) => {
             key= {i }
             id={ i }
             f={ f }
+            active={ el.active }
           />
         )
      })}

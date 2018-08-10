@@ -61,10 +61,12 @@ const RotorSelector=({ rotors, r, f }) => {
           <RotorSelectorDropdown
             r={ r }
             rotor={ el.sel }
+            rotorVal={ el.sel }
             rotorsArr={ rotors }
             key={ i }
             f={ f }
             id={ i }
+            active={ true }
           />
         )
       })}
