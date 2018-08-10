@@ -42,7 +42,7 @@ const RotorSelector=({ rotors, r, f }) => {
       className="rotor-selector"
     >
       <Label
-        content="Select which rotors to use"
+        content="Pick a rotor ..."
       />
       {rotors.map((el, i) => {
         return (

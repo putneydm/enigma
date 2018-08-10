@@ -43,7 +43,7 @@ const RingSelector=({count, r, f}) => {
       className="rotor-selector"
     >
       <Label
-        content="Set the locking ring positions"
+        content="Set rotor offset ..."
       />
       {count.map((el, i) => {
         return (

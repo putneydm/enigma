@@ -45,7 +45,7 @@ const Rotors=({ count, r, f }) => {
       className="rotor-selector"
     >
       <Label
-        content="Set the initial positions of the rotors"
+        content="Set start position ..."
       />
       {count.map((el, i) => {
         return (
