@@ -13,7 +13,7 @@ const reflector =  [4,9,12,25,0,11,24,23,21,1,22,5,2,17,16,20,14,13,19,18,15,8,1
 const plugboardArr = lettersData(lettersArr)
 const rotors = newNumberArray(1, 3).map((el, i) => {
   const [seed] = seedVal.filter((el, ix) => ix === i)
-  return { val: 0, id:i, p:seed, sel:i<3?i:undefined, r:0, cc:crosswires(seed) }
+  return { val: 0, id:i, p:seed, sel:i<3?i:undefined, r:0, cc:crosswires(seed), active:false }
 })
 const status = {keypress: undefined, result: undefined}
 const buttonStatus = {save:false, get:false, clear:false, dialog:false}
