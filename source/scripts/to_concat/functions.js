@@ -152,21 +152,25 @@ class App extends React.Component {
           val = {"hallo welt"}
           f = {this.setRotorNumber}
         />
-        <RotorSelector
-          rotors = {this.state.rotors}
-          r = {this.state.rotorsArr}
-          f = {this.setRotorNumber}
-        />
-        <RingSelector
-          count = {this.state.rotors}
-          r = {this.state.numbersArr}
-          f = {this.setRingPosition}
-        />
-        <Rotors
-          count = {this.state.rotors}
-          r = {this.state.lettersArr}
-          f = {this.setRotorPos}
-        />
+        <div
+          className="rotors-wrapper"
+        >
+          <RotorSelector
+            rotors = {this.state.rotors}
+            r = {this.state.rotorsArr}
+            f = {this.setRotorNumber}
+          />
+          <RingSelector
+            count = {this.state.rotors}
+            r = {this.state.numbersArr}
+            f = {this.setRingPosition}
+          />
+          <Rotors
+            count = {this.state.rotors}
+            r = {this.state.lettersArr}
+            f = {this.setRotorPos}
+          />
+        </div>
         <SaveButton
           f1 = {this.handleSettingsSave}
           f2 = {this.handleSettingsRetrieve}
