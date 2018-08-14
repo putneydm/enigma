@@ -22,6 +22,12 @@ const RotorRingDrop=({ r, rotorVal, f, id, rotorsArr }) => {
       id={id}
       onClick={ clicky }
     >
+      <ListSelector
+        key={ 101 }
+        dispVal={"—"}
+        val={ undefined }
+        disabledState={ !valSet?"active placeholder": "hidden" }
+      />
       {r.map((el, i) => {
         return (
           <ListSelector
