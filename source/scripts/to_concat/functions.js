@@ -171,6 +171,12 @@ class App extends React.Component {
             f = {this.setRotorPos}
           />
         </div>
+        <Plugboard
+          count = {this.state.lettersArr}
+          plugs = {this.state.plugs}
+          f = {this.handleLetterboardArray}
+          selected = {flatten(this.state.plugs)}
+        />
         <SaveButton
           f1 = {this.handleSettingsSave}
           f2 = {this.handleSettingsRetrieve}
@@ -180,12 +186,6 @@ class App extends React.Component {
         <LetterBoard
           r = {this.state.lettersArr}
           active = {this.state.status.result}
-        />
-        <Plugboard
-          count = {this.state.lettersArr}
-          plugs = {this.state.plugs}
-          f = {this.handleLetterboardArray}
-          selected = {flatten(this.state.plugs)}
         />
         <Dialog
           text = "Are you sure you want to delete this?"
