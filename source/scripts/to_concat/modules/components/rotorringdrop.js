@@ -7,20 +7,22 @@ import { ListSelector } from "./listselector"
 // f is the function
 // id is the id of the ul item
 // rotorsarr is the values for each dropdown
-const RotorRingDrop=({ r, rotorVal, f, id, rotorsArr }) => {
+const RotorRingDrop=({ r, rotorVal, f, id, rotorsArr, active=false, valSet=false}) => {
   const clicky=(e) => {
     e.preventDefault()
     const test=e.target.classList.contains("disabled")
     !test?f(id, e.target.value):f(id, rotorVal)
  }
+ console.log("rotorsArr", rotorsArr);
   return (
-  <div
-    className="notes-picker-icn"
-  >
+    <div
+      className={ !active?"notes-picker-icn inactive": !valSet?"notes-picker-icn no-val": "notes-picker-icn" }
+    >
     <ul
-      className="notes-colors"
       id={id}
       onClick={ clicky }
+      className="notes-colors"
+      className={ active?"notes-colors": "notes-colors inactive" }
     >
       <ListSelector
         key={ 101 }
@@ -34,7 +36,7 @@ const RotorRingDrop=({ r, rotorVal, f, id, rotorsArr }) => {
             key={i}
             dispVal={el}
             val={i}
-            disabledState={ rotorVal===i?"active":rotorsArr.some(ele => ele.sel===i) && rotorVal !== i? "disabled": "inactive"}
+            disabledState={ rotorVal===i && valSet?"active":rotorsArr.some(ele => ele.sel===i) && rotorVal!==i? "disabled": "inactive"}
           />
         )
      })}
@@ -42,8 +44,7 @@ const RotorRingDrop=({ r, rotorVal, f, id, rotorsArr }) => {
   </div>
   )
 }
-
-const PlugBoardDrop=({ r, rotorVal, f, id, rotorsArr, selected, index }) => {
+const PlugBoardDrop=({ r, rotorVal, f, id, rotorsArr, selected, index, active=true, valueSet=false }) => {
   const clicky=(e) => {
     e.preventDefault()
     const test=e.target.classList.contains("disabled")
@@ -51,20 +52,26 @@ const PlugBoardDrop=({ r, rotorVal, f, id, rotorsArr, selected, index }) => {
   }
   return (
   <div
-    className="notes-picker-icn"
+    className={ !active?"notes-picker-icn inactive": !valueSet?"notes-picker-icn no-val": "notes-picker-icn" }
   >
     <ul
       className="notes-colors"
       id={id}
       onClick={ clicky }
     >
+    <ListSelector
+      key={ 101 }
+      dispVal={"—"}
+      val={ undefined }
+      disabledState={ !valueSet?"active": "hidden" }
+    />
       {rotorsArr.map((el, i) => {
         return (
           <ListSelector
             key={i}
             dispVal={el}
             val={i}
-            disabledState={ rotorVal===i?"active":selected.some(ele => ele===i) && rotorVal !== i? "disabled": "inactive"}
+            disabledState={ rotorVal===i && valueSet ?"active":selected.some(ele => ele===i) && rotorVal !== i? "disabled": "inactive"}
           />
         )
      })}
