@@ -64,12 +64,14 @@ class App extends React.Component {
     this.setState( {rotors: ringPos})
  }
   setRotorNumber(id, val) {
+    console.log("click", val);
     const [pivot] = this.state.seedVal.filter((el, i) => i === val)
     const rotors = this.state.rotors.map((el, i) => {
-      return i === id? {...el, sel:val, val: 0, r:0, p:pivot, cc:crosswires(pivot), active:true}: el
+      return i===id? {...el, sel:val, val: undefined, r:undefined, p:undefined, cc:[], active:true}: el
    })
+   console.log("rotors", rotors);
     this.handleButtonStates("Update")
-    this.setState({...this.state, rotors: rotors})
+    this.setState({...this.state.rotors, rotors})
  }
   handleConvert() {
     const startVal = this.state.status.keypress
