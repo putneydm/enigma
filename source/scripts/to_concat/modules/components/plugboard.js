@@ -76,55 +76,38 @@ const Plugboard=({ plugs, count, f, selected }) => {
     <div
       className="plugboard-container"
     >
-      <Label
-        content="Cross-connect letters in the plugboard"
-      />
+      <Label>
+        Cross-connect pairs of letters on the plugboard
+      </Label>
       {plugs.map((el, i) => {
-        console.log("el",el);
+        // console.log("el",el);
         return (
           <div
-            // key={ i + 100 + plugs.length }
-            className="plugboard-pair"
+            className={el.ccOne && el.ccTwo? "plugboard-pair":"plugboard-pair inactive"}
+            key={ i }
           >
             <PlugBoardDrop
               r={ plugs }
-              key={ i }
-              rotorVal={!el.ccOne?0:el.ccOne}
+              key={ i + plugs.length }
+              rotorVal={ el.ccOne }
               f={ f }
               id={ "ccOne" }
               rotorsArr={ count }
               selected={ selected }
               index={ i }
+              valueSet= { el.ccOne!==undefined?true:false}
             />
             <PlugBoardDrop
               r={ plugs }
-              key={ i + plugs.length  }
-              rotorVal={!el.ccTwo?0:el.ccTwo}
+              key={ i + (plugs.length * 10)  }
+              rotorVal={ el.ccTwo }
               f={ f }
               id={ "ccTwo" }
               rotorsArr={ count }
               selected={ selected }
               index={ i }
-            />
-            <PlugboardDropdown
-              r={ count }
-              key={ i }
-              f={ f }
-              selected={ selected }
-              def={ el.ccOne }
-              index={ i }
-              item={ "ccOne" }
-              className={ "hidden" }
-            />
-            <PlugboardDropdown
-              r={ count }
-              key={ i + plugs.length }
-              f={ f }
-              selected={ selected }
-              def={ el.ccTwo }
-              index={ i }
-              item={ "ccTwo" }
-              className={ "hidden" }
+              active={el.ccOne!==undefined?true:false}
+              valueSet={ el.ccOne>=0&&el.ccTwo>=0?true:false}
             />
           </div>
         )
