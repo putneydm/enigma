@@ -1,12 +1,12 @@
 import React, {Component} from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
 
-const Label=({ content }) => {
+const Label=({ children }) => {
   return (
     <label
       className="label"
     >
-    {`${content}`}
+    {children}
   </label>
   )
 }
