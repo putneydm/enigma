@@ -9,10 +9,10 @@ import {flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal} 
 
 // components
 import {Head} from "./modules/components/head"
-import {Rotors} from "./modules/components/rotors"
+import {RotorPositionSelector} from "./modules/components/rotor_position_selector"
 import {LetterBoard} from "./modules/components/letterboard"
-import {RotorSelector} from "./modules/components/rotorselector"
-import {RingSelector} from "./modules/components/ringSelector"
+import {RotorSelector} from "./modules/components/rotor_selector"
+import {RingPositionSelector} from "./modules/components/ring_position_selector"
 import {SaveButton} from "./modules/components/save-buttons"
 import {Dialog} from "./modules/components/dialog"
 import {Plugboard} from "./modules/components/plugboard"
