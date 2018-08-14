@@ -18,4 +18,4 @@ const rotors = newNumberArray(1, 3).map((el, i) => {
 const status = {keypress: undefined, result: undefined}
 const buttonStatus = {save:false, get:false, clear:false, dialog:false}
 
-export {initial, numbersArr, lettersArr, seedVal, plugs, plugboardArr, rotors, status, buttonStatus, rotorsArr, reflector}
+export {initial, numbersArr, lettersArr, seedVal, plugs, plugboardArr, rotors, status, buttonStatus, rotorsArr, reflector} 
