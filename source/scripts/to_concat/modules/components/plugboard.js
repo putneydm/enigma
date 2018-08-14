@@ -34,39 +34,39 @@ import { Label } from "./label"
 //   </div>
 //   )
 // }
-
-const PlugboardDropdown=({ r, id, f, item, index, selected, def }) => {
-    const clicky=(e) => {
-      e.preventDefault()
-      f(item, index, e.target.value)
-    }
-    return (
-      <select
-        onChange={ clicky }
-        id={ id }
-        value= { def !== null?def:"def" }
-      >
-        <option
-          disabled="true"
-          hidden="true"
-          value="def"
-        >
-          Choose letter
-        </option>
-        {r.map((el, i) => {
-          return (
-            <option
-              key={ i }
-              value={ i }
-              disabled={ selected.some((le) => i === le && i !== def) }
-            >
-              {`${el}`}
-            </option>
-          )
-        })}
-      </select>
-    )
-  }
+//
+// const PlugboardDropdown=({ r, id, f, item, index, selected, def }) => {
+//     const clicky=(e) => {
+//       e.preventDefault()
+//       f(item, index, e.target.value)
+//     }
+//     return (
+//       <select
+//         onChange={ clicky }
+//         id={ id }
+//         value= { def !== null?def:"def" }
+//       >
+//         <option
+//           disabled="true"
+//           hidden="true"
+//           value="def"
+//         >
+//           Choose letter
+//         </option>
+//         {r.map((el, i) => {
+//           return (
+//             <option
+//               key={ i }
+//               value={ i }
+//               disabled={ selected.some((le) => i === le && i !== def) }
+//             >
+//               {`${el}`}
+//             </option>
+//           )
+//         })}
+//       </select>
+//     )
+//   }
 
 
 const Plugboard=({ plugs, count, f, selected }) => {
