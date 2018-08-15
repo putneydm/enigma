@@ -2,7 +2,7 @@ import React, { Component } from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
 import { Button } from "./button"
 
-const SaveButton = ({ f1, f2, f3, status = false }) => {
+const SaveTools = ({ f1, f2, f3, status = false }) => {
   return (
     <div
       className = "rotor-container"
@@ -26,4 +26,4 @@ const SaveButton = ({ f1, f2, f3, status = false }) => {
   )
 }
 
-export { SaveButton }
+export { SaveTools }
