@@ -1,7 +1,7 @@
 import React, {Component} from "../../../node_modules/react"
 import ReactDOM from "../../../node_modules/react-dom"
 import {Children, PropTypes} from 'react'
-
+import { BrowserRouter as Router, Route, Link }  from '../../../node_modules/react-router-dom'
 // lettersData
 import {initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector} from "./modules/variables"
 
@@ -9,12 +9,9 @@ import {flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal} 
 
 // components
 import {Head} from "./modules/components/head"
-import {RotorPositionSelector} from "./modules/components/rotor_position_selector"
+import {MachineSetup} from "./modules/components/machine_setup"
+import {SaveInterface} from "./modules/components/save_interface"
 import {LetterBoard} from "./modules/components/letterboard"
-import {RotorSelector} from "./modules/components/rotor_selector"
-import {RingPositionSelector} from "./modules/components/ring_position_selector"
-import {SaveButton} from "./modules/components/save-buttons"
-import {Dialog} from "./modules/components/dialog"
 import {Plugboard} from "./modules/components/plugboard"
 
 const app = document.querySelector("#app")
@@ -150,52 +147,35 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Head
-          val = {"hallo welt"}
-          f = {this.setRotorNumber}
-        />
-        <div
-          className="rotors-wrapper"
-        >
-          <RotorSelector
-            rotors = {this.state.rotors}
-            r = {this.state.rotorsArr}
-            f = {this.setRotorNumber}
-          />
-          <RingPositionSelector
-            count = {this.state.rotors}
-            r = {this.state.numbersArr}
-            f = {this.setRingPosition}
-          />
-          <RotorPositionSelector
-            count = {this.state.rotors}
-            r = {this.state.lettersArr}
-            f = {this.setRotorPos}
-          />
-        </div>
-        <Plugboard
-          count = {this.state.lettersArr}
-          plugs = {this.state.plugs}
-          f = {this.handleLetterboardArray}
+        <Head>
+          hallo, welt
+        </Head>
+        <MachineSetup
+          setRotorNumber = {this.setRotorNumber}
+          setRingPosition = {this.setRingPosition}
+          setRotorPos= {this.setRotorPos}
+          rotors = { this.state.rotors }
+          rotorsArr = {this.state.rotorsArr}
+          lettersArr = { this.state.lettersArr }
+          numbersArr = { this.state.numbersArr }
+          plugs = { this.state.plugs }
+          handleLetterboardArray = {this.handleLetterboardArray}
           selected = {flatten(this.state.plugs)}
         />
-        <SaveButton
-          f1 = {this.handleSettingsSave}
-          f2 = {this.handleSettingsRetrieve}
-          f3 = {this.handleClearDialog}
+        <SaveInterface
+          handleSettingsSave = {this.handleSettingsSave}
+          handleSettingsRetrieve = {this.handleSettingsRetrieve}
+          handleClearDialog = {this.handleClearDialog}
           status = {this.state.buttonStatus}
+          text = "Are you sure you want to delete this?"
+          handleSettingsClear = {this.handleSettingsClear}
         />
         <LetterBoard
           r = {this.state.lettersArr}
           active = {this.state.status.result}
         />
-        <Dialog
-          text = "Are you sure you want to delete this?"
-          vis = {this.state.buttonStatus}
-          f = {this.handleClearDialog}
-          f2 = {this.handleSettingsClear}
-        />
     </div>
+
     )
  }
 }

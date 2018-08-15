@@ -1,0 +1,25 @@
+import React, {Component} from "../../../../../node_modules/react"
+import ReactDOM from "../../../../../node_modules/react-dom"
+
+import { SaveTools } from "./save_tools"
+import { Dialog } from "./dialog"
+
+const SaveInterface = ({handleSettingsSave, handleSettingsRetrieve, handleClearDialog, status, handleSettingsClear }) => {
+  return (
+    <div>
+      <SaveTools
+        f1 = { handleSettingsSave }
+        f2 = { handleSettingsRetrieve }
+        f3 = { handleClearDialog }
+        status = { status }
+      />
+      <Dialog
+        text = "Are you sure you want to delete this?"
+        vis = { status }
+        f = { handleClearDialog }
+        f2 = { handleSettingsClear }
+      />
+    </div>
+)}
+
+export { SaveInterface }

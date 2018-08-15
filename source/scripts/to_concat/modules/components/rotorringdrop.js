@@ -13,7 +13,6 @@ const RotorRingDrop=({ r, rotorVal, f, id, rotorsArr, active=false, valSet=false
     const test=e.target.classList.contains("disabled")
     !test?f(id, e.target.value):f(id, rotorVal)
  }
- console.log("rotorsArr", rotorsArr);
   return (
     <div
       className={ !active?"notes-picker-icn inactive": !valSet?"notes-picker-icn no-val": "notes-picker-icn" }
