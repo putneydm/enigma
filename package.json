@@ -53,6 +53,7 @@
     "main-bower-files": "^2.8.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-router-dom": "^4.3.1",
     "tsify": "^4.0.0",
     "uglify": "^0.1.5",
     "vinyl-buffer": "^1.0.0",
