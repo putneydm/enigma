@@ -13,21 +13,29 @@ const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotor
     <div
       className="rotors-wrapper"
     >
-      <RotorSelector
-        rotors={ rotors }
-        r={ rotorsArr }
-        f={ setRotorNumber }
-      />
-      <RingPositionSelector
-        count={ rotors }
-        r={ numbersArr }
-        f={ setRingPosition }
-      />
-      <RotorPositionSelector
-        count={ rotors }
-        r={ lettersArr }
-        f={ setRotorPos }
-      />
+      <div 
+        className="b-loose"
+      >
+
+      {[1, 2, 3].map((el, i) => {
+        console.log(i)
+      })}
+        <RotorSelector
+          rotors={ rotors }
+          r={ rotorsArr }
+          f={ setRotorNumber }
+        />
+        <RingPositionSelector
+          count={ rotors }
+          r={ numbersArr }
+          f={ setRingPosition }
+        />
+        <RotorPositionSelector
+          count={ rotors }
+          r={ lettersArr }
+          f={ setRotorPos }
+        />
+      </div>
       <Plugboard
         count = { lettersArr }
         plugs = { plugs }
