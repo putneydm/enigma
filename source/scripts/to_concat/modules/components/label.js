@@ -11,4 +11,14 @@ const Label=({ children }) => {
   )
 }
 
+const Header=({ children }) => {
+  return (
+    <h2
+      className="header"
+    >
+    {children}
+  </h2>
+  )
+}
+
 export { Label }
