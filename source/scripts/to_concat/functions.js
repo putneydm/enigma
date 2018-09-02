@@ -5,14 +5,14 @@ import { BrowserRouter as Router, Route, Link }  from '../../../node_modules/rea
 // lettersData
 import {initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector} from "./modules/variables"
 
-import {flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal} from "./modules/helper_functions"
+import { flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal } from "./modules/helper_functions"
 
 // components
 import {Head} from "./modules/components/head"
 import {MachineSetup} from "./modules/components/machine_setup"
 import {SaveInterface} from "./modules/components/save_interface"
 import {LetterBoard} from "./modules/components/letterboard"
-import {Plugboard} from "./modules/components/plugboard"
+import {Plugboard} from "./modules/components/plugboard" 
 
 const app = document.querySelector("#app")
 
@@ -47,7 +47,7 @@ class App extends React.Component {
     this.setState({rotors: [a, b, c]})
  }
   setRotorPos(id, val) {
-    const rotorPos = [... this.state.rotors].map((el, i) => {
+    const rotorPos = [...this.state.rotors].map((el, i) => {
       return {...el, val: el.id === id? parseInt(val): el.val}
    })
     this.handleButtonStates("Update")
@@ -58,15 +58,13 @@ class App extends React.Component {
       return {...el, r:id === i?parseInt(val):el.r}
    })
     this.handleButtonStates("Update")
-    this.setState( {rotors: ringPos})
+    this.setState({ ...this.state.rotors = ringPos })
  }
   setRotorNumber(id, val) {
-    console.log("click", val);
     const [pivot] = this.state.seedVal.filter((el, i) => i === val)
     const rotors = this.state.rotors.map((el, i) => {
-      return i===id? {...el, sel:val, val: undefined, r:undefined, p:undefined, cc:[], active:true}: el
+      return i===id? {...el, sel:val, val: undefined, r:undefined, p:pivot, cc:crosswires(pivot), active:true}: el
    })
-   console.log("rotors", rotors);
     this.handleButtonStates("Update")
     this.setState({...this.state.rotors, rotors})
  }
@@ -136,7 +134,6 @@ class App extends React.Component {
     this.setState({buttonStatus: dialog})
  }
   handleLetterboardArray(item, index, val) {
-    console.log("item", item,"index", index,"val", val);
     val = parseInt(val)
     const pbr =[...this.state.plugs].map((el, i) =>{
       return index === i ? {...el, ccOne: item === "ccOne"? val:el.ccOne, ccTwo: item === "ccTwo"? val:el.ccTwo}: el
@@ -151,10 +148,10 @@ class App extends React.Component {
           hallo, welt
         </Head>
         <MachineSetup
-          setRotorNumber = {this.setRotorNumber}
-          setRingPosition = {this.setRingPosition}
-          setRotorPos= {this.setRotorPos}
-          rotors = { this.state.rotors }
+          setRotorNumber = { this.setRotorNumber }
+          setRingPosition = { this.setRingPosition }
+          setRotorPos= { this.setRotorPos }
+          rotors = { this.state.rotors } 
           rotorsArr = {this.state.rotorsArr}
           lettersArr = { this.state.lettersArr }
           numbersArr = { this.state.numbersArr }
