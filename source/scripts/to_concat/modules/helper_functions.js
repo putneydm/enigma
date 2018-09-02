@@ -35,7 +35,7 @@ const rotorPass = (el, step, bool = true) => {
     const {cc, val, r} = {...el}
     const offset = (val + r) % cc.length
     const adjustedVal = rounder(step, offset, cc.length)
-    const crossWire = bool?cc[adjustedVal]: cc.indexOf(adjustedVal)
+    const crossWire = bool?cc[adjustedVal]: cc.indexOf(adjustedVal)  
     return rounderBack(crossWire, offset, cc.length)
 }
 const findPLugboardVal = (val, r) => {
