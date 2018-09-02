@@ -6,7 +6,7 @@ import { Label } from "./label"
 const RotorSelector=({ rotors, r, f }) => {
   return (
     <div
-      className="rotor-selector"
+      className="rotor-selector b-loose"
     >
       <Label>
         Pick a rotor
@@ -21,7 +21,7 @@ const RotorSelector=({ rotors, r, f }) => {
             f={ f }
             id={ i }
             active={ true }
-            valSet={ el.sel>=0?true:false}
+            valSet={ el.sel>=0?true:false }
           />
         )
       })}
