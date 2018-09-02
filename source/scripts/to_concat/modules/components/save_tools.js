@@ -1,12 +1,17 @@
 import React, { Component } from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
 import { Button } from "./button"
+import { Label } from "./label"
 
 const SaveTools = ({ f1, f2, f3, status = false }) => {
   return (
     <div
-      className = "rotor-container"
+      className="save-tools-container"
     >
+      <Label>
+        Save your machine settings
+      </Label>
+
       <Button
         val = { "Save" }
         f = { f1 }
