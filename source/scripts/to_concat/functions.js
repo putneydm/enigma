@@ -12,7 +12,7 @@ import {Head} from "./modules/components/head"
 import {MachineSetup} from "./modules/components/machine_setup"
 import {SaveInterface} from "./modules/components/save_interface"
 import {LetterBoard} from "./modules/components/letterboard"
-import {Plugboard} from "./modules/components/plugboard" 
+import {Plugboard} from "./modules/components/plugboard"  
 
 const app = document.querySelector("#app")
 
