@@ -22,6 +22,18 @@ $note-default: #FFFFE0;
   width:100%;
   height:rem(40);
 }
+.b-tight {
+  margin-bottom:8px;
+}
+.b-cozy {
+  margin-bottom:12px;
+}
+.b-comfortable {
+  margin-bottom:18px;
+}
+.b-loose {
+  margin-bottom:24px;
+}
 .flex-centered {
   display:flex;
   flex-direction: row;
@@ -91,23 +103,17 @@ $note-default: #FFFFE0;
   align-items: center;
   flex-wrap: nowrap;
   flex-direction: column;
-  margin:0 0 60px;
+  margin:0 0 24px;
 }
 .rotor-container, .rotor-selector {
-  // border:1px solid red;
   display:flex;
   position: relative;
   align-items: center;
   flex-direction:row-reverse;
   justify-content: center;
   width:100%;
-  // max-width:380px;
   margin:0 auto 80px;
   padding:0 0 20px;
-    // select {
-    //   width:50px;
-    //   margin:0 5px;
-    // }
 }
 .rotor-selector {
   margin:0 auto;
@@ -145,10 +151,13 @@ $note-default: #FFFFE0;
       top:-106px;
     }
   }
+  .header {
+    font-size:18px;
+    font-weight:bold;
+  }
   .label {
     width:120px;
     height:60px;
-    // border:1px solid red;
     order:6;
     padding:22px 0 0;
     text-align: right;
@@ -221,6 +230,25 @@ $note-default: #FFFFE0;
     border-left:1px solid $light;
     border-right:1px solid $light;
     border-bottom:1px solid $light;
+  }
+}
+.save-tools-container {
+  width:calc(135px * 3);
+  margin:0 auto 48px;
+  .label {
+    flex-basis:100%;
+    flex-shrink: 0;
+    flex-grow: 1;
+    display:block;
+    margin: 0 0 8px 0;
+  }
+  button {
+    &:first-of-type {
+      margin-left:0;
+    }
+    &:last-of-type {
+      margin-right:0;
+  }
   }
 }
 .dialog {
