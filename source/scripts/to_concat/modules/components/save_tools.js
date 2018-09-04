@@ -16,6 +16,7 @@ const SaveTools = ({ f1, f2, f3, status = false }) => {
         val = { "Save" }
         f = { f1 }
         status = { status.save }
+        primary = { true }
       />
       <Button
         val = { "Get" }
