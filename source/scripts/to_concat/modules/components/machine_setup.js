@@ -10,6 +10,7 @@ import {Plugboard} from "./plugboard"
 import { RotorRingDrop } from "./rotorringdrop"
 import { RingDrop } from "./RingDrop"
 import { Label, Header } from "./Label"
+import { Rotor } from "./rotor"
 
 const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotorNumber, setRingPosition, setRotorPos, handleLetterboardArray, selected }) => {
   return (
@@ -24,48 +25,18 @@ const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotor
       >
         <Label>Pick a rotor </Label>
         <Label>Set locking ring</Label>  
-        <Label>Set rotor position</Label>
-      </div>      
+        <Label>Set rotor position</Label>  
+      </div> 
     { rotors.map((el, i) => {
         return (
-            <div
-              className={ el.sel>=0?"rotor-selectors-wrapper active" :"rotor-selectors-wrapper" }
-            >
-            <Header>
-              {`Slot ${i + 1}`}
-            </Header>
-              {/* pick rotor */}
-            <RotorRingDrop
-              r={ rotorsArr }
-              rotorVal={ el.sel }
-              rotorsArr={ rotors } 
-              key={ i }
-              f={ setRotorNumber }
-              id={ i }
-              active={ true }
-              valSet={ el.sel>=0?true:false }
-            />
-            {/* set locking ring postion */}
-            <RingDrop
-              val={ el.r?el.r:0 }
-              r={ numbersArr }
-              key={ i+100 }
-              id={i}
-              f={ setRingPosition }
-              active={ el.active }
-              valSet={ el.r?true:false } 
-              />
-              {/* set rotor value */}
-            <RingDrop
-              val={ el.val?el.val:0 }
-              r={ lettersArr }
-              key= {i + 200 }
-              id={ i }
-              f={ setRotorPos }
-              active={ el.active }
-              valSet={ el.val>=0?true:false }
-            />
-            </div>
+            <Rotor 
+              rotorCount = { rotorsArr }
+              rotorNumber = { el.sel }
+              i = { i }
+              f = { setRotorNumber }
+              key = { i }
+              rotors = { rotors }
+            /> 
         )
       }) }
     </div>

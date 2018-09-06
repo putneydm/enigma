@@ -7,11 +7,11 @@ import { ListSelector } from "./listselector"
 // f is the function
 // id is the id of the ul item
 // rotorsarr is the values for each dropdown
-const RotorRingDrop=({ r, rotorVal, f, id, rotorsArr, active=false, valSet=false}) => {
+const RotorRingDrop=({ r, val, f, id, active=false, valSet=false, rotors}) => {
   const clicky=(e) => {
     e.preventDefault()
     const test=e.target.classList.contains("disabled")
-    !test?f(id, e.target.value):f(id, rotorVal)
+    !test?f(id, e.target.value):f(id, val)
  }
   return (
     <div
@@ -35,7 +35,7 @@ const RotorRingDrop=({ r, rotorVal, f, id, rotorsArr, active=false, valSet=false
             key={i}
             dispVal={el}
             val={i}
-            disabledState={ rotorVal===i && valSet?"active":rotorsArr.some(ele => ele.sel===i) && rotorVal!==i? "disabled": "inactive"}
+            disabledState={ val===i && valSet?"active":rotors.some(ele => ele.sel===i) && val!==i? "disabled": "inactive"}
           />
         )
      })}
