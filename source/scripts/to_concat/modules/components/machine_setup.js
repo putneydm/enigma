@@ -3,12 +3,7 @@ import ReactDOM from "../../../../../node_modules/react-dom"
 
 import { BrowserRouter as Router, Route, Link }  from '../../../../../node_modules/react-router-dom'
 
-import {RotorSelector} from "./rotor_selector"
-import {RingPositionSelector} from "./ring_position_selector"
-import {RotorPositionSelector} from "./rotor_position_selector"
 import {Plugboard} from "./plugboard"
-import { RotorRingDrop } from "./rotorringdrop"
-import { RingDrop } from "./RingDrop"
 import { Label, Header } from "./Label"
 import { Rotor } from "./rotor"
 
