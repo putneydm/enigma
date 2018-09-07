@@ -32,10 +32,18 @@ const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotor
             <Rotor 
               rotorCount = { rotorsArr }
               rotorNumber = { el.sel }
+              numbersArr = { numbersArr }
+              lettersArr = { lettersArr }
               i = { i }
-              f = { setRotorNumber }
+              fSetRotorNumber = { setRotorNumber }
               key = { i }
               rotors = { rotors }
+              ringVal ={ el.r?el.r:0 }
+              fsetRingPosition = { setRingPosition }
+              active = {el.active}
+              ringVal = { el.r?el.r:0 }
+              fSetRotorPos = { setRotorPos }
+              rotorVal = { el.val?el.val:0 }
             /> 
         )
       }) }

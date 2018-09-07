@@ -4,43 +4,43 @@ import ReactDOM from "../../../../../node_modules/react-dom"
 
 import { RotorRingDrop } from "./rotorringdrop"
 import { RingDrop } from "./RingDrop"
+import { Header } from "./label"
 
-const Rotor = ({rotorCount, rotorNumber, i, f, rotors}) => {
+const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, numbersArr, lettersArr, fsetRingPosition, active, rotorVal, fSetRotorPos }) => {
     return (   
     <div
         className={ rotorNumber>=0?"rotor-selectors-wrapper active" :"rotor-selectors-wrapper" }
+        key={ i }
     >
+        <Header>{`Slot ${i + 1}`}</Header>
         <RotorRingDrop
             r={ rotorCount }
             rotorNumber={ rotorNumber }
             val={ rotorNumber }
-            key={ i }
-            f={ f }
+            f={ fSetRotorNumber } 
             id={ i }
             active={ true }
             valSet={ rotorNumber>=0?true:false }
             rotors = { rotors }
         />
         {/* set locking ring postion */}
-        {/* <RingDrop
+        <RingDrop
             val={ ringVal }
             r={ numbersArr }
-            key={ index+100 }
-            id={index}
-            f={ fRing }
+            id={ i }
+            f={ fsetRingPosition }
             active={ active }
-            valSet={ rotorNumberSet } 
-            /> */}
+            valSet={ ringVal?true:false }
+            />
             {/* set rotor value */}
-        {/* <RingDrop
+        <RingDrop 
             val={ rotorVal }
-            r={ rLetters }
-            key= {index + 200 }
-            id={ index }
-            f={ fRotor }
+            r={ lettersArr }
+            id={ i }
+            f={ fSetRotorPos }
             active={ active }
-            valSet={ rotorNumberSet }
-        /> */}
+            valSet={ rotorVal?true:false }
+        />
     </div>
 )}
 
