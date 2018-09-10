@@ -13,15 +13,16 @@ const SaveTools = ({ f1, f2, f3, status = false }) => {
       </Label>
 
       <Button
-        val = { "Save" }
+        val = { "Save" } 
         f = { f1 }
         status = { status.save }
-        primary = { true }
+        primary = { !status.save?true:false }
       />
       <Button
         val = { "Get" }
         f = { f2 }
        status = { status.get }
+       primary = { status.save && !status.get?true:false }
       />
       <Button
         val = { "Clear" }
