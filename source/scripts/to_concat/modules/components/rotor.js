@@ -9,7 +9,7 @@ import { Header } from "./label"
 const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, numbersArr, lettersArr, fsetRingPosition, active, rotorVal, fSetRotorPos }) => {
     return (   
     <div
-        className={ rotorNumber>=0?"rotor-selectors-wrapper active" :"rotor-selectors-wrapper" }
+        className={ rotorNumber>=0 && ringVal && rotorVal ?"rotor-selectors-wrapper active" :"rotor-selectors-wrapper" }
         key={ i }
     >
         <Header>{`Slot ${i + 1}`}</Header>
