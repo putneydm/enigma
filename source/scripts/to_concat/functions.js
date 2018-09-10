@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Route, Link }  from '../../../node_modules/rea
 // lettersData
 import {initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector} from "./modules/variables"
 
-import { flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal } from "./modules/helper_functions"
+import { flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal } from "./modules/helper_functions" 
 
 // components
 import {Head} from "./modules/components/head"
-import {MachineSetup} from "./modules/components/machine_setup"
+import {MachineSetup} from "./modules/components/machine_setup" 
 import {SaveInterface} from "./modules/components/save_interface"
 import {LetterBoard} from "./modules/components/letterboard"
 import {Plugboard} from "./modules/components/plugboard"  
@@ -51,7 +51,7 @@ class App extends React.Component {
       return {...el, val: el.id === id? parseInt(val): el.val}
    })
     this.handleButtonStates("Update")
-    this.setState({rotors: rotorPos})
+    this.setState({rotors: rotorPos}) 
  }
   setRingPosition(id, val) { 
     const ringPos = [...this.state.rotors].map((el, i) => {
