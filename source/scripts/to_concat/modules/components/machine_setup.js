@@ -8,7 +8,7 @@ import { Label, Header } from "./Label"
 import { Rotor } from "./rotor"
 
 const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotorNumber, setRingPosition, setRotorPos, handleLetterboardArray, selected }) => {
-  return (
+  return ( 
     <div
       className="machine-wrapper"
     >
