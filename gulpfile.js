@@ -53,6 +53,11 @@ var svgstore = require('gulp-svgstore'),
 //bower
 // var mainBowerFiles = require('main-bower-files');
 
+// post css
+var postcss = require('gulp-postcss'),
+    gradient = require('postcss-easing-gradients'),
+    pixelstorem = require('postcss-pixels-to-rem');
+
 // markdown
 var markdown = require('gulp-markdown');
 
@@ -251,9 +256,19 @@ gulp.task('exclude', function() {
 // });
 // lints and minifies css, moves to testing and dist
 gulp.task('css', function() {
+  var plugins = [
+    gradient(),
+    pixelstorem({
+      base: 16,
+      unit: "rem",
+      exclude: ['border'],
+      mediaQueries: true
+    })
+];
   gulp.src([paths.styles.input, paths.styles.exclude])
   // .pipe(scsslint())
    .pipe(sass())
+   .pipe(postcss(plugins))
    .pipe(autoprefixer({
       browsers: ['last 2 versions'],
       cascade: false
