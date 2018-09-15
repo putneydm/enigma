@@ -16,6 +16,10 @@ const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotor
       <div 
         className="b-loose"
       >
+
+      {[1, 2, 3].map((el, i) => {
+        console.log(i)
+      })}
         <RotorSelector
           rotors={ rotors }
           r={ rotorsArr }
