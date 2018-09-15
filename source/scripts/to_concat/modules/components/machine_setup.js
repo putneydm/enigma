@@ -7,7 +7,7 @@ import {Plugboard} from "./plugboard"
 import { Label, Header } from "./Label"
 import { Rotor } from "./rotor"
 
-const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotorNumber, setRingPosition, setRotorPos, handleLetterboardArray, selected }) => {
+const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotorNumber, setRingPosition, setRotorPos, handleLetterboardArray, selected, animate }) => {
   return ( 
     <div
       className="machine-wrapper"
@@ -39,6 +39,7 @@ const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotor
               ringVal = { el.r?el.r:0 }
               fSetRotorPos = { setRotorPos }
               rotorVal = { el.val?el.val:0 }
+              animate = { animate }
             /> 
         )
       }) }
@@ -67,6 +68,7 @@ const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotor
         plugs = { plugs }
         f = { handleLetterboardArray }
         selected = { selected }
+        animate = { animate } 
       />
     </div>
   )}

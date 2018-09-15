@@ -13,13 +13,18 @@ import {MachineSetup} from "./modules/components/machine_setup"
 import {SaveInterface} from "./modules/components/save_interface"
 import {LetterBoard} from "./modules/components/letterboard"
 import {Plugboard} from "./modules/components/plugboard"  
+import {Toast} from "./modules/components/toast"
+
+
+const toast = {toastState: false, toastVal: undefined};
+const getAnim = false;
 
 const app = document.querySelector("#app")
 
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {initial, numbersArr, lettersArr, rotors, plugboardArr, status, rotorsArr, seedVal, buttonStatus, plugs}
+    this.state = {initial, numbersArr, lettersArr, rotors, plugboardArr, status, rotorsArr, seedVal, buttonStatus, plugs, toast, getAnim}
     this.clicker = this.clicker.bind(this)
     this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
     this.setRotorNumber = this.setRotorNumber.bind(this)
@@ -29,9 +34,10 @@ class App extends React.Component {
     this.handleSettingsRetrieve = this.handleSettingsRetrieve.bind(this)
     this.handleSettingsClear = this.handleSettingsClear.bind(this)
     this.handleClearDialog = this.handleClearDialog.bind(this)
+    this.handleToast = this.handleToast.bind(this)
  }
   componentWillMount() {
-      this.handleButtonStates("Save")
+      this.handleButtonStates("save")
  }
   componentDidMount() {
     this.handleKeyPress()
@@ -50,14 +56,14 @@ class App extends React.Component {
     const rotorPos = [...this.state.rotors].map((el, i) => {
       return {...el, val: el.id === id? parseInt(val): el.val}
    })
-    this.handleButtonStates("Update")
+    this.handleButtonStates("update")
     this.setState({rotors: rotorPos}) 
  }
   setRingPosition(id, val) { 
     const ringPos = [...this.state.rotors].map((el, i) => {
       return {...el, r:id === i?parseInt(val):el.r} 
    })
-    this.handleButtonStates("Update")
+    this.handleButtonStates("update")
     this.setState({ ...this.state.rotors = ringPos })
  }
   setRotorNumber(id, val) {
@@ -65,7 +71,7 @@ class App extends React.Component {
     const rotors = this.state.rotors.map((el, i) => {
       return i===id? {...el, sel:val, val: undefined, r:undefined, p:pivot, cc:crosswires(pivot), active:true}: el
    })
-    this.handleButtonStates("Update")
+    this.handleButtonStates("update")
     this.setState({...this.state.rotors, rotors})
  }
   handleConvert() {
@@ -109,48 +115,73 @@ class App extends React.Component {
     const machineSetup = {plugboardArr: {...this.state.plugs},rotors: {...this.state.rotors}}
     localStorage.setItem('machineSettings', JSON.stringify(machineSetup))
     this.handleButtonStates(e.target.value)
+    this.handleToast(e.target.value) 
  }
   handleSettingsRetrieve(e) {
     const machineSetup = JSON.parse(localStorage.getItem('machineSettings')) || false
     this.setState({rotors:machineSetup?Object.values(machineSetup.rotors): this.state.rotors, plugs:machineSetup?Object.values(machineSetup.plugboardArr):this.state.plugs})
     this.handleButtonStates(e.target.value)
+    this.handleToast(e.target.value)
+    this.handleGetAnim(e.target.value)
  }
   handleSettingsClear(e) {
     localStorage.clear()
     this.handleClearDialog()
     this.handleButtonStates(e.target.value)
+    this.handleToast(e.target.value)
  }
-  localStorageStatus() {
+  localStorageStatus() {  
     return localStorage.getItem('machineSettings')?true:false
  }
-  handleButtonStates(val) {
+  handleButtonStates(val) {  
     const saveStatus = !this.localStorageStatus()
-    const save = val === "Save" || val === "Get" || val === "Yes"?true: val === "Update"? false: this.state.buttonStatus.save
-    const dialog = val === "Clear"? true:false
+    const save = val === "save" || val === "get" || val === "yes"?true: val === "update"? false: this.state.buttonStatus.save
+    const dialog = val === "clear"? true:false
+    this.handleGetAnim(val)
     this.setState({buttonStatus:{save:save, get:saveStatus, clear:saveStatus, dialog:dialog}})
  }
   handleClearDialog() {
     const dialog = {...this.state.buttonStatus, dialog: !this.state.buttonStatus.dialog, save: this.state.buttonStatus.save, get:this.state.buttonStatus.dialog.get, clear:this.state.buttonStatus.clear}
-    this.setState({buttonStatus: dialog})
+    this.setState({buttonStatus: dialog}) 
  }
   handleLetterboardArray(item, index, val) {
     val = parseInt(val)
     const pbr =[...this.state.plugs].map((el, i) =>{
       return index === i ? {...el, ccOne: item === "ccOne"? val:el.ccOne, ccTwo: item === "ccTwo"? val:el.ccTwo}: el
    })
-    this.handleButtonStates("Update")
-    this.setState({plugs: pbr})
+    this.handleButtonStates("update") 
+    this.setState({plugs: pbr}) 
+ }
+ handleGetAnim(val) {
+    console.log("getanim", val, this.state.getAnim)
+    const getAnim = val === "get"? true:false
+    this.setState({ getAnim: getAnim })
+ }
+ handleToast(val) {
+   console.log("toastval", val) 
+  this.handleToastReset()
+  this.setState({toast: {toastState: true, toastVal: val}}) 
+ }
+ handleToastReset() {
+  setTimeout(() => {
+    this.setState({toast:false})
+  }, 2000);
  }
   render() {
     return (
       <div>
         <Head>
           hallo, welt
-        </Head>
-        <MachineSetup
+        </Head> 
+        <Toast
+          f={ this.handleToast }
+          toast={ this.state.toast.toastState } 
+          val={ this.state.toast.toastVal }
+        />
+        <MachineSetup 
           setRotorNumber = { this.setRotorNumber }
           setRingPosition = { this.setRingPosition }
-          setRotorPos= { this.setRotorPos }
+          setRotorPos= { this.setRotorPos }  
           rotors = { this.state.rotors } 
           rotorsArr = {this.state.rotorsArr}
           lettersArr = { this.state.lettersArr }
@@ -158,10 +189,11 @@ class App extends React.Component {
           plugs = { this.state.plugs }
           handleLetterboardArray = {this.handleLetterboardArray}
           selected = {flatten(this.state.plugs)}
+          animate = {this.state.getAnim } 
         />
         <SaveInterface
           handleSettingsSave = {this.handleSettingsSave}
-          handleSettingsRetrieve = {this.handleSettingsRetrieve}
+          handleSettingsRetrieve = {this.handleSettingsRetrieve} 
           handleClearDialog = {this.handleClearDialog}
           status = {this.state.buttonStatus}
           text = "Are you sure you want to delete this?"

@@ -6,7 +6,7 @@ import { RotorRingDrop } from "./rotorringdrop"
 import { RingDrop } from "./RingDrop"
 import { Header } from "./label"
 
-const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, numbersArr, lettersArr, fsetRingPosition, active, rotorVal, fSetRotorPos }) => {
+const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, numbersArr, lettersArr, fsetRingPosition, active, rotorVal, fSetRotorPos, animate }) => {
     return (   
     <div
         className={ rotorNumber>=0 && ringVal && rotorVal ?"rotor-selectors-wrapper active" :"rotor-selectors-wrapper" }
@@ -22,6 +22,7 @@ const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, nu
             active={ true }
             valSet={ rotorNumber>=0?true:false }
             rotors = { rotors }
+            animate = { animate }
         />
         {/* set locking ring postion */}
         <RingDrop
@@ -31,6 +32,7 @@ const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, nu
             f={ fsetRingPosition }
             active={ active }
             valSet={ ringVal?true:false }
+            animate = { animate }
             />
             {/* set rotor value */}
         <RingDrop 
@@ -40,6 +42,7 @@ const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, nu
             f={ fSetRotorPos }
             active={ active }
             valSet={ rotorVal?true:false }
+            animate = { animate }
         />
     </div>
 )}
