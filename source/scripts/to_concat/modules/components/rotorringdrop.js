@@ -7,15 +7,16 @@ import { ListSelector } from "./listselector"
 // f is the function
 // id is the id of the ul item
 // rotorsarr is the values for each dropdown
-const RotorRingDrop=({ r, rotorVal, f, id, rotorsArr, active=false, valSet=false}) => {
+const RotorRingDrop=({ r, val, f, id, active=false, valSet=false, rotors, animate=false }) => {
+  console.log("rrd anim", animate)
   const clicky=(e) => {
     e.preventDefault()
     const test=e.target.classList.contains("disabled")
-    !test?f(id, e.target.value):f(id, rotorVal)
+    !test?f(id, e.target.value):f(id, val)
  }
-  return (
+  return (   
     <div
-      className={ !active?"notes-picker-icn inactive": !valSet?"notes-picker-icn no-val": "notes-picker-icn" }
+      className={ !active?"notes-picker-icn inactive": !valSet?"notes-picker-icn no-val": valSet && animate? "animate notes-picker-icn": "notes-picker-icn" }
     >
     <ul
       id={id}
@@ -35,7 +36,7 @@ const RotorRingDrop=({ r, rotorVal, f, id, rotorsArr, active=false, valSet=false
             key={i}
             dispVal={el}
             val={i}
-            disabledState={ rotorVal===i && valSet?"active":rotorsArr.some(ele => ele.sel===i) && rotorVal!==i? "disabled": "inactive"}
+            disabledState={ val===i && valSet?"active":rotors.some(ele => ele.sel===i) && val!==i? "disabled": "inactive"}
           />
         )
      })}
@@ -43,20 +44,21 @@ const RotorRingDrop=({ r, rotorVal, f, id, rotorsArr, active=false, valSet=false
   </div>
   )
 }
-const PlugBoardDrop=({ r, rotorVal, f, id, rotorsArr, selected, index, active=true, valueSet=false }) => {
+const PlugBoardDrop=({ r, rotorVal, f, id, rotorsArr, selected, index, active=true, valueSet=false, animate=false }) => {
   const clicky=(e) => {
     e.preventDefault()
     const test=e.target.classList.contains("disabled")
     !test?f(id, index, e.target.value):f(id, rotorVal)
   }
+  console.log("plugboard", animate)
   return (
   <div
-    className={ !active?"notes-picker-icn inactive": !valueSet?"notes-picker-icn no-val": "notes-picker-icn" }
+    className={ !active?"notes-picker-icn inactive": !valueSet?"notes-picker-icn no-val": valueSet && animate? "notes-picker-icn animate": "notes-picker-icn" }
   >
     <ul
       className="notes-colors"
       id={id}
-      onClick={ clicky }
+      onClick={ clicky }  
     >
     <ListSelector
       key={ 101 }

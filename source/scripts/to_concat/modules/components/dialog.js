@@ -5,24 +5,21 @@ import { Button } from "./button"
 const Dialog=({ text, vis, f, f2 }) => {
   return (
     <div
-      className={ vis.dialog?"backdrop active":"backdrop"}
-    >
-    <dialog
-      open={ vis.dialog }
-      className="dialog"
+      className={ vis.dialog?"dialog active":"dialog" }
       >
       <p>{`${text}`}</p>
       <Button
-        val={ "Yes" }
-        f={ f2 }
-      />
-      <Button
         val={ "Cancel" }
+        text={ "cancel"}
         f={ f }
         primary={ true }
       />
-    </dialog>
-  </div>
+      <Button
+        val={ "delete" }
+        f={ f2 }
+        text={ "Yes, delete"}
+      />
+    </div>
   )
 }
 

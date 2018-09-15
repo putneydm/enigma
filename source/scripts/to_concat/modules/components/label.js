@@ -21,4 +21,4 @@ const Header=({ children }) => {
   )
 }
 
-export { Label }
+export { Label, Header }

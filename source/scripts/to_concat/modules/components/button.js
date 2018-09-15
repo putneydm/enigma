@@ -1,8 +1,7 @@
 import React, { Component } from "../../../../../node_modules/react"
 import ReactDOM from "../../../../../node_modules/react-dom"
 
-const Button=({ val, f, status, primary=false}) => {
-  // console.log("button", val, status)
+const Button=({ text="Button", val, f, status=false, primary=false}) => {
   const clicky=(e) => {
     e.preventDefault()
     f(e)
@@ -14,7 +13,7 @@ const Button=({ val, f, status, primary=false}) => {
       onClick={ clicky }
       value={ val }
     >
-    {`${val}`}
+    {`${text}`}
   </button>
   )
 }

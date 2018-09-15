@@ -69,7 +69,7 @@ import { Label } from "./label"
 //   }
 
 
-const Plugboard=({ plugs, count, f, selected }) => {
+const Plugboard=({ plugs, count, f, selected, animate=false }) => {
   // console.log("selected", selected);
   // console.log("plugs", plugs);
   return (
@@ -95,7 +95,8 @@ const Plugboard=({ plugs, count, f, selected }) => {
               rotorsArr={ count }
               selected={ selected }
               index={ i }
-              valueSet= { el.ccOne!==undefined?true:false}
+              valueSet= { el.ccOne!==undefined?true:false }
+              animate = { animate }
             />
             <PlugBoardDrop
               r={ plugs }
@@ -108,6 +109,7 @@ const Plugboard=({ plugs, count, f, selected }) => {
               index={ i }
               active={el.ccOne!==undefined?true:false}
               valueSet={ el.ccOne>=0&&el.ccTwo>=0?true:false}
+              animate = { animate }
             />
           </div>
         )

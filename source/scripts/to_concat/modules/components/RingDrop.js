@@ -3,7 +3,7 @@ import ReactDOM from "../../../../../node_modules/react-dom"
 import { ListSelector } from "./listselector"
 
 //this component sets the ring position
-const RingDrop=({val, r, id, f, active=false, valSet=false}) => {
+const RingDrop=({val, r, id, f, active=false, valSet=false,  animate=false }) => {
   const clicky=(e) => {
     // console.log(e.target.value);
     e.preventDefault()
@@ -11,7 +11,7 @@ const RingDrop=({val, r, id, f, active=false, valSet=false}) => {
  }
   return (
   <div
-    className={ !active?"notes-picker-icn inactive": !valSet?"notes-picker-icn no-val": "notes-picker-icn" }
+    className={ !active?"notes-picker-icn inactive": !valSet?"notes-picker-icn no-val": valSet && animate? "notes-picker-icn animate": "notes-picker-icn" }
     >
     <ul
       className={"notes-colors"}
