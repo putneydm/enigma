@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Route, Link }  from '../../../node_modules/rea
 // lettersData
 import {initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector} from "./modules/variables"
 
-import { flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal } from "./modules/helper_functions" 
+import { flatten, crosswires, rotorPass, findPLugboardVal } from "./modules/helper_functions"
 
 // components
 import {Head} from "./modules/components/head"
-import {MachineSetup} from "./modules/components/machine_setup" 
+import {MachineSetup} from  "./modules/components/machine_setup" 
 import {SaveInterface} from "./modules/components/save_interface"
 import {LetterBoard} from "./modules/components/letterboard"
 import {Plugboard} from "./modules/components/plugboard"  
@@ -24,7 +24,7 @@ const app = document.querySelector("#app")
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {initial, numbersArr, lettersArr, rotors, plugboardArr, status, rotorsArr, seedVal, buttonStatus, plugs, toast, getAnim}
+    this.state = {initial, rotors, status, buttonStatus, plugs, toast, getAnim}
     this.clicker = this.clicker.bind(this)
     this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
     this.setRotorNumber = this.setRotorNumber.bind(this)
@@ -67,7 +67,7 @@ class App extends React.Component {
     this.setState({ ...this.state.rotors = ringPos })
  }
   setRotorNumber(id, val) {
-    const [pivot] = this.state.seedVal.filter((el, i) => i === val)
+    const [pivot] = seedVal.filter((el, i) => i === val)
     const rotors = this.state.rotors.map((el, i) => {
       return i===id? {...el, sel:val, val: undefined, r:undefined, p:pivot, cc:crosswires(pivot), active:true}: el
    })
@@ -183,24 +183,24 @@ class App extends React.Component {
           setRingPosition = { this.setRingPosition }
           setRotorPos= { this.setRotorPos }  
           rotors = { this.state.rotors } 
-          rotorsArr = {this.state.rotorsArr}
-          lettersArr = { this.state.lettersArr }
-          numbersArr = { this.state.numbersArr }
+          rotorsArr = { rotorsArr }
+          lettersArr = { lettersArr }
+          numbersArr = { numbersArr }
           plugs = { this.state.plugs }
-          handleLetterboardArray = {this.handleLetterboardArray}
-          selected = {flatten(this.state.plugs)}
-          animate = {this.state.getAnim } 
+          handleLetterboardArray = { this.handleLetterboardArray }
+          selected = { flatten(this.state.plugs) }
+          animate = { this.state.getAnim }
         />
         <SaveInterface
-          handleSettingsSave = {this.handleSettingsSave}
-          handleSettingsRetrieve = {this.handleSettingsRetrieve} 
-          handleClearDialog = {this.handleClearDialog}
+          handleSettingsSave = { this.handleSettingsSave }
+          handleSettingsRetrieve = { this.handleSettingsRetrieve } 
+          handleClearDialog = { this.handleClearDialog }
           status = {this.state.buttonStatus}
           text = "Are you sure you want to delete this?"
           handleSettingsClear = {this.handleSettingsClear}
         />
         <LetterBoard
-          r = {this.state.lettersArr}
+          r = {lettersArr}
           active = {this.state.status.result}
         />
     </div>
