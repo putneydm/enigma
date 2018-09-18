@@ -1,7 +1,8 @@
-import React, {Component} from "../../../node_modules/react"
-import ReactDOM from "../../../node_modules/react-dom"
-import {Children, PropTypes} from 'react'
-import { BrowserRouter as Router, Route, Link }  from '../../../node_modules/react-router-dom'
+import React, {Component} from "react"
+import ReactDOM from "react-dom"
+import {Children} from 'react'
+import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route, Link }  from 'react-router-dom'
 // lettersData
 import {initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector} from "./modules/variables"
 
@@ -103,8 +104,8 @@ class App extends React.Component {
   handleKeyPress() {
     document.addEventListener('keydown', (e) => {
       e.keyCode >=65 && e.keyCode <=90? (
-        this.handleKeyPressValue(e),
-        this.advanceRotors(),
+        this.handleKeyPressValue(e), 
+        this.advanceRotors(), 
         this.handleConvert()
       ) : (
         console.log("Fail")
@@ -177,7 +178,7 @@ class App extends React.Component {
           f={ this.handleToast }
           toast={ this.state.toast.toastState } 
           val={ this.state.toast.toastVal }
-        />
+        /> 
         <MachineSetup 
           setRotorNumber = { this.setRotorNumber }
           setRingPosition = { this.setRingPosition }
@@ -185,11 +186,11 @@ class App extends React.Component {
           rotors = { this.state.rotors } 
           rotorsArr = { rotorsArr }
           lettersArr = { lettersArr }
-          numbersArr = { numbersArr }
+          numbersArr = { numbersArr } 
           plugs = { this.state.plugs }
           handleLetterboardArray = { this.handleLetterboardArray }
           selected = { flatten(this.state.plugs) }
-          animate = { this.state.getAnim }
+          animate = { this.state.getAnim }  
         />
         <SaveInterface
           handleSettingsSave = { this.handleSettingsSave }

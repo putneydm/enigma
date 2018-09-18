@@ -1,5 +1,5 @@
-import React, { Component } from "../../../../../node_modules/react"
-import ReactDOM from "../../../../../node_modules/react-dom"
+import React, {Component} from "react"
+import ReactDOM from "react-dom"
 import { ListSelector } from "./listselector"
 
 // array that counts number of items to appear

@@ -1,5 +1,5 @@
-import React, {Component} from "../../../../../node_modules/react"
-import ReactDOM from "../../../../../node_modules/react-dom"
+import React, {Component} from "react"
+import ReactDOM from "react-dom"
 
 import { BrowserRouter as Router, Route, Link }  from '../../../../../node_modules/react-router-dom'
 

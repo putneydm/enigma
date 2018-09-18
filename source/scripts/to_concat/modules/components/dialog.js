@@ -1,11 +1,12 @@
-import React, { Component } from "../../../../../node_modules/react"
-import ReactDOM from "../../../../../node_modules/react-dom"
+import React, {Component} from "react"
+import ReactDOM from "react-dom"
+import PropTypes from 'prop-types';
 import { Button } from "./button"
 
 const Dialog=({ text, vis, f, f2 }) => {
   return (
     <div
-      className={ vis.dialog?"dialog active":"dialog" }
+      className={ vis?"dialog active":"dialog" }
       >
       <p>{`${text}`}</p>
       <Button
@@ -21,6 +22,9 @@ const Dialog=({ text, vis, f, f2 }) => {
       />
     </div>
   )
+}
+Dialog.propTypes = {
+  vis: PropTypes.bool
 }
 
 export { Dialog }

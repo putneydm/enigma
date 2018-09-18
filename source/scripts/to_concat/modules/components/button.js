@@ -1,5 +1,6 @@
-import React, { Component } from "../../../../../node_modules/react"
-import ReactDOM from "../../../../../node_modules/react-dom"
+import React, {Component} from "react"
+import ReactDOM from "react-dom"
+import PropTypes from 'prop-types';
 
 const Button=({ text="Button", val=undefined, f, status=false, primary=false}) => {
   const clicky=(e) => {
@@ -16,6 +17,13 @@ const Button=({ text="Button", val=undefined, f, status=false, primary=false}) =
     {`${text}`}
   </button>
   )
+}
+Button.propTypes = {
+  text: PropTypes.string,
+  val: PropTypes.string,
+  f: PropTypes.func,
+  status: PropTypes.bool,
+  primary: PropTypes.bool
 }
 
 export { Button }

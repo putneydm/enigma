@@ -1,5 +1,5 @@
-import React, {Component} from "../../../../../node_modules/react"
-import ReactDOM from "../../../../../node_modules/react-dom"
+import React, {Component} from "react"
+import ReactDOM from "react-dom"
 
 import { SaveTools } from "./save_tools"
 import { Dialog } from "./dialog"
@@ -15,7 +15,7 @@ const SaveInterface = ({handleSettingsSave, handleSettingsRetrieve, handleClearD
       />
       <Dialog
         text = "Permanently delete saved machine setup?"
-        vis = { status }
+        vis = { status.dialog }
         f = { handleClearDialog }
         f2 = { handleSettingsClear }
       />

@@ -1,5 +1,6 @@
-import React, { Component } from "../../../../../node_modules/react"
-import ReactDOM from "../../../../../node_modules/react-dom"
+import React, { Component } from "react"
+import ReactDOM from "react-dom"
+import PropTypes from 'prop-types'
 
 const ListSelector=({ dispVal, val, disabledState }) => {
   return (
@@ -10,6 +11,12 @@ const ListSelector=({ dispVal, val, disabledState }) => {
         {`${dispVal}`}
     </li>
   )
+}
+
+ListSelector.propTypes = {
+  dispVal: PropTypes.string,
+  val: PropTypes.number,
+  disabledState: PropTypes.string
 }
 
 export { ListSelector }

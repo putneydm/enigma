@@ -1,5 +1,6 @@
-import React, {Component} from "../../../../../node_modules/react"
-import ReactDOM from "../../../../../node_modules/react-dom"
+import React, {Component} from "react"
+import ReactDOM from "react-dom"
+import PropTypes from 'prop-types';
 
 const Label=({ children }) => {
   return (
@@ -10,8 +11,11 @@ const Label=({ children }) => {
   </label>
   )
 }
+Label.propTypes = {
+  children: PropTypes.string
+}
 
-const Header=({ children }) => {
+const Header=({ children }) => { 
   return (
     <h2
       className="header"
@@ -19,6 +23,9 @@ const Header=({ children }) => {
     {children}
   </h2>
   )
+}
+Header.propTypes = {
+  children: PropTypes.string
 }
 
 export { Label, Header }
