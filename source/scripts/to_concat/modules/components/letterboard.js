@@ -1,16 +1,8 @@
 import React, {Component} from "react"
 import ReactDOM from "react-dom"
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+import {LetterBoardItem} from './letterboard-item'
 
-const LetterBoardItem = ({item, active}) => {
-  return (
-    <p
-      className= {active ? "letter active": "letter"}
-    >
-    {`${item}`}
-    </p>
-  )
-}
 const LetterBoard = ({r, active}) => {
   return (
     <div
@@ -27,10 +19,6 @@ const LetterBoard = ({r, active}) => {
     )
   }
 
-LetterBoardItem.propTypes = {
-  item: PropTypes.string,
-  active: PropTypes.bool
-}
 LetterBoard.propTypes = {
   r: PropTypes.array,
   active: PropTypes.number
