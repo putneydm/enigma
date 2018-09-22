@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import { ListSelector } from "./listselector"
+import PropTypes from 'prop-types'
 
 //this component sets the ring position
 const RingDrop=({val, r, id, f, active=false, valSet=false,  animate=false }) => {
@@ -31,6 +32,15 @@ const RingDrop=({val, r, id, f, active=false, valSet=false,  animate=false }) =>
     </ul>
   </div>
   )
+}
+RingDrop.proptypes = {
+  val: PropTypes.num,
+  r: PropTypes.array,
+  id: PropTypes.num,
+  f: PropTypes.func,
+  active: PropTypes.bool,
+  valSet: PropTypes.bool,
+  animate: PropTypes.bool
 }
 
 export { RingDrop }

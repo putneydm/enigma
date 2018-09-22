@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import { ListSelector } from "./listselector"
+import PropTypes from 'prop-types'
 
 // array that counts number of items to appear
 // rotorVal -- is default value of the dropdown
@@ -14,7 +15,7 @@ const RotorRingDrop=({ r, val, f, id, active=false, valSet=false, rotors, animat
     const test=e.target.classList.contains("disabled")
     !test?f(id, e.target.value):f(id, val)
  }
-  return (   
+  return (
     <div
       className={ !active?"notes-picker-icn inactive": !valSet?"notes-picker-icn no-val": valSet && animate? "animate notes-picker-icn": "notes-picker-icn" }
     >
@@ -50,7 +51,6 @@ const PlugBoardDrop=({ r, rotorVal, f, id, rotorsArr, selected, index, active=tr
     const test=e.target.classList.contains("disabled")
     !test?f(id, index, e.target.value):f(id, rotorVal)
   }
-  console.log("plugboard", animate)
   return (
   <div
     className={ !active?"notes-picker-icn inactive": !valueSet?"notes-picker-icn no-val": valueSet && animate? "notes-picker-icn animate": "notes-picker-icn" }
@@ -58,7 +58,7 @@ const PlugBoardDrop=({ r, rotorVal, f, id, rotorsArr, selected, index, active=tr
     <ul
       className="notes-colors"
       id={id}
-      onClick={ clicky }  
+      onClick={ clicky }
     >
     <ListSelector
       key={ 101 }
@@ -79,6 +79,28 @@ const PlugBoardDrop=({ r, rotorVal, f, id, rotorsArr, selected, index, active=tr
     </ul>
   </div>
   )
+}
+RotorRingDrop.proptypes = {
+  r: PropTypes.array,
+  val:PropTypes.num,
+  f: PropTypes.func,
+  id: PropTypes.num,
+  active: PropTypes.bool,
+  valSet: PropTypes.bool,
+  rotors: PropTypes.array,
+  animate: PropTypes.bool
+}
+PlugBoardDrop.proptypes = {
+  r: PropTypes.array,
+  rotorVal:PropTypes.num,
+  f: PropTypes.func,
+  id: PropTypes.num,
+  rotorsArr: PropTypes.arr,
+  selected: PropTypes.arr,
+  index: PropTypes,
+  valSet: PropTypes.bool,
+  rotors: PropTypes.array,
+  animate: PropTypes.bool
 }
 
 export { RotorRingDrop, PlugBoardDrop }
