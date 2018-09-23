@@ -137,7 +137,7 @@ h2 {
     border-right:1px solid $button;
     border-bottom:1px solid $button;
   }
-} 
+}
 .rotor-labels-wrapper {
   flex-direction: column;
   display:flex;
@@ -598,9 +598,9 @@ h2 {
   animation-duration: 1.5s;
   animation-timing-function: ease-in-out;
 }
-@keyframes animateIn { 
+@keyframes animateIn {
   0% {
-    box-shadow:0; 
+    box-shadow:0;
   }
   30% {
     box-shadow: 0 0 8px rgba($button, .3);
@@ -680,30 +680,30 @@ button.primary {
   animation-timing-function: cubic-bezier(.02,.06,.24,.9);
   animation-fill-mode: forwards;
 }
-@keyframes fade-in-out { 
-  0% { 
+@keyframes fade-in-out {
+  0% {
     opacity:0;
     transform:translateY(15px);
-  } 
+  }
   15% {
     opacity:1;
   }
   50% {
     opacity:1;
   }
-  100% { 
+  100% {
     transform:translateY(-50px);
     opacity:0;
-  }  
+  }
 }
 
-@keyframes fade-in { 
-  0% { 
+@keyframes fade-in {
+  0% {
     opacity:0;
     transform:translateY(15px);
-  } 
-  100% { 
+  }
+  100% {
     transform:translateY(0px);
     opacity:1;
-  }  
+  }
 }
