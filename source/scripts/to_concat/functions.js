@@ -153,12 +153,11 @@ class App extends React.Component {
     this.setState({plugs: pbr}) 
  }
  handleGetAnim(val) {
-    console.log("getanim", val, this.state.getAnim)
     const getAnim = val === "get"? true:false
     this.setState({ getAnim: getAnim })
  }
  handleToast(val) {
-   console.log("toastval", val) 
+   console.log("toastval", val)
   this.handleToastReset()
   this.setState({toast: {toastState: true, toastVal: val}}) 
  }
