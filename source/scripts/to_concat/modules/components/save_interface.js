@@ -8,13 +8,13 @@ const SaveInterface = ({handleSettingsSave, handleSettingsRetrieve, handleClearD
   return (
     <div>
       <SaveTools
-        f1 = { handleSettingsSave } 
+        f1 = { handleSettingsSave }
         f2 = { handleSettingsRetrieve }
         f3 = { handleClearDialog }
         status = { status }
       />
       <Dialog
-        text = "Permanently delete saved machine setup?"
+        text = "Achtung! Permanently delete saved machine setup?"
         vis = { status }
         f = { handleClearDialog }
         f2 = { handleSettingsClear }

@@ -7,7 +7,12 @@ const Toast = ({ f, toast, val }) => {
         <p
             className={ toast?'toast active':"toast" }
         >
-            {val=="save"?"Your machine settings have been saved.":val==="delete"?"Your machine settings have been deleted.":"Saved machine settings loaded"}
+            {
+              val=="save"?"Abgeschlossen! Machine settings have been saved":
+              val==="delete"?"Fertig! Your machine settings have been deleted.":
+              val==="unset"?"Aufmerksam! Set up rotors before typing message":
+              val==="keyrange"?"Hoppla! Entered character must be a letter" :
+              "Abgeschlossen! Saved machine settings loaded"}
         </p>
     )
 }

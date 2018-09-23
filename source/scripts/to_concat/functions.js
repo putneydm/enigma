@@ -9,10 +9,10 @@ import { flatten, crosswires, rotorPass, findPLugboardVal } from "./modules/help
 
 // components
 import {Head} from "./modules/components/head"
-import {MachineSetup} from  "./modules/components/machine_setup" 
+import {MachineSetup} from  "./modules/components/machine_setup"
 import {SaveInterface} from "./modules/components/save_interface"
 import {LetterBoard} from "./modules/components/letterboard"
-import {Plugboard} from "./modules/components/plugboard"  
+import {Plugboard} from "./modules/components/plugboard"
 import {Toast} from "./modules/components/toast"
 
 
@@ -57,11 +57,11 @@ class App extends React.Component {
       return {...el, val: el.id === id? parseInt(val): el.val}
    })
     this.handleButtonStates("update")
-    this.setState({rotors: rotorPos}) 
+    this.setState({rotors: rotorPos})
  }
-  setRingPosition(id, val) { 
+  setRingPosition(id, val) {
     const ringPos = [...this.state.rotors].map((el, i) => {
-      return {...el, r:id === i?parseInt(val):el.r} 
+      return {...el, r:id === i?parseInt(val):el.r}
    })
     this.handleButtonStates("update")
     this.setState({ ...this.state.rotors = ringPos })
@@ -100,13 +100,34 @@ class App extends React.Component {
     const keypress = {...this.state.status, keypress: e.keyCode - 65}
     this.setState({status: keypress})
  }
+ checkRotorStatus() {
+   const foo = [...this.state.rotors]
+   console.log("foo", foo);
+   const bar = foo.some(el => el.r !== undefined && el.sel !== undefined && el.val !== undefined)
+   console.log("bar", bar);
+   return bar;
+ }
+ checkKeyPress() {
+
+
+
+ }
   handleKeyPress() {
     document.addEventListener('keydown', (e) => {
-      e.keyCode >=65 && e.keyCode <=90? (
+
+      const keyRange = e.keyCode >=65 && e.keyCode <=90
+      const altKey = e.sfitKey || e.altKey || e.ctrlKey || e.metaKey // true === alt key pressed
+      const rotorStatus = this.checkRotorStatus()
+      rotorStatus && !altKey && keyRange ? (
         this.handleKeyPressValue(e),
         this.advanceRotors(),
         this.handleConvert()
-      ) : (
+      ) : !rotorStatus && !altKey && keyRange? (
+        this.handleToast("unset")
+      ) : rotorStatus && !altKey && !keyRange? (
+        this.handleToast("keyrange")
+      ) :
+      (
         console.log("Fail")
       )
    })
@@ -115,7 +136,7 @@ class App extends React.Component {
     const machineSetup = {plugboardArr: {...this.state.plugs},rotors: {...this.state.rotors}}
     localStorage.setItem('machineSettings', JSON.stringify(machineSetup))
     this.handleButtonStates(e.target.value)
-    this.handleToast(e.target.value) 
+    this.handleToast(e.target.value)
  }
   handleSettingsRetrieve(e) {
     const machineSetup = JSON.parse(localStorage.getItem('machineSettings')) || false
@@ -130,10 +151,10 @@ class App extends React.Component {
     this.handleButtonStates(e.target.value)
     this.handleToast(e.target.value)
  }
-  localStorageStatus() {  
+  localStorageStatus() {
     return localStorage.getItem('machineSettings')?true:false
  }
-  handleButtonStates(val) {  
+  handleButtonStates(val) {
     const saveStatus = !this.localStorageStatus()
     const save = val === "save" || val === "get" || val === "yes"?true: val === "update"? false: this.state.buttonStatus.save
     const dialog = val === "clear"? true:false
@@ -142,24 +163,23 @@ class App extends React.Component {
  }
   handleClearDialog() {
     const dialog = {...this.state.buttonStatus, dialog: !this.state.buttonStatus.dialog, save: this.state.buttonStatus.save, get:this.state.buttonStatus.dialog.get, clear:this.state.buttonStatus.clear}
-    this.setState({buttonStatus: dialog}) 
+    this.setState({buttonStatus: dialog})
  }
   handleLetterboardArray(item, index, val) {
     val = parseInt(val)
     const pbr =[...this.state.plugs].map((el, i) =>{
       return index === i ? {...el, ccOne: item === "ccOne"? val:el.ccOne, ccTwo: item === "ccTwo"? val:el.ccTwo}: el
    })
-    this.handleButtonStates("update") 
-    this.setState({plugs: pbr}) 
+    this.handleButtonStates("update")
+    this.setState({plugs: pbr})
  }
  handleGetAnim(val) {
     const getAnim = val === "get"? true:false
     this.setState({ getAnim: getAnim })
  }
  handleToast(val) {
-   console.log("toastval", val)
   this.handleToastReset()
-  this.setState({toast: {toastState: true, toastVal: val}}) 
+  this.setState({toast: {toastState: true, toastVal: val}})
  }
  handleToastReset() {
   setTimeout(() => {
@@ -171,17 +191,17 @@ class App extends React.Component {
       <div>
         <Head>
           hallo, welt
-        </Head> 
+        </Head>
         <Toast
           f={ this.handleToast }
-          toast={ this.state.toast.toastState } 
+          toast={ this.state.toast.toastState }
           val={ this.state.toast.toastVal }
         />
-        <MachineSetup 
+        <MachineSetup
           setRotorNumber = { this.setRotorNumber }
           setRingPosition = { this.setRingPosition }
-          setRotorPos= { this.setRotorPos }  
-          rotors = { this.state.rotors } 
+          setRotorPos= { this.setRotorPos }
+          rotors = { this.state.rotors }
           rotorsArr = { rotorsArr }
           lettersArr = { lettersArr }
           numbersArr = { numbersArr }
@@ -192,7 +212,7 @@ class App extends React.Component {
         />
         <SaveInterface
           handleSettingsSave = { this.handleSettingsSave }
-          handleSettingsRetrieve = { this.handleSettingsRetrieve } 
+          handleSettingsRetrieve = { this.handleSettingsRetrieve }
           handleClearDialog = { this.handleClearDialog }
           status = {this.state.buttonStatus}
           text = "Are you sure you want to delete this?"
