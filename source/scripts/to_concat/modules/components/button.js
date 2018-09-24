@@ -9,7 +9,7 @@ const Button=({ text="Button", val=undefined, f, status=false, primary=false}) =
   return (
     <button
       disabled={ status }
-      className={ primary?"primary":"button"}
+      className={ primary?"btn primary":"btn"}
       onClick={ clicky }
       value={ val }
     >
@@ -18,4 +18,21 @@ const Button=({ text="Button", val=undefined, f, status=false, primary=false}) =
   )
 }
 
-export { Button }
+const ButtonSmall=({ children, val=undefined, f, status=false }) => {
+  const clicky=(e) => {
+    e.preventDefault()
+    f(e)
+  }
+  return (
+    <button
+      disabled={ status }
+      className={ "btn-small"}
+      onClick={ clicky }
+      value={ val }
+    >
+    {`${children}`}
+  </button>
+  )
+}
+
+export { Button, ButtonSmall }

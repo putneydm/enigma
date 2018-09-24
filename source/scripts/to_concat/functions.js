@@ -35,6 +35,7 @@ class App extends React.Component {
     this.handleSettingsClear = this.handleSettingsClear.bind(this)
     this.handleClearDialog = this.handleClearDialog.bind(this)
     this.handleToast = this.handleToast.bind(this)
+    this.resetRotor = this.resetRotor.bind(this)
  }
   componentWillMount() {
       this.handleButtonStates("save")
@@ -73,6 +74,21 @@ class App extends React.Component {
    })
     this.handleButtonStates("update")
     this.setState({...this.state.rotors, rotors})
+ }
+ resetRotor(e) {
+
+   const val = parseInt(e.target.value)
+
+   console.log("val", val);
+
+   const rotors = this.state.rotors.map((el, i) => {
+     console.log(i, val, i===val);
+     return i===val? {...el, sel:undefined, val: undefined, r:undefined, p:undefined, cc:undefined, active:false}: el
+  })
+   this.handleButtonStates("update")
+   console.log("rotors", rotors);
+   this.setState({...this.state.rotors, rotors})
+
  }
   handleConvert() {
     const startVal = this.state.status.keypress
@@ -209,6 +225,7 @@ class App extends React.Component {
           handleLetterboardArray = { this.handleLetterboardArray }
           selected = { flatten(this.state.plugs) }
           animate = { this.state.getAnim }
+          resetRotor = { this.resetRotor }
         />
         <SaveInterface
           handleSettingsSave = { this.handleSettingsSave }
