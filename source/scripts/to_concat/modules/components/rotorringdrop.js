@@ -9,7 +9,6 @@ import PropTypes from 'prop-types'
 // id is the id of the ul item
 // rotorsarr is the values for each dropdown
 const RotorRingDrop=({ r, val, f, id, active=false, valSet=false, rotors, animate=false }) => {
-  console.log("rrd anim", animate)
   const clicky=(e) => {
     e.preventDefault()
     const test=e.target.classList.contains("disabled")

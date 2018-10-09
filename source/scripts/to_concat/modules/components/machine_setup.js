@@ -7,24 +7,24 @@ import {Plugboard} from "./plugboard"
 import { Label, Header } from "./Label"
 import { Rotor } from "./rotor"
 
-const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotorNumber, setRingPosition, setRotorPos, handleLetterboardArray, selected, animate }) => {
-  return ( 
+const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotorNumber, setRingPosition, setRotorPos, handleLetterboardArray, selected, animate, resetRotor }) => {
+  return (
     <div
       className="machine-wrapper"
     >
-    <div 
+    <div
       className="rotors-wrapper"
     >
       <div
         className="rotor-labels-wrapper"
       >
         <Label>Pick a rotor </Label>
-        <Label>Set locking ring</Label>  
-        <Label>Set rotor position</Label>  
-      </div> 
+        <Label>Set locking ring</Label>
+        <Label>Set rotor position</Label>
+      </div>
     { rotors.map((el, i) => {
         return (
-            <Rotor 
+            <Rotor
               rotorCount = { rotorsArr }
               rotorNumber = { el.sel }
               numbersArr = { numbersArr }
@@ -40,11 +40,12 @@ const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotor
               fSetRotorPos = { setRotorPos }
               rotorVal = { el.val?el.val:0 }
               animate = { animate }
-            /> 
+              resetRotor = { resetRotor }
+            />
         )
       }) }
     </div>
-      {/* <div 
+      {/* <div
         className="b-loose"
       > */}
         {/* <RotorSelector
@@ -68,7 +69,7 @@ const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotor
         plugs = { plugs }
         f = { handleLetterboardArray }
         selected = { selected }
-        animate = { animate } 
+        animate = { animate }
       />
     </div>
   )}

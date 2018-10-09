@@ -5,9 +5,11 @@ import ReactDOM from "react-dom"
 import { RotorRingDrop } from "./rotorringdrop"
 import { RingDrop } from "./RingDrop"
 import { Header } from "./label"
+import { ButtonSmall } from "./button"
 
-const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, numbersArr, lettersArr, fsetRingPosition, active, rotorVal, fSetRotorPos, animate }) => {
-    return (   
+const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, numbersArr, lettersArr, fsetRingPosition, active, rotorVal, fSetRotorPos, animate, resetRotor }) => {
+    const activeButton = rotorNumber>=0 || ringVal || rotorVal ? false:true
+    return (
     <div
         className={ rotorNumber>=0 && ringVal && rotorVal ?"rotor-selectors-wrapper active" :"rotor-selectors-wrapper" }
         key={ i }
@@ -17,7 +19,7 @@ const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, nu
             r={ rotorCount }
             rotorNumber={ rotorNumber }
             val={ rotorNumber }
-            f={ fSetRotorNumber } 
+            f={ fSetRotorNumber }
             id={ i }
             active={ true }
             valSet={ rotorNumber>=0?true:false }
@@ -35,7 +37,7 @@ const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, nu
             animate = { animate }
             />
             {/* set rotor value */}
-        <RingDrop 
+        <RingDrop
             val={ rotorVal }
             r={ lettersArr }
             id={ i }
@@ -44,6 +46,13 @@ const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, nu
             valSet={ rotorVal?true:false }
             animate = { animate }
         />
+        <ButtonSmall
+          status = { activeButton }
+          val = { i }
+          f = { resetRotor }
+        >
+          Reset
+      </ButtonSmall>
     </div>
 )}
 

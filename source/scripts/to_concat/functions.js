@@ -1,11 +1,11 @@
-import React, {Component, Children} from "react"
-import ReactDOM from "react-dom"
-import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Link }  from 'react-router-dom'
+import React, {Component} from "../../../node_modules/react"
+import ReactDOM from "../../../node_modules/react-dom"
+import {Children, PropTypes} from 'react'
+import { BrowserRouter as Router, Route, Link }  from '../../../node_modules/react-router-dom'
 // lettersData
 import {initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector} from "./modules/variables"
 
-import { flatten, crosswires, rotorPass, findPLugboardVal } from "./modules/helper_functions"  
+import { flatten, crosswires, rotorPass, findPLugboardVal } from "./modules/helper_functions"
 
 // components
 import {Head} from "./modules/components/head"
@@ -35,6 +35,7 @@ class App extends React.Component {
     this.handleSettingsClear = this.handleSettingsClear.bind(this)
     this.handleClearDialog = this.handleClearDialog.bind(this)
     this.handleToast = this.handleToast.bind(this)
+    this.resetRotor = this.resetRotor.bind(this)
  }
   componentWillMount() {
       this.handleButtonStates("save")
@@ -74,6 +75,21 @@ class App extends React.Component {
     this.handleButtonStates("update")
     this.setState({...this.state.rotors, rotors})
  }
+ resetRotor(e) {
+
+   const val = parseInt(e.target.value)
+
+   console.log("val", val);
+
+   const rotors = this.state.rotors.map((el, i) => {
+     console.log(i, val, i===val);
+     return i===val? {...el, sel:undefined, val: undefined, r:undefined, p:undefined, cc:undefined, active:false}: el
+  })
+   this.handleButtonStates("update")
+   console.log("rotors", rotors);
+   this.setState({...this.state.rotors, rotors})
+
+ }
   handleConvert() {
     const startVal = this.state.status.keypress
     const [rotor1, rotor2, rotor3] = [...this.state.rotors]
@@ -100,13 +116,34 @@ class App extends React.Component {
     const keypress = {...this.state.status, keypress: e.keyCode - 65}
     this.setState({status: keypress})
  }
+ checkRotorStatus() {
+   const foo = [...this.state.rotors]
+   console.log("foo", foo);
+   const bar = foo.some(el => el.r !== undefined && el.sel !== undefined && el.val !== undefined)
+   console.log("bar", bar);
+   return bar;
+ }
+ checkKeyPress() {
+
+
+
+ }
   handleKeyPress() {
     document.addEventListener('keydown', (e) => {
-      e.keyCode >=65 && e.keyCode <=90? (
+
+      const keyRange = e.keyCode >=65 && e.keyCode <=90
+      const altKey = e.sfitKey || e.altKey || e.ctrlKey || e.metaKey // true === alt key pressed
+      const rotorStatus = this.checkRotorStatus()
+      rotorStatus && !altKey && keyRange ? (
         this.handleKeyPressValue(e),
         this.advanceRotors(),
         this.handleConvert()
-      ) : (
+      ) : !rotorStatus && !altKey && keyRange? (
+        this.handleToast("unset")
+      ) : rotorStatus && !altKey && !keyRange? (
+        this.handleToast("keyrange")
+      ) :
+      (
         console.log("Fail")
       )
    })
@@ -153,12 +190,10 @@ class App extends React.Component {
     this.setState({plugs: pbr})
  }
  handleGetAnim(val) {
-    console.log("getanim", val, this.state.getAnim)
     const getAnim = val === "get"? true:false
     this.setState({ getAnim: getAnim })
  }
  handleToast(val) {
-   console.log("toastval", val)
   this.handleToastReset()
   this.setState({toast: {toastState: true, toastVal: val}})
  }
@@ -190,6 +225,7 @@ class App extends React.Component {
           handleLetterboardArray = { this.handleLetterboardArray }
           selected = { flatten(this.state.plugs) }
           animate = { this.state.getAnim }
+          resetRotor = { this.resetRotor }
         />
         <SaveInterface
           handleSettingsSave = { this.handleSettingsSave }
