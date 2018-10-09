@@ -5,6 +5,7 @@ import { SaveTools } from "./save_tools"
 import { Dialog } from "./dialog"
 
 const SaveInterface = ({handleSettingsSave, handleSettingsRetrieve, handleClearDialog, status, handleSettingsClear }) => {
+  console.log("status", status);
   return (
     <div>
       <SaveTools
@@ -15,7 +16,7 @@ const SaveInterface = ({handleSettingsSave, handleSettingsRetrieve, handleClearD
       />
       <Dialog
         text = "Achtung! Permanently delete saved machine setup?"
-        vis = { status }
+        vis = { status.dialog }
         f = { handleClearDialog }
         f2 = { handleSettingsClear }
       />
