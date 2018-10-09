@@ -1,13 +1,13 @@
 import React, {Component} from "react"
 import ReactDOM from "react-dom"
 
-import { BrowserRouter as Router, Route, Link }  from '../../../../../node_modules/react-router-dom'
+import { BrowserRouter as Router, Route, Link }  from 'react-router-dom'
 
-import { Plugboard}  from "./plugboard"
+import {Plugboard} from "./plugboard"
 import { Label, Header } from "./Label"
 import { Rotor } from "./rotor"
 
-const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotorNumber, setRingPosition, setRotorPos, handleLetterboardArray, selected, animate }) => {
+const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotorNumber, setRingPosition, setRotorPos, handleLetterboardArray, selected, animate, resetRotor }) => {
   return (
     <div
       className="machine-wrapper"
@@ -40,6 +40,7 @@ const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotor
               fSetRotorPos = { setRotorPos }
               rotorVal = { el.val?el.val:0 }
               animate = { animate }
+              resetRotor = { resetRotor }
             />
         )
       }) }
