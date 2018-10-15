@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 //this component sets the ring position
 const RingDrop=({val, r, id, f, active=false, valSet=false,  animate=false }) => {
   const clicky=(e) => {
-    // console.log(e.target.value);
     e.preventDefault()
     f(id, e.target.value)
  }

@@ -12,7 +12,6 @@ const Plugboard=({ plugs, count, f, selected, animate=false }) => {
         Cross-connect pairs of letters on the plugboard
       </Label>
       {plugs.map((el, i) => {
-        // console.log("el",el);
         return (
           <div
             className={el.ccOne && el.ccTwo? "plugboard-pair":"plugboard-pair inactive"}

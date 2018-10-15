@@ -724,3 +724,35 @@ button:disabled.btn-small {
     opacity:1;
   }
 }
+
+
+.decode-interface-wrapper {
+    // position:absolute;
+    // width:0px;
+    // height:0px;
+    // overflow:hidden;
+    // left:-100000000px;
+    // opacity:0;
+    // transform: translateY(20px);
+}
+
+.decode-interface-wrapper.active {
+  position:absolute;
+  margin:0 auto;
+  top:36px;
+  left:0;
+  right:0;
+  height:calc(100vh - 36px);
+  max-width:1000px;
+  width:100%;
+  padding:60px;
+  background-color:rgba($white, .8);
+  box-shadow:0 10px 28px rgba($black, .3);
+  transform: translateY(0);
+  opacity:1;
+  transition:opacity .2s ease-in-out, transform .4s ease-in-out;
+}
+
+.output {
+  border:1px solid red;
+}

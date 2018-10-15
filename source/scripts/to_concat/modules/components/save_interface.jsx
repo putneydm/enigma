@@ -5,7 +5,6 @@ import { SaveTools } from "./save_tools"
 import { Dialog } from "./dialog"
 
 const SaveInterface = ({handleSettingsSave, handleSettingsRetrieve, handleClearDialog, status, handleSettingsClear }) => {
-  console.log("status", status);
   return (
     <div>
       <SaveTools

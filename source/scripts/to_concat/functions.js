@@ -1,17 +1,16 @@
-import React, {Component} from "../../../node_modules/react"
-import ReactDOM from "../../../node_modules/react-dom"
+import React, {Component} from "react"
+import ReactDOM from "react-dom"
 import {Children, PropTypes} from 'react'
-import { BrowserRouter as Router, Route, Link }  from '../../../node_modules/react-router-dom'
+import { BrowserRouter as Router, Route, Link }  from 'react-router-dom'
 // lettersData
-import {initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector} from "./modules/variables"
-
-import { flatten, crosswires, rotorPass, findPLugboardVal } from "./modules/helper_functions"
+import {initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector, keypressesArr, decodedArr } from "./modules/variables"
+import { flatten, crosswires, rotorPass, findPLugboardVal, getCharacter } from "./modules/helper_functions"
 
 // components
 import {Head} from "./modules/components/head"
 import {MachineSetup} from  "./modules/components/machine_setup"
 import {SaveInterface} from "./modules/components/save_interface"
-import {LetterBoard} from "./modules/components/letterboard"
+import {DecodeInterface} from "./modules/components/decode-interface"
 import {Plugboard} from "./modules/components/plugboard"
 import {Toast} from "./modules/components/toast"
 
@@ -24,7 +23,7 @@ const app = document.querySelector("#app")
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {initial, rotors, status, buttonStatus, plugs, toast, getAnim}
+    this.state = { initial, rotors, status, buttonStatus, plugs, toast, getAnim, keypressesArr, decodedArr }
     this.clicker = this.clicker.bind(this)
     this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
     this.setRotorNumber = this.setRotorNumber.bind(this)
@@ -42,6 +41,7 @@ class App extends React.Component {
  }
   componentDidMount() {
     this.handleKeyPress()
+    console.log("mount");
  }
   clicker(val) {
     console.log("click", val);
@@ -76,11 +76,7 @@ class App extends React.Component {
     this.setState({...this.state.rotors, rotors})
  }
  resetRotor(e) {
-
    const val = parseInt(e.target.value)
-
-   console.log("val", val);
-
    const rotors = this.state.rotors.map((el, i) => {
      console.log(i, val, i===val);
      return i===val? {...el, sel:undefined, val: undefined, r:undefined, p:undefined, cc:undefined, active:false}: el
@@ -110,6 +106,8 @@ class App extends React.Component {
     // second pass through plugboard
     const final = findPLugboardVal(back1, plugs)
 
+    this.saveDecoded(final)
+
     this.setState({status: {...this.state.status, result: final}})
  }
   handleKeyPressValue(e) {
@@ -118,15 +116,8 @@ class App extends React.Component {
  }
  checkRotorStatus() {
    const foo = [...this.state.rotors]
-   console.log("foo", foo);
    const bar = foo.some(el => el.r !== undefined && el.sel !== undefined && el.val !== undefined)
-   console.log("bar", bar);
    return bar;
- }
- checkKeyPress() {
-
-
-
  }
   handleKeyPress() {
     document.addEventListener('keydown', (e) => {
@@ -137,7 +128,8 @@ class App extends React.Component {
       rotorStatus && !altKey && keyRange ? (
         this.handleKeyPressValue(e),
         this.advanceRotors(),
-        this.handleConvert()
+        this.handleConvert(),
+        this.saveKeyPress(e.key)
       ) : !rotorStatus && !altKey && keyRange? (
         this.handleToast("unset")
       ) : rotorStatus && !altKey && !keyRange? (
@@ -147,6 +139,14 @@ class App extends React.Component {
         console.log("Fail")
       )
    })
+ }
+ saveKeyPress(val) {
+    const arr = [ ...this.state.keypressesArr, val ]
+    this.setState({ ...this.state, keypressesArr:arr } )
+ }
+ saveDecoded(val) {
+   const arr = [ ...this.state.decodedArr, getCharacter(val) ]
+   this.setState({ ...this.state, decodedArr:arr } )
  }
   handleSettingsSave(e) {
     const machineSetup = {plugboardArr: {...this.state.plugs},rotors: {...this.state.rotors}}
@@ -235,9 +235,11 @@ class App extends React.Component {
           text = "Are you sure you want to delete this?"
           handleSettingsClear = {this.handleSettingsClear}
         />
-        <LetterBoard
-          r = {lettersArr}
-          active = {this.state.status.result}
+        <DecodeInterface
+          lettersArr = {lettersArr}
+          activeLetter = {this.state.status.result}
+          keypressesArr = { this.state.keypressesArr }
+          decodedArr = { this.state.decodedArr }
         />
     </div>
 

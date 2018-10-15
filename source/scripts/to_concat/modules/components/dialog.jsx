@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Button } from "./button"
 
 const Dialog=({ text, vis, f, f2 }) => {
-  console.log("vis", vis);
   return (
     <div
       className={ vis?"dialog active":"dialog" }
