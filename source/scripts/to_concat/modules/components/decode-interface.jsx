@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { LetterBoard } from "./letterboard"
 import { OutputModule } from "./output_module"
 
-const DecodeInterface = ({ lettersArr, activeLetter, keypressesArr, decodedArr }) => {
+const DecodeInterface = ({ lettersArr, activeLetter, keypressesArr, decodedArr, f }) => {
 
   return (
     <div>
@@ -19,9 +19,11 @@ const DecodeInterface = ({ lettersArr, activeLetter, keypressesArr, decodedArr }
     <div>
       <OutputModule
         r = { keypressesArr }
+        f = { f }
       />
       <OutputModule
         r = { decodedArr }
+        f = { f }
       />
    </div>
  </div>

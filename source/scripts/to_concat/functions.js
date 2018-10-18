@@ -35,6 +35,7 @@ class App extends React.Component {
     this.handleClearDialog = this.handleClearDialog.bind(this)
     this.handleToast = this.handleToast.bind(this)
     this.resetRotor = this.resetRotor.bind(this)
+    this.handleCopy = this.handleCopy.bind(this)
  }
   componentWillMount() {
       this.handleButtonStates("save")
@@ -202,6 +203,16 @@ class App extends React.Component {
     this.setState({toast:false})
   }, 2000);
  }
+ handleCopy(e) {
+   console.log("click t");
+   document.execCommand("copy")
+   document.addEventListener('copy', (e) => {
+    console.log("copy y");
+    e.clipboardData.setData('text/plain', 'Hello, world!');
+    // e.clipboardData.setData('text/html', '<b>Hello, world!</b>');
+    // e.preventDefault(); // We want to write our data to the clipboard, not data from any user selection
+});
+ }
   render() {
     return (
       <div>
@@ -240,6 +251,7 @@ class App extends React.Component {
           activeLetter = {this.state.status.result}
           keypressesArr = { this.state.keypressesArr }
           decodedArr = { this.state.decodedArr }
+          f = { this.handleCopy }
         />
     </div>
 
