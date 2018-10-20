@@ -13,7 +13,9 @@ const Toast = ({ f, toast, val }) => {
               val==="delete"?"Fertig! Your machine settings have been deleted.":
               val==="unset"?"Aufmerksam! Set up rotors before typing message":
               val==="keyrange"?"Hoppla! Entered character must be a letter" :
-              "Abgeschlossen! Saved machine settings loaded"}
+              val==="copy"?"Text has been copied!" :
+              "Abgeschlossen! Saved machine settings loaded"
+            }
         </p>
     )
 }

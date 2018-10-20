@@ -11,10 +11,10 @@ const OutputModule = ({ r, f }) => {
       {[...r].map(el => el)}
     </p>
     <Button
-      val = { "copy" }
+      val = { r.join("") }
       text= { "Copy" }
       f = { f }
-      status = { false }
+      status = { r.length>0?false:true }
       primary = { true }
     />
   </div>

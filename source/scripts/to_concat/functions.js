@@ -204,14 +204,16 @@ class App extends React.Component {
   }, 2000);
  }
  handleCopy(e) {
-   console.log("click t");
-   document.execCommand("copy")
-   document.addEventListener('copy', (e) => {
-    console.log("copy y");
-    e.clipboardData.setData('text/plain', 'Hello, world!');
-    // e.clipboardData.setData('text/html', '<b>Hello, world!</b>');
-    // e.preventDefault(); // We want to write our data to the clipboard, not data from any user selection
-});
+   const el = document.createElement("input")
+   el.type="text"
+   el.classList.add("hidden")
+   el.value = e.target.value;
+   document.querySelector('#app').appendChild(el) 
+
+   el.select()
+   const copysuccess = document.execCommand("copy") || false
+   el.remove()
+   this.handleToast("copy")
  }
   render() {
     return (
