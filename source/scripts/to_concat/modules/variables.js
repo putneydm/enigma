@@ -31,6 +31,15 @@ const emptyArr = () => [];
 const keypressesArr = []
 const decodedArr = []
 
-console.log("k", keypressesArr, decodedArr);
+const alertMessages = {
+  save: "Abgeschlossen! Machine settings have been saved",
+  delete: "Fertig! Your machine settings have been deleted",
+  unset: "Aufmerksam! Set up rotors before typing message",
+  keyrange: "Hoppla! Entered character must be a letter",
+  copy: "Text has been copied!",
+  loaded: "Abgeschlossen! Saved machine settings loaded"
+}
 
-export {initial, numbersArr, lettersArr, seedVal, plugs, plugboardArr, rotors, status, buttonStatus, rotorsArr, reflector, keypressesArr, decodedArr }
+
+
+export {initial, numbersArr, lettersArr, seedVal, plugs, plugboardArr, rotors, status, buttonStatus, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages }

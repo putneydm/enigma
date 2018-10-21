@@ -3,8 +3,10 @@ import ReactDOM from "react-dom"
 import {Children, PropTypes} from 'react'
 import { BrowserRouter as Router, Route, Link }  from 'react-router-dom'
 // lettersData
-import {initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector, keypressesArr, decodedArr } from "./modules/variables"
+import {initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages } from "./modules/variables"
 import { flatten, crosswires, rotorPass, findPLugboardVal, getCharacter } from "./modules/helper_functions"
+
+console.log("error t", alertMessages.save);
 
 // components
 import {Head} from "./modules/components/head"
@@ -132,9 +134,9 @@ class App extends React.Component {
         this.handleConvert(),
         this.saveKeyPress(e.key)
       ) : !rotorStatus && !altKey && keyRange? (
-        this.handleToast("unset")
+        this.handleToast(alertMessages.unset)
       ) : rotorStatus && !altKey && !keyRange? (
-        this.handleToast("keyrange")
+        this.handleToast(alertMessages.keyrange)
       ) :
       (
         console.log("Fail")
@@ -153,20 +155,20 @@ class App extends React.Component {
     const machineSetup = {plugboardArr: {...this.state.plugs},rotors: {...this.state.rotors}}
     localStorage.setItem('machineSettings', JSON.stringify(machineSetup))
     this.handleButtonStates(e.target.value)
-    this.handleToast(e.target.value)
+    this.handleToast(alertMessages.save)
  }
   handleSettingsRetrieve(e) {
     const machineSetup = JSON.parse(localStorage.getItem('machineSettings')) || false
     this.setState({rotors:machineSetup?Object.values(machineSetup.rotors): this.state.rotors, plugs:machineSetup?Object.values(machineSetup.plugboardArr):this.state.plugs})
     this.handleButtonStates(e.target.value)
-    this.handleToast(e.target.value)
+    this.handleToast(alertMessages.loaded)
     this.handleGetAnim(e.target.value)
  }
   handleSettingsClear(e) {
     localStorage.clear()
     this.handleClearDialog()
     this.handleButtonStates(e.target.value)
-    this.handleToast(e.target.value)
+    this.handleToast(alertMessages.delete)
  }
   localStorageStatus() {
     return localStorage.getItem('machineSettings')?true:false
@@ -208,12 +210,12 @@ class App extends React.Component {
    el.type="text"
    el.classList.add("hidden")
    el.value = e.target.value;
-   document.querySelector('#app').appendChild(el) 
+   document.querySelector('#app').appendChild(el)
 
    el.select()
    const copysuccess = document.execCommand("copy") || false
    el.remove()
-   this.handleToast("copy")
+   this.handleToast(alertMessages.copy)
  }
   render() {
     return (
@@ -222,9 +224,9 @@ class App extends React.Component {
           hallo, welt
         </Head>
         <Toast
-          f={ this.handleToast }
           toast={ this.state.toast.toastState }
           val={ this.state.toast.toastVal }
+          alerts={ alertMessages }
         />
         <MachineSetup
           setRotorNumber = { this.setRotorNumber }
