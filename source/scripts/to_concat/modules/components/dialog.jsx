@@ -11,15 +11,17 @@ const Dialog=({ text, vis, f, f2 }) => {
       <p>{`${text}`}</p>
       <Button
         val={ "Cancel" }
-        text={ "cancel"}
         f={ f }
         primary={ true }
-      />
+      >
+        Cancel
+      </Button>
       <Button
         val={ "delete" }
         f={ f2 }
-        text={ "Yes, delete"}
-      />
+      >
+        Yes, delete
+      </Button>
     </div>
   )
 }

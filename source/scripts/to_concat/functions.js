@@ -189,7 +189,7 @@ class App extends React.Component {
     const pbr =[...this.state.plugs].map((el, i) =>{
       return index === i ? {...el, ccOne: item === "ccOne"? val:el.ccOne, ccTwo: item === "ccTwo"? val:el.ccTwo}: el
    })
-    this.handleButtonStates("update")
+    this.handleButtonStates("update")  
     this.setState({plugs: pbr})
  }
  handleGetAnim(val) {

@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import PropTypes from 'prop-types';
 
-const Button=({ text="Button", val=undefined, f, status=false, primary=false}) => {
+const Button=({ val=undefined, f, status=false, primary=false, children="Button" }) => {
   const clicky=(e) => {
     e.preventDefault()
     f(e)
@@ -14,7 +14,7 @@ const Button=({ text="Button", val=undefined, f, status=false, primary=false}) =
       onClick={ clicky }
       value={ val }
     >
-    {`${text}`}
+    {children}
   </button>
   )
 }

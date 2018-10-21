@@ -12,11 +12,12 @@ const OutputModule = ({ r, f }) => {
     </p>
     <Button
       val = { r.join("") }
-      text= { "Copy" }
       f = { f }
       status = { r.length>0?false:true }
       primary = { true }
-    />
+    >
+      Copy
+    </Button>
   </div>
 
   )
