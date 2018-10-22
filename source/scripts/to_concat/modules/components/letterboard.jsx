@@ -11,9 +11,11 @@ const LetterBoard = ({r, active}) => {
        { r.map((el, i) =>
          <LetterBoardItem
            active = {i === active}
-           item={el}
            key={i}
-         />)
+         >
+          {el} 
+          </LetterBoardItem>
+         )
        }
     </div>
     )

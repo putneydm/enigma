@@ -2,19 +2,18 @@ import React, { Component } from "react"
 import ReactDOM from "react-dom"
 import PropTypes from 'prop-types'
 
-const ListSelector=({ dispVal, val, disabledState }) => {
+const ListSelector=({ val, disabledState, children }) => {
   return (
     <li
         value={val}
         className={ disabledState }
       >
-        {`${dispVal}`}
+        {children}
     </li>
   )
 }
 
 ListSelector.propTypes = {
-  dispVal: PropTypes.string,
   val: PropTypes.number,
   disabledState: PropTypes.string
 }

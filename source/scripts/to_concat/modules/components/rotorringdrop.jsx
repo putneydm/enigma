@@ -34,10 +34,11 @@ const RotorRingDrop=({ r, val, f, id, active=false, valSet=false, rotors, animat
         return (
           <ListSelector
             key={i}
-            dispVal={el}
             val={i}
             disabledState={ val===i && valSet?"active":rotors.some(ele => ele.sel===i) && val!==i? "disabled": "inactive"}
-          />
+          >
+          {el}
+          </ListSelector>
         )
      })}
     </ul>
@@ -61,18 +62,20 @@ const PlugBoardDrop=({ r, rotorVal, f, id, rotorsArr, selected, index, active=tr
     >
     <ListSelector
       key={ 101 }
-      dispVal={"—"}
       val={ undefined }
       disabledState={ !valueSet?"active": "hidden" }
-    />
+    >
+      — 
+    </ListSelector>
       {rotorsArr.map((el, i) => {
         return (
           <ListSelector
             key={i}
-            dispVal={el}
             val={i}
             disabledState={ rotorVal===i && valueSet ?"active":selected.some(ele => ele===i) && rotorVal !== i? "disabled": "inactive"}
-          />
+          >
+            {el}
+          </ListSelector>
         )
      })}
     </ul>

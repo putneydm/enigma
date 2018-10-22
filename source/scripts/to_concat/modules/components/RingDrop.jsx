@@ -22,10 +22,11 @@ const RingDrop=({val, r, id, f, active=false, valSet=false,  animate=false }) =>
         return (
           <ListSelector
             key={i}
-            dispVal={el}
             val={i}
             disabledState={ val===i?"active":"inactive" }
-          />
+          >
+            {el}
+          </ListSelector>
         )
      })}
     </ul>
