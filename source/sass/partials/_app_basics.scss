@@ -673,6 +673,19 @@ button:disabled.btn-small {
   transition: color .2s;
   cursor: not-allowed;
 }
+button.btn-close {
+  border:0;
+  width:24px;
+  height:24px;
+  background-color:transparent;
+  border-radius:50%;
+  position:absolute;
+  right:0;
+  top:0;
+  margin:24px 24px 0 0;
+  z-index:1;
+
+}
 .toast {
   position: absolute;
   left:-1000000px;
@@ -733,13 +746,13 @@ button:disabled.btn-small {
 
 
 .decode-interface-wrapper {
-    // position:absolute;
-    // width:0px;
-    // height:0px;
-    // overflow:hidden;
-    // left:-100000000px;
-    // opacity:0;
-    // transform: translateY(20px);
+    position:absolute;
+    width:0px;
+    height:0px;
+    overflow:hidden;
+    left:-100000000px;
+    opacity:0;
+    transform: translateY(20px);
 }
 
 .decode-interface-wrapper.active {
@@ -761,4 +774,20 @@ button:disabled.btn-small {
 
 .output {
   border:1px solid red;
+}
+.icon {
+  width:22px;
+  height:22px;
+  fill:$med;
+  transition:fill .2s;
+}
+.icon.close {
+  position: absolute;
+  right:0;
+  top:0;
+  margin:24px 24px 0 0;
+}
+.btn-close:hover + .icon.close {
+  fill:$button;
+  transition:fill .2s;
 }

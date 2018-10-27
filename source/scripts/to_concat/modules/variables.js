@@ -40,6 +40,6 @@ const alertMessages = {
   loaded: "Abgeschlossen! Saved machine settings loaded"
 }
 
+const decodeActive = false;
 
-
-export {initial, numbersArr, lettersArr, seedVal, plugs, plugboardArr, rotors, status, buttonStatus, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages }
+export {initial, numbersArr, lettersArr, seedVal, plugs, plugboardArr, rotors, status, buttonStatus, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages, decodeActive }

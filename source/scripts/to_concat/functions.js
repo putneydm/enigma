@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import { Children, PropTypes } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 // lettersData
-import { initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages } from "./modules/variables"
+import { initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages, decodeActive } from "./modules/variables"
 import { flatten, crosswires, rotorPass, findPLugboardVal, getCharacter } from "./modules/helper_functions"
 
 console.log("error t", alertMessages.save);
@@ -13,8 +13,8 @@ import { Head } from "./modules/components/head"
 import { MachineSetup } from "./modules/components/machine_setup"
 import { SaveInterface } from "./modules/components/save_interface"
 import { DecodeInterface } from "./modules/components/decode-interface"
-import { Plugboard } from "./modules/components/plugboard"
 import { Toast } from "./modules/components/toast"
+import { Button } from "./modules/components/button"
 
 
 const toast = { toastState: false, toastVal: undefined };
@@ -25,7 +25,7 @@ const app = document.querySelector("#app")
 class App extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { initial, rotors, status, buttonStatus, plugs, toast, getAnim, keypressesArr, decodedArr }
+        this.state = { initial, rotors, status, buttonStatus, plugs, toast, getAnim, keypressesArr, decodedArr, decodeActive }
         this.clicker = this.clicker.bind(this)
         this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
         this.setRotorNumber = this.setRotorNumber.bind(this)
@@ -38,6 +38,7 @@ class App extends React.Component {
         this.handleToast = this.handleToast.bind(this)
         this.resetRotor = this.resetRotor.bind(this)
         this.handleCopy = this.handleCopy.bind(this)
+        this.handleDecodeMode = this.handleDecodeMode.bind(this)
     }
     componentWillMount() {
         this.handleButtonStates("save")
@@ -187,14 +188,14 @@ class App extends React.Component {
     handleLetterboardArray(item, index, val) {
         val = parseInt(val)
         const pbr = [...this.state.plugs].map((el, i) => {
-            return index === i ? {...el, ccOne: item === "ccOne" ? val : el.ccOne, ccTwo: item === "ccTwo" ? val : el.ccTwo } : el
+            return index === i ? {...el, ccOne: item === "ccOne" ? val : el.ccOne, ccTwo: item === "ccTwo" ? val : el.ccTwo } : el  
         })
-        this.handleButtonStates("update")
+        this.handleButtonStates("update")  
         this.setState({ plugs: pbr })
     }
     handleGetAnim(val) {
         const getAnim = val === "get" ? true : false
-        this.setState({ getAnim: getAnim })
+        this.setState({ getAnim: getAnim }) 
     }
     handleToast(val) {
         this.handleToastReset()
@@ -217,45 +218,58 @@ class App extends React.Component {
         el.remove()
         this.handleToast(alertMessages.copy)
     }
+    handleDecodeMode(e) {
+        const decodeActive = this.state.decodeActive
+        this.setState({decodeActive: !decodeActive})
+    }
     render() {
-        return ( <
-            div >
-            <
-            Head >
-            hallo, welt <
-            /Head> <
-            Toast toast = { this.state.toast.toastState }
-            val = { this.state.toast.toastVal }
-            alerts = { alertMessages }
-            /> <
-            MachineSetup setRotorNumber = { this.setRotorNumber }
-            setRingPosition = { this.setRingPosition }
-            setRotorPos = { this.setRotorPos }
-            rotors = { this.state.rotors }
-            rotorsArr = { rotorsArr }
-            lettersArr = { lettersArr }
-            numbersArr = { numbersArr }
-            plugs = { this.state.plugs }
-            handleLetterboardArray = { this.handleLetterboardArray }
-            selected = { flatten(this.state.plugs) }
-            animate = { this.state.getAnim }
-            resetRotor = { this.resetRotor }
-            /> <
-            SaveInterface handleSettingsSave = { this.handleSettingsSave }
-            handleSettingsRetrieve = { this.handleSettingsRetrieve }
-            handleClearDialog = { this.handleClearDialog }
-            status = { this.state.buttonStatus }
-            text = "Are you sure you want to delete this?"
-            handleSettingsClear = { this.handleSettingsClear }
-            /> <
-            DecodeInterface lettersArr = { lettersArr }
-            activeLetter = { this.state.status.result }
-            keypressesArr = { this.state.keypressesArr }
-            decodedArr = { this.state.decodedArr }
-            f = { this.handleCopy }
-            /> < /
-            div >
-
+        return ( 
+            <div>
+                <Head>
+                    hallo, welt 
+                </Head> 
+                <Toast 
+                    toast = { this.state.toast.toastState }
+                    val = { this.state.toast.toastVal }
+                    alerts = { alertMessages }
+                /> 
+                <MachineSetup 
+                    setRotorNumber = { this.setRotorNumber }
+                    setRingPosition = { this.setRingPosition }
+                    setRotorPos = { this.setRotorPos }
+                    rotors = { this.state.rotors }
+                    rotorsArr = { rotorsArr }
+                    lettersArr = { lettersArr }
+                    numbersArr = { numbersArr }
+                    plugs = { this.state.plugs }
+                    handleLetterboardArray = { this.handleLetterboardArray }
+                    selected = { flatten(this.state.plugs) }
+                    animate = { this.state.getAnim }
+                    resetRotor = { this.resetRotor }
+                /> 
+                <SaveInterface 
+                    handleSettingsSave = { this.handleSettingsSave }
+                    handleSettingsRetrieve = { this.handleSettingsRetrieve }
+                    handleClearDialog = { this.handleClearDialog }
+                    status = { this.state.buttonStatus }
+                    text = "Are you sure you want to delete this?"
+                    handleSettingsClear = { this.handleSettingsClear }
+                /> 
+                <Button
+                    f={ this.handleDecodeMode }   
+                >
+                    Open
+                </Button>
+                <DecodeInterface 
+                    active = { this.state.decodeActive }
+                    lettersArr = { lettersArr }
+                    activeLetter = { this.state.status.result }
+                    keypressesArr = { this.state.keypressesArr }
+                    decodedArr = { this.state.decodedArr }
+                    f = { this.handleCopy }
+                    f2 = { this.handleDecodeMode }
+                /> 
+            </div>
         )
     }
 }

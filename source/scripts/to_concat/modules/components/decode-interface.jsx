@@ -3,20 +3,30 @@ import ReactDOM from "react-dom"
 import PropTypes from 'prop-types';
 import { LetterBoard } from "./letterboard"
 import { OutputModule } from "./output_module"
+import { ButtonClose } from "./button"
+import { Icon } from "./icon"
 
-const DecodeInterface = ({ lettersArr, activeLetter, keypressesArr, decodedArr, f }) => {
+const DecodeInterface = ({ active, lettersArr, activeLetter, keypressesArr, decodedArr, f, f2 }) => {
 
   return (
     <div>
-    <div
-      className="decode-interface-wrapper"
+    <div 
+      className={ active? "decode-interface-wrapper active": "decode-interface-wrapper" }
     >
+      <ButtonClose 
+        f = { f2 }
+      >
+        Close
+      </ButtonClose>
+      <Icon
+        type="close"
+      >
+        close_icon
+      </Icon>
       <LetterBoard
         r = {lettersArr}
         active = {activeLetter}
       />
-    </div>
-    <div>
       <OutputModule
         r = { keypressesArr }
         f = { f }
@@ -26,6 +36,7 @@ const DecodeInterface = ({ lettersArr, activeLetter, keypressesArr, decodedArr, 
         f = { f }
       />
    </div>
+
  </div>
     )
 }

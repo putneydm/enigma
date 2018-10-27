@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import PropTypes from 'prop-types';
+import Icon from "./icon";
 
 const Button=({ val=undefined, f, status=false, primary=false, children="Button" }) => {
   const clicky=(e) => {
@@ -38,9 +39,31 @@ const ButtonSmall=({ children, val=undefined, f, status=false }) => {
       onClick={ clicky }
       value={ val }
     >
-    {`${children}`}
+    {`${children}`}   
   </button>
   )
 }
 
-export { Button, ButtonSmall }
+const ButtonClose=({ children, val=undefined, f, status=false }) => {
+  const clicky=(e) => {
+    e.preventDefault()
+    f(e)
+  }
+  return (
+    <button
+      disabled={ status }
+      className={ "btn-close"}
+      onClick={ clicky }
+      value={ val }
+    >
+      <span 
+        className={"hidden"}
+      >
+        {`${children}`}
+      </span>
+    </button>
+  )
+}
+
+
+export { Button, ButtonSmall, ButtonClose }
