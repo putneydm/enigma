@@ -6,8 +6,6 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages, decodeActive } from "./modules/variables"
 import { flatten, crosswires, rotorPass, findPLugboardVal, getCharacter } from "./modules/helper_functions"
 
-console.log("error t", alertMessages.save);
-
 // components
 import { Head } from "./modules/components/head"
 import { MachineSetup } from "./modules/components/machine_setup"
@@ -249,14 +247,14 @@ class App extends React.Component {
                 /> 
                 <SaveInterface 
                     handleSettingsSave = { this.handleSettingsSave }
-                    handleSettingsRetrieve = { this.handleSettingsRetrieve }
+                    handleSettingsRetrieve = {    this.handleSettingsRetrieve }
                     handleClearDialog = { this.handleClearDialog }
                     status = { this.state.buttonStatus }
                     text = "Are you sure you want to delete this?"
-                    handleSettingsClear = { this.handleSettingsClear }
+                    handleSettingsClear = { this.handleSettingsClear }  
                 /> 
                 <Button
-                    f={ this.handleDecodeMode }   
+                    f={ this.handleDecodeMode }
                 >
                     Open
                 </Button>
