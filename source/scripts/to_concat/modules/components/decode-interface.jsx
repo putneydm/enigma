@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import { LetterBoard } from "./letterboard"
 import { OutputModule } from "./output_module"
 import { ButtonClose } from "./button"
-import { Icon } from "./icon"
+import { Icon } from "./icon"  
 
 const DecodeInterface = ({ active, lettersArr, activeLetter, keypressesArr, decodedArr, f, f2 }) => {
 
   return (
-    <div>
     <div 
       className={ active? "decode-interface-wrapper active": "decode-interface-wrapper" }
     >
@@ -27,17 +26,19 @@ const DecodeInterface = ({ active, lettersArr, activeLetter, keypressesArr, deco
         r = {lettersArr}
         active = {activeLetter}
       />
-      <OutputModule
-        r = { keypressesArr }
-        f = { f }
-      />
-      <OutputModule
-        r = { decodedArr }
-        f = { f }
-      />
+        <div
+          className="output-module-wrapper"
+        >
+          <OutputModule
+            r = { keypressesArr }   
+            f = { f }
+          />
+          <OutputModule
+            r = { decodedArr }
+            f = { f }
+          />
+        </div>
    </div>
-
- </div>
     )
 }
 
