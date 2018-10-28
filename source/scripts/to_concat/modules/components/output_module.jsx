@@ -2,14 +2,18 @@ import React, { Component } from "react"
 import ReactDOM from "react-dom"
 import PropTypes from 'prop-types';
 import { Button } from "./button"
+import { Output } from "./output"
 
 const OutputModule = ({ r, f }) => {
   return (
-  <div>
-    <p
-      className="output">
+  <div 
+    className="output-module"
+  >
+    <Output
+    >
       {[...r].map(el => el)}
-    </p>
+    </Output>
+  
     <Button
       val = { r.join("") }
       f = { f }
@@ -17,7 +21,7 @@ const OutputModule = ({ r, f }) => {
       primary = { true }
     >
       Copy
-    </Button>
+    </Button>  
   </div>
 
   )
