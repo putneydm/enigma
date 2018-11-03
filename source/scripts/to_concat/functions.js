@@ -12,7 +12,7 @@ import { MachineSetup } from "./modules/components/machine_setup"
 import { SaveInterface } from "./modules/components/save_interface"
 import { DecodeInterface } from "./modules/components/decode-interface"
 import { Toast } from "./modules/components/toast"
-import { Button } from "./modules/components/button"
+import { Button } from "./modules/components/button"  
 
 
 const toast = { toastState: false, toastVal: undefined };
@@ -251,7 +251,7 @@ class App extends React.Component {
                     handleClearDialog = { this.handleClearDialog }
                     status = { this.state.buttonStatus }
                     text = "Are you sure you want to delete this?"
-                    handleSettingsClear = { this.handleSettingsClear }  
+                    handleSettingsClear = { this.handleSettingsClear }
                 /> 
                 <Button
                     f={ this.handleDecodeMode }
@@ -266,6 +266,7 @@ class App extends React.Component {
                     decodedArr = { this.state.decodedArr }
                     f = { this.handleCopy }
                     f2 = { this.handleDecodeMode }
+                    rotors = { this.state.rotors }
                 /> 
             </div>
         )

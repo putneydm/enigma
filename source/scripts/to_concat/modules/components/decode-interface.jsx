@@ -5,9 +5,10 @@ import { LetterBoard } from "./letterboard"
 import { OutputModule } from "./output_module"
 import { ButtonClose } from "./button"
 import { Icon } from "./icon"  
+import { RotorWindow } from "./rotor-window"
 
-const DecodeInterface = ({ active, lettersArr, activeLetter, keypressesArr, decodedArr, f, f2 }) => {
-
+const DecodeInterface = ({ active, lettersArr, activeLetter, keypressesArr, decodedArr, f, f2, rotors }) => {
+  console.log("rotors", rotors)
   return (
     <div 
       className={ active? "decode-interface-wrapper active": "decode-interface-wrapper" }
@@ -22,6 +23,18 @@ const DecodeInterface = ({ active, lettersArr, activeLetter, keypressesArr, deco
       >
         close_icon
       </Icon>
+
+      <div className="foo">
+        {rotors.map((el, i) => {
+          return (
+            <RotorWindow
+              val = { el.val }
+              key = { i }
+            /> 
+          )
+        })}
+      </div>
+
       <LetterBoard
         r = {lettersArr}
         active = {activeLetter}
@@ -38,6 +51,7 @@ const DecodeInterface = ({ active, lettersArr, activeLetter, keypressesArr, deco
             f = { f }
           />
         </div>
+
    </div>
     )
 }

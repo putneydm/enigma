@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 const Output = ({ children }) => {
     return (
         <p
-            className="output-content"
+            className={children.length>0? "output-content active": "output-content"}
         >
-                { children }
+                { children } 
         </p>
     )
 }

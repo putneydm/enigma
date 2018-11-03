@@ -791,13 +791,8 @@ button.btn-close {
   padding:12px;
   border-radius:5px;
 }
-.output-content {
-  width:100%;
-  min-height:100px;
+.output-content.active {
   border:1px solid $med;
-  word-break: break-all;
-  padding:12px;
-  border-radius:5px;
 }
 .icon {
   width:22px;
@@ -814,4 +809,8 @@ button.btn-close {
 .btn-close:hover + .icon.close {
   fill:$button;
   transition:fill .2s;
+}
+.foo {
+  border:1px solid red;
+  height:50px;
 }
