@@ -24,11 +24,12 @@ const DecodeInterface = ({ active, lettersArr, activeLetter, keypressesArr, deco
         close_icon
       </Icon>
 
-      <div className="foo">
+      <div className="rotor-value-wrapper">
         {rotors.map((el, i) => {
-          return (
+          return ( 
             <RotorWindow
               val = { el.val }
+              count = { i }
               key = { i }
             /> 
           )

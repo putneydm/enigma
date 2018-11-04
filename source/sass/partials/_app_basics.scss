@@ -71,6 +71,8 @@ h2 {
   font-size:16px;
   margin:0;
   font-weight:bold;
+  display: block;
+  margin-bottom: 8px;
 }
 .label {
   font-size:14px;
@@ -131,10 +133,6 @@ h2 {
   }
   .notes-picker-icn {
     margin:0 0 10px;
-  }
-  h2 {
-    display: block;
-    margin-bottom: 8px;
   }
 }
 .rotor-selectors-wrapper.active {
@@ -765,7 +763,7 @@ button.btn-close {
   max-width:1000px;
   width:100%;
   padding:60px;
-  background-color:rgba($white, .8);
+  background-color:rgba($white, .95);
   box-shadow:0 10px 28px rgba($black, .3);
   transform: translateY(0);
   opacity:1;
@@ -810,7 +808,23 @@ button.btn-close {
   fill:$button;
   transition:fill .2s;
 }
-.foo {
-  border:1px solid red;
-  height:50px;
+.rotor-value-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom:42px;
+  padding:24px 0 0 0;
+}
+.rotor-value {
+  margin:0 12px;
+}
+.rotor-window {
+  border:1px solid $light;
+  font-size:28px;
+  font-weight:bold;
+  padding:17px 0;
+  flex-grow:0;
+  width:118px;
+  text-align: center;
+  margin:0;
+  color:$button;
 }

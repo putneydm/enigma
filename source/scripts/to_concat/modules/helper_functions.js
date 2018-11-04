@@ -42,4 +42,4 @@ const findPLugboardVal = (val, r) => {
   const {ccOne, ccTwo} = r.find((el, i) => val === el.ccOne || val === el.ccTwo) || false
   return ccOne && ccOne === val?ccTwo:ccTwo && ccTwo === val?ccOne:val
 }
-export {lettersData, shuffle, newNumberArray, getLettersArr, flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal, getCharacter}
+export { lettersData, shuffle, newNumberArray, getLettersArr, flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal, getCharacter }

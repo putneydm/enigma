@@ -233,7 +233,7 @@ class App extends React.Component {
                 /> 
                 <MachineSetup 
                     setRotorNumber = { this.setRotorNumber }
-                    setRingPosition = { this.setRingPosition }
+                    setRingPosition = {  this.setRingPosition }
                     setRotorPos = { this.setRotorPos }
                     rotors = { this.state.rotors }
                     rotorsArr = { rotorsArr }
@@ -246,7 +246,7 @@ class App extends React.Component {
                     resetRotor = { this.resetRotor }
                 /> 
                 <SaveInterface 
-                    handleSettingsSave = { this.handleSettingsSave }
+                    handleSettingsSave = { this.handleSettingsSave }  
                     handleSettingsRetrieve = {    this.handleSettingsRetrieve }
                     handleClearDialog = { this.handleClearDialog }
                     status = { this.state.buttonStatus }
