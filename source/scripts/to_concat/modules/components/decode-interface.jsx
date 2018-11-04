@@ -46,10 +46,12 @@ const DecodeInterface = ({ active, lettersArr, activeLetter, keypressesArr, deco
           <OutputModule
             r = { keypressesArr }   
             f = { f }
+            labelVal = "Your Message"
           />
           <OutputModule
             r = { decodedArr }
             f = { f }
+            labelVal = "Enigma Output"
           />
         </div>
 
