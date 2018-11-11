@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import { Children, PropTypes } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 // lettersData
-import { initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages, decodeActive } from "./modules/variables"
+import { initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages, decodeActive, machineStatus } from "./modules/variables"
 import { flatten, crosswires, rotorPass, findPLugboardVal, getCharacter } from "./modules/helper_functions"
 
 // components
@@ -23,8 +23,8 @@ const app = document.querySelector("#app")
 class App extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { initial, rotors, status, buttonStatus, plugs, toast, getAnim, keypressesArr, decodedArr, decodeActive }
-        this.clicker = this.clicker.bind(this)
+        this.state = { initial, rotors, status, buttonStatus, plugs, toast, getAnim, keypressesArr, decodedArr, decodeActive, machineStatus }
+        // this.clicker = this.clicker.bind(this)
         this.handleLetterboardArray = this.handleLetterboardArray.bind(this)
         this.setRotorNumber = this.setRotorNumber.bind(this)
         this.setRotorPos = this.setRotorPos.bind(this)
@@ -45,8 +45,9 @@ class App extends React.Component {
         this.handleKeyPress()
         console.log("mount");
     }
-    clicker(val) {
-        console.log("click", val);
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.rotors !== this.state.rotors) {           this.handleMachineReady()
+        }
     }
     advanceRotors() {
         let [a, b, c] = [...this.state.rotors]
@@ -62,12 +63,12 @@ class App extends React.Component {
         this.handleButtonStates("update")
         this.setState({ rotors: rotorPos })
     }
-    setRingPosition(id, val) {
+    setRingPosition(id, val) {  
         const ringPos = [...this.state.rotors].map((el, i) => {
             return {...el, r: id === i ? parseInt(val) : el.r }
         })
         this.handleButtonStates("update")
-        this.setState({...this.state.rotors = ringPos })
+        this.setState({rotors: ringPos })
     }
     setRotorNumber(id, val) {
         const [pivot] = seedVal.filter((el, i) => i === val)
@@ -84,7 +85,6 @@ class App extends React.Component {
             return i === val ? {...el, sel: undefined, val: undefined, r: undefined, p: undefined, cc: undefined, active: false } : el
         })
         this.handleButtonStates("update")
-        console.log("rotors", rotors);
         this.setState({...this.state.rotors, rotors })
 
     }
@@ -123,7 +123,6 @@ class App extends React.Component {
     }
     handleKeyPress() {
         document.addEventListener('keydown', (e) => {
-
             const keyRange = e.keyCode >= 65 && e.keyCode <= 90
             const altKey = e.sfitKey || e.altKey || e.ctrlKey || e.metaKey // true === alt key pressed
             const rotorStatus = this.checkRotorStatus()
@@ -177,6 +176,7 @@ class App extends React.Component {
         const save = val === "save" || val === "get" || val === "yes" ? true : val === "update" ? false : this.state.buttonStatus.save
         const dialog = val === "clear" ? true : false
         this.handleGetAnim(val)
+        // this.handleMachineReady()
         this.setState({ buttonStatus: { save: save, get: saveStatus, clear: saveStatus, dialog: dialog } })
     }
     handleClearDialog() {
@@ -212,13 +212,17 @@ class App extends React.Component {
         document.querySelector('#app').appendChild(el)
 
         el.select()
-        const copysuccess = document.execCommand("copy") || false
-        el.remove()
+        const copysuccess = document.execCommand("copy") || false   
+        el.remove()  
         this.handleToast(alertMessages.copy)
     }
     handleDecodeMode(e) {
         const decodeActive = this.state.decodeActive
         this.setState({decodeActive: !decodeActive})
+    }
+    handleMachineReady() {
+        const foobar = [...this.state.rotors].some(el => Object.values(el).some(val => val===undefined ));
+        this.setState({machineStatus: foobar})
     }
     render() {
         return ( 
@@ -245,7 +249,7 @@ class App extends React.Component {
                     animate = { this.state.getAnim }
                     resetRotor = { this.resetRotor }
                 /> 
-                <SaveInterface 
+                <SaveInterface    
                     handleSettingsSave = { this.handleSettingsSave }  
                     handleSettingsRetrieve = {    this.handleSettingsRetrieve }
                     handleClearDialog = { this.handleClearDialog }
@@ -255,6 +259,7 @@ class App extends React.Component {
                 /> 
                 <Button
                     f={ this.handleDecodeMode }
+                    status={ this.state.machineStatus }
                 >
                     Open
                 </Button>

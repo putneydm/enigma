@@ -45,25 +45,6 @@ const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotor
         )
       }) }
     </div>
-      {/* <div
-        className="b-loose"
-      > */}
-        {/* <RotorSelector
-          rotors={ rotors }
-          r={ rotorsArr }
-          f={ setRotorNumber }
-        />
-        <RingPositionSelector
-          count={ rotors }
-          r={ numbersArr }
-          f={ setRingPosition }
-        />
-        <RotorPositionSelector
-          count={ rotors }
-          r={ lettersArr }
-          f={ setRotorPos }
-        /> */}
-      {/* </div> */}
       <Plugboard
         count = { lettersArr }
         plugs = { plugs }

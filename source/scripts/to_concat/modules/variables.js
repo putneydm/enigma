@@ -41,5 +41,6 @@ const alertMessages = {
 }
 
 const decodeActive = false;
+const machineStatus = true;
 
-export {initial, numbersArr, lettersArr, seedVal, plugs, plugboardArr, rotors, status, buttonStatus, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages, decodeActive }
+export {initial, numbersArr, lettersArr, seedVal, plugs, plugboardArr, rotors, status, buttonStatus, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages, decodeActive, machineStatus }
