@@ -23,7 +23,7 @@ const getCharacter = (val) => String.fromCharCode(val + 65)
 // converts array of numbers to numbersArr
 const getLettersArr = (r) => r.map((el, i) => getCharacter(el))
 //flattens array of objects into an array
-const flatten = (r) => r.reduce((array, elem) => ([...array, ...Object.values(elem)]), [])
+const flatten = (r=[]) => r.reduce((array, elem) => ([...array, ...Object.values(elem)]), [])
 // takes an seed value and returns a 26 value array shuffled the same way every time.
 const crosswires = seed => shuffle(newNumberArray(), constantRandom(seed))
 
@@ -42,4 +42,18 @@ const findPLugboardVal = (val, r) => {
   const {ccOne, ccTwo} = r.find((el, i) => val === el.ccOne || val === el.ccTwo) || false
   return ccOne && ccOne === val?ccTwo:ccTwo && ccTwo === val?ccOne:val
 }
-export { lettersData, shuffle, newNumberArray, getLettersArr, flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal, getCharacter }
+
+const handlePlugsReady = (r) => {       
+        const plugsReady = r.some(el => {
+            const {ccOne, ccTwo} = el 
+            return ccOne !== undefined && ccTwo === undefined    
+        }) 
+        return plugsReady
+}
+
+const handleRotorsReady = (r) => {
+    const rotorsReady = r.some(el => Object.values(el).some(val => val===undefined ))
+    return rotorsReady
+}
+
+export { lettersData, shuffle, newNumberArray, getLettersArr, flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal, getCharacter, handlePlugsReady, handleRotorsReady }

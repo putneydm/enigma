@@ -4,7 +4,7 @@ import { Children, PropTypes } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 // lettersData
 import { initial, numbersArr, lettersArr, seedVal, plugboardArr, rotors, status, buttonStatus, plugs, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages, decodeActive, machineStatus } from "./modules/variables"
-import { flatten, crosswires, rotorPass, findPLugboardVal, getCharacter } from "./modules/helper_functions"
+import { flatten, crosswires, rotorPass, findPLugboardVal, getCharacter, handlePlugsReady, handleRotorsReady } from "./modules/helper_functions"
 
 // components
 import { Head } from "./modules/components/head"
@@ -46,7 +46,8 @@ class App extends React.Component {
         console.log("mount");
     }
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.rotors !== this.state.rotors) {           this.handleMachineReady()
+        if (prevState.rotors !== this.state.rotors || prevState.plugs !== this.state.plugs) {           
+            this.handleMachineReady()
         }
     }
     advanceRotors() {
@@ -218,11 +219,13 @@ class App extends React.Component {
     }
     handleDecodeMode(e) {
         const decodeActive = this.state.decodeActive
-        this.setState({decodeActive: !decodeActive})
+        this.setState({decodeActive: !decodeActive}) 
     }
     handleMachineReady() {
-        const foobar = [...this.state.rotors].some(el => Object.values(el).some(val => val===undefined ));
-        this.setState({machineStatus: foobar})
+        const plugsReady = handlePlugsReady([...this.state.plugs])
+        const rotorsReady = handleRotorsReady([...this.state.rotors])
+        this.setState({ machineStatus: {...this.state.machineStatus, rotorsReady: !rotorsReady, plugsReady: !plugsReady} })
+        
     }
     render() {
         return ( 
@@ -259,7 +262,7 @@ class App extends React.Component {
                 /> 
                 <Button
                     f={ this.handleDecodeMode }
-                    status={ this.state.machineStatus }
+                    status={ !this.state.machineStatus.rotorsReady && !this.state.machineStatus.plugsReady }
                 >
                     Open
                 </Button>
