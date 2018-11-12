@@ -3,14 +3,14 @@ import ReactDOM from "react-dom"
 import PropTypes from 'prop-types';
 import Icon from "./icon";
 
-const Button=({ val=undefined, f, status=false, primary=false, children="Button" }) => {
+const Button=({ val=undefined, f, status=true, primary=false, children="Button" }) => {
   const clicky=(e) => {
     e.preventDefault()
     f(e)
   }
   return (
     <button
-      disabled={ status }
+      disabled={ !status }
       className={ primary?"btn primary":"btn"}
       onClick={ clicky }
       value={ val }
@@ -27,14 +27,14 @@ Button.propTypes = {
   primary: PropTypes.bool
 }
 
-const ButtonSmall=({ children, val=undefined, f, status=false }) => {
+const ButtonSmall=({ children, val=undefined, f, status=true }) => {
   const clicky=(e) => {
     e.preventDefault()
     f(e)
   }
   return (
     <button
-      disabled={ status }
+      disabled={ !status }
       className={ "btn-small"}
       onClick={ clicky }
       value={ val }

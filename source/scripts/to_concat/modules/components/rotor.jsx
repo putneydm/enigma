@@ -8,7 +8,7 @@ import { Header } from "./label"
 import { ButtonSmall } from "./button"
 
 const Rotor = ({rotorCount, rotorNumber, i, fSetRotorNumber, rotors, ringVal, numbersArr, lettersArr, fsetRingPosition, active, rotorVal, fSetRotorPos, animate, resetRotor }) => {
-    const activeButton = rotorNumber>=0 || ringVal || rotorVal ? false:true
+    const activeButton = rotorNumber>=0 || ringVal || rotorVal ? true:false
     return (
     <div
         className={ rotorNumber>=0 && ringVal && rotorVal ?"rotor-selectors-wrapper active" :"rotor-selectors-wrapper" }

@@ -21,7 +21,7 @@ const OutputModule = ({ r, f , labelVal}) => {
     <Button
       val = { r.join("") }
       f = { f }
-      status = { r.length>0?false:true }
+      status = { r.length>0?true:false }
       primary = { true }
     >
       Copy

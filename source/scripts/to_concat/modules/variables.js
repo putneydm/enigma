@@ -43,6 +43,6 @@ const alertMessages = {
 const decodeActive = false;
 // const machineStatus = true;
 
-const machineStatus = { rotorsReady: false, plugsReady:false, saveLoaded:false, saved:false, updated:false }
+const machineStatus = { rotorsReady:false, plugsReady:false, saveLoaded:false, saved:false, updated:false, buttonStatus: { save:false, get:false, clear:false, dialog:false } }  
 
 export {initial, numbersArr, lettersArr, seedVal, plugs, plugboardArr, rotors, status, buttonStatus, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages, decodeActive, machineStatus }

@@ -16,7 +16,7 @@ const SaveTools = ({ f1, f2, f3, status = false }) => {
         val = { "save" }
         f = { f1 }
         status = { status.save }
-        primary = { !status.save?true:false }
+        primary = { !status.save?false:true }
       >
         Save
       </Button>
