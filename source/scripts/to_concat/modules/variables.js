@@ -1,4 +1,5 @@
 import {lettersData, shuffle, getLettersArr, newNumberArray, crosswires} from "./helper_functions"
+import { log } from "util";
 
 const initial = [{hello:"hello world"}]
 const numbersArr = newNumberArray(0, 26)
@@ -32,17 +33,16 @@ const keypressesArr = []
 const decodedArr = []
 
 const alertMessages = {
-  save: "Abgeschlossen! Machine settings have been saved",
-  delete: "Fertig! Your machine settings have been deleted",
-  unset: "Aufmerksam! Set up rotors before typing message",
-  keyrange: "Hoppla! Entered character must be a letter",
-  copy: "Text has been copied!",
-  loaded: "Abgeschlossen! Saved machine settings loaded"
+  save: "Achtung! Machine settings have been saved",
+  delete: "Achtung! Your machine settings have been deleted",
+  unset: "Achtung! Set up rotors before typing message",
+  keyrange: "Achtung! Entered character must be a letter",
+  copy: "Achtung! Text has been copied!",
+  loaded: "Achtung! Saved machine settings loaded"
 }
 
 const decodeActive = false;
-// const machineStatus = true;
 
-const machineStatus = { rotorsReady:false, plugsReady:false, saveLoaded:false, saved:false, updated:false, buttonStatus: { save:false, get:false, clear:false, dialog:false } }  
+const machineStatus = { rotorsReady:false, plugsReady:false, saveLoaded:false, saved:false, updated:false }  
 
 export {initial, numbersArr, lettersArr, seedVal, plugs, plugboardArr, rotors, status, buttonStatus, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages, decodeActive, machineStatus }

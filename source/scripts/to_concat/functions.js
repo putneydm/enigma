@@ -44,11 +44,14 @@ class App extends React.Component {
     componentDidMount() {
         this.handleKeyPress()
         console.log("mount");
+        
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevState.rotors !== this.state.rotors || prevState.plugs !== this.state.plugs) {           
             this.handleMachineReady()
         }
+    }
+    componentWillUpdate(nextProps, nextState) {        
     }
     advanceRotors() {
         let [a, b, c] = [...this.state.rotors]
@@ -82,7 +85,6 @@ class App extends React.Component {
     resetRotor(e) {
         const val = parseInt(e.target.value)
         const rotors = this.state.rotors.map((el, i) => {
-            console.log(i, val, i === val);
             return i === val ? {...el, sel: undefined, val: undefined, r: undefined, p: undefined, cc: undefined, active: false } : el
         })
         this.handleButtonStates("update")
@@ -138,7 +140,7 @@ class App extends React.Component {
                     this.handleToast(alertMessages.keyrange)
                 ) :
                 (
-                    console.log("Fail")
+                    console.log("Fail")   
                 )
         })
     }
@@ -157,11 +159,16 @@ class App extends React.Component {
         this.handleToast(alertMessages.save)
     }
     handleSettingsRetrieve(e) {
+        
         const machineSetup = JSON.parse(localStorage.getItem('machineSettings')) || false
-        this.setState({ rotors: machineSetup ? Object.values(machineSetup.rotors) : this.state.rotors, plugs: machineSetup ? Object.values(machineSetup.plugboardArr) : this.state.plugs })
+
+        console.log('machnesetup', machineSetup);
+        
         this.handleButtonStates(e.target.value)
         this.handleToast(alertMessages.loaded)
         this.handleGetAnim(e.target.value)
+        this.setState({ rotors: machineSetup ? Object.values(machineSetup.rotors) : this.state.rotors, plugs: machineSetup ? Object.values(machineSetup.plugboardArr) : this.state.plugs })
+  
     }
     handleSettingsClear(e) {
         localStorage.clear()
@@ -177,12 +184,13 @@ class App extends React.Component {
         const save = val === "save" || val === "get" || val === "yes" ? false : val === "update" ? true : this.state.buttonStatus.save
         const dialog = val === "clear" ? true : false
         this.handleGetAnim(val)
-        // this.handleMachineReady()
-        this.setState({ buttonStatus: { save: save, get: saveStatus, clear: saveStatus, dialog: dialog } })
+        const foo = { save: save, get: saveStatus, clear: saveStatus, dialog: dialog }
+        this.setState({ ...this.state, buttonStatus:foo }) 
     }
     handleClearDialog() {
-        const dialog = {...this.state.buttonStatus, dialog: !this.state.buttonStatus.dialog, save: this.state.buttonStatus.save, get: this.state.buttonStatus.dialog.get, clear: this.state.buttonStatus.clear }
-        this.setState({ buttonStatus: dialog })
+        const { dialog } = this.state.buttonStatus;
+        const buttonStatus = { ...this.state.buttonStatus, dialog: !dialog }
+        this.setState({ ...this.state, buttonStatus:buttonStatus  })
     }
     handleLetterboardArray(item, index, val) {
         val = parseInt(val)
@@ -197,6 +205,8 @@ class App extends React.Component {
         this.setState({ getAnim: getAnim }) 
     }
     handleToast(val) {
+        console.log('toast');
+        
         this.handleToastReset()
         this.setState({ toast: { toastState: true, toastVal: val } })
     }
@@ -224,6 +234,7 @@ class App extends React.Component {
     handleMachineReady() {
         const plugsReady = handlePlugsReady([...this.state.plugs])
         const rotorsReady = handleRotorsReady([...this.state.rotors])
+        
         this.setState({ machineStatus: {...this.state.machineStatus, rotorsReady: !rotorsReady, plugsReady: !plugsReady} })   
     }
     render() {
