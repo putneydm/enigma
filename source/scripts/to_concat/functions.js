@@ -13,6 +13,7 @@ import { SaveInterface } from "./modules/components/save_interface"
 import { DecodeInterface } from "./modules/components/decode-interface"
 import { Toast } from "./modules/components/toast"
 import { Button } from "./modules/components/button"  
+import { OpenDecoder } from "./modules/components/open_decoder";
 
 
 const toast = { toastState: false, toastVal: undefined };
@@ -270,12 +271,17 @@ class App extends React.Component {
                     text = "Are you sure you want to delete this?"
                     handleSettingsClear = { this.handleSettingsClear }
                 /> 
-                <Button
+                {/* <ButtonYuge
                     f={ this.handleDecodeMode }
                     status={ this.state.machineStatus.rotorsReady && this.state.machineStatus.plugsReady }
                 >
-                    Open
-                </Button>
+                    Ready! Let's code!
+                </ButtonYuge> */}
+                <OpenDecoder
+                    f={ this.handleDecodeMode }
+                    status={ this.state.machineStatus.rotorsReady && this.state.machineStatus.plugsReady }
+
+                ></OpenDecoder>
                 <DecodeInterface 
                     active = { this.state.decodeActive }
                     lettersArr = { lettersArr }
