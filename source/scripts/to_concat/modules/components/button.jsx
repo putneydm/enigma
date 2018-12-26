@@ -44,6 +44,23 @@ const ButtonSmall=({ children, val=undefined, f, status=true }) => {
   )
 }
 
+const ButtonYuge=({ children, val=undefined, f, status=true }) => {
+  const clicky=(e) => {
+    e.preventDefault()
+    f(e)
+  }
+  return (
+    <button
+      disabled={ !status }
+      className={ "btn primary btn-yuge"}
+      onClick={ clicky }
+      value={ val }
+    >
+    {`${children}`}   
+  </button>
+  )
+}
+
 const ButtonClose=({ children, val=undefined, f, status=false }) => {
   const clicky=(e) => {
     e.preventDefault()
@@ -66,4 +83,4 @@ const ButtonClose=({ children, val=undefined, f, status=false }) => {
 }
 
 
-export { Button, ButtonSmall, ButtonClose }
+export { Button, ButtonSmall, ButtonClose, ButtonYuge }

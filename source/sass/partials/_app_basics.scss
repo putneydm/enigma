@@ -666,6 +666,10 @@ button.btn-small {
   display:block;
   font-size:10px;
 }
+button.btn-yuge {
+  width:400px;
+  height:75px;
+}
 button:disabled.btn-small {
   color:$light;
   transition: color .2s;
