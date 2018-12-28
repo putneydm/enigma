@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link }  from 'react-router-dom'
 import {Plugboard} from "./plugboard"
 import { Label, Header } from "./Label"
 import { Rotor } from "./rotor"
+import { RotorsLabel } from "./rotors_label"
 
 const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotorNumber, setRingPosition, setRotorPos, handleLetterboardArray, selected, animate, resetRotor }) => {
   return (
@@ -15,15 +16,19 @@ const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotor
     <div
       className="rotors-wrapper"
     >
-      <div
+      {/* <div
         className="rotor-labels-wrapper"
       >
         <Label>Pick a rotor </Label>
         <Label>Set locking ring</Label>
         <Label>Set rotor position</Label>
-      </div>
+      </div> */}
     { rotors.map((el, i) => {
         return (
+          <div
+            className = "rotors-label-container"
+          >
+            <RotorsLabel />
             <Rotor
               rotorCount = { rotorsArr }
               rotorNumber = { el.sel }
@@ -42,6 +47,7 @@ const MachineSetup=({ rotors, rotorsArr, lettersArr, numbersArr, plugs, setRotor
               animate = { animate }
               resetRotor = { resetRotor }
             />
+            </div>
         )
       }) }
     </div>
