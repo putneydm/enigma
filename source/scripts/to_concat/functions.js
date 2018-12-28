@@ -4,7 +4,7 @@ import { Children, PropTypes } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 // lettersData
 import { initial, numbersArr, lettersArr, seedVal, rotors, status, buttonStatus, plugs, rotorsArr, reflector, keypressesArr, decodedArr, alertMessages, decodeActive, machineStatus } from "./modules/variables"
-import { flatten, crosswires, rotorPass, findPLugboardVal, getCharacter, handlePlugsReady, handleRotorsReady } from "./modules/helper_functions"
+import { flatten, crosswires, rotorPass, findPLugboardVal, getCharacter, handlePlugsReady, handleRotorsReady, handleNoScroll } from "./modules/helper_functions"
 
 // components
 import { Head } from "./modules/components/head"
@@ -229,8 +229,10 @@ class App extends React.Component {
         this.handleToast(alertMessages.copy)
     }
     handleDecodeMode(e) {
-        const decodeActive = this.state.decodeActive
-        this.setState({decodeActive: !decodeActive}) 
+        const decodeActive = !this.state.decodeActive
+        console.log("decode mode", decodeActive)
+        handleNoScroll(decodeActive)
+        this.setState({decodeActive: decodeActive})
     }
     handleMachineReady() {
         const plugsReady = handlePlugsReady([...this.state.plugs])
@@ -271,12 +273,6 @@ class App extends React.Component {
                     text = "Are you sure you want to delete this?"
                     handleSettingsClear = { this.handleSettingsClear }
                 /> 
-                {/* <ButtonYuge
-                    f={ this.handleDecodeMode }
-                    status={ this.state.machineStatus.rotorsReady && this.state.machineStatus.plugsReady }
-                >
-                    Ready! Let's code!
-                </ButtonYuge> */}
                 <OpenDecoder
                     f={ this.handleDecodeMode }
                     status={ this.state.machineStatus.rotorsReady && this.state.machineStatus.plugsReady }

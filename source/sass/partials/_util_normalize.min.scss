@@ -10,6 +10,11 @@ body {
     font-family: $sans;
     font-size: 100%;
 }
+body.no-scroll {
+    height:100vh;
+    overflow:hidden;
+    border:1px solid red;
+}
 
 article,
 aside,

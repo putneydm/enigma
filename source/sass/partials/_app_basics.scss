@@ -17,6 +17,9 @@ $btn-break: 422px + $break-adjust;
 
 $rotors-break: 570px;
 
+$modal-break-one: 500px + $break-adjust;
+$modal-break-two: 750px + $break-adjust;
+
 
 .hidden {
   position: absolute;
@@ -106,20 +109,40 @@ h2 {
   flex-wrap: wrap;
   justify-content: center;
   width:100%;
-  margin:0 0 80px 0;
+  margin:0 0 18px 0;
+  @media screen and (min-width: $modal-break-one) {
+    margin:0 0 24px 0;
+  }
+  @media screen and (min-width: $modal-break-two) {
+    margin:0 0 80px 0;
+  } 
 }
 .letter {
   flex-shrink: 1;
-  width:70px;
-  height:70px;
+  width:34px;
+  height:34px;
   margin:2px;
-  padding:22px;
+  padding:5px;
   text-align: center;
   border:2px solid $light;
   border-radius: 50%;
-  font-size:20px;
+  font-size:18px;
   font-weight:700;
   color:$med;
+  @media screen and (min-width: $modal-break-one) {
+    width:48px;
+    height:48px;
+    margin:2px;
+    padding:11px;
+    font-size:20px;
+  } 
+  @media screen and (min-width: $modal-break-two) {
+    width:70px;
+    height:70px;
+    margin:2px;
+    padding:22px;
+    font-size:20px;
+  } 
 }
 .letter.active {
   color:$white;
@@ -735,11 +758,14 @@ button.btn-close {
   background-color:transparent;
   border-radius:50%;
   position:absolute;
-  right:0;
-  top:0;
+  right:-8px;
+  top:-8px;
   margin:24px 24px 0 0;
   z-index:1; 
-
+  @media screen and (min-width: $modal-break-one) {
+    right:0;
+    top:0;
+  } 
 }
 .toast {
   position: absolute;
@@ -811,23 +837,36 @@ button.btn-close {
 }
 
 .decode-interface-wrapper.active {
-  position:absolute;
+  position:fixed;
   margin:0 auto;
-  top:36px;
+  top:0;
   left:0;
   right:0;
-  height:calc(100vh - 36px);
-  max-width:1000px;
+  height:100vh;
   width:100%;
-  padding:60px;
+  padding:10px;
   background-color:rgba($white, .95);
-  box-shadow:0 10px 28px rgba($black, .3);
   transform: translateY(0);
   opacity:1;
   transition:opacity .2s ease-in-out, transform .4s ease-in-out;
+  @media screen and (min-width: $modal-break-one) {
+    padding:42px;
+    width:calc(100% - 30px);
+  } 
+  @media screen and (min-width: $modal-break-two) {
+    top:36px;
+    max-width:1000px;
+    box-shadow:0 10px 28px rgba($black, .3);
+    height:calc(100vh - 36px);
+    padding:60px;
+  } 
+
 }
 .output-module-wrapper {
   display:flex;
+  @media screen and (min-width: $modal-break-one) {
+    min-height:100px;
+  }
 }
 .output-module {
   flex-basis:50%;
@@ -837,14 +876,39 @@ button.btn-close {
   &:last-child {
     margin:0 0 0 12px;
   }
+  button.btn {
+    width:100%;
+    max-width:unset;
+    margin:0;
+    height:54px;
+    @media screen and (min-width: $modal-break-one) {
+      max-width:130px;
+      min-width:100px;
+      height:42px;
+    }
+  }
 }
 .output-content {
   width:100%;
-  min-height:100px;
+  height:68px;
+  overflow-y: scroll;
   border:1px solid $light;
   word-break: break-all;
-  padding:12px;
+  padding:8px;
   border-radius:5px;
+  font-size:14px;
+  margin:6px 0 8px 0;
+  @media screen and (min-width: $modal-break-one) {
+    min-height:100px;
+    padding:12px;
+  }
+  @media screen and (min-width: $modal-break-one) {
+     min-height:118px;
+     margin:14px 0 16px 0;
+     font-size:16px;
+     line-height:1.4;
+     padding:16px;
+  } 
 }
 .output-content.active {
   border:1px solid $med;
@@ -857,9 +921,13 @@ button.btn-close {
 }
 .icon.close {
   position: absolute;
-  right:0;
-  top:0;
+  right:-8px;
+  top:-8px;
   margin:24px 24px 0 0;
+  @media screen and (min-width: $modal-break-one) {
+    right:0;
+    top:0;
+  } 
 }
 .btn-close:hover + .icon.close {
   fill:$button;
@@ -868,20 +936,44 @@ button.btn-close {
 .rotor-value-wrapper {
   display: flex;
   justify-content: center;
-  margin-bottom:42px;
+  margin-bottom:18px;
   padding:24px 0 0 0;
+  @media screen and (min-width: $modal-break-one) {
+    margin-bottom:24px;
+  }
+  @media screen and (min-width: $modal-break-one) {
+    margin-bottom:42px;
+  } 
 }
 .rotor-value {
   margin:0 12px;
+   .header {
+     font-size:14px; 
+    @media screen and (min-width: $modal-break-one) {
+      font-size:16px;
+    }
+   }
 }
 .rotor-window {
   border:1px solid $light;
-  font-size:28px;
+  font-size:22px;
   font-weight:bold;
-  padding:17px 0;
+  padding:10px 0;
   flex-grow:0;
-  width:118px;
+  width:90px;
   text-align: center;
   margin:0;
   color:$button;
+  @media screen and (min-width: $modal-break-one) {
+    font-size:24px;
+    padding:14px 0;
+    width:118px;
+    margin:0;
+  } 
+  @media screen and (min-width: $modal-break-two) {
+    font-size:28px;
+    padding:17px 0;
+    width:118px;
+    margin:0;
+  }   
 }

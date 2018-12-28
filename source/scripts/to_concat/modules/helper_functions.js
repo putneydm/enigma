@@ -1,4 +1,5 @@
 import Chance from "../../../../node_modules/chance"
+import { log } from "util";
 
 const structuredData = (val1, val2) => {
     const d = {val: val1, cc: val2}
@@ -51,9 +52,22 @@ const handlePlugsReady = (r) => {
         return plugsReady
 }
 
+const handleNoScroll = (val) => {
+    console.log("handle no scroll helper")
+    const body = document.querySelector("body")
+    const html = document.querySelector("html")
+    if (val) {
+        body.classList.add("no-scroll") 
+        html.classList.add("no-scroll")
+    } else {
+        body.classList.remove("no-scroll") 
+        html.classList.remove("no-scroll") 
+    }
+}
+
 const handleRotorsReady = (r) => {
     const rotorsReady = r.some(el => Object.values(el).some(val => val===undefined ))
     return rotorsReady
 }
 
-export { lettersData, shuffle, newNumberArray, getLettersArr, flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal, getCharacter, handlePlugsReady, handleRotorsReady }
+export { lettersData, shuffle, newNumberArray, getLettersArr, flatten, crosswires, rounder, rounderBack, rotorPass, findPLugboardVal, getCharacter, handlePlugsReady, handleRotorsReady, handleNoScroll }
