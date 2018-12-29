@@ -395,33 +395,54 @@ h2 {
     } 
   }  
 .dialog {
-  top:33vh;
-  left:0;
-  right:0;
+  // top:25%;
+  // left:0;
+  // right:0;
   max-width:500px;
   padding:24px;
   border-radius: 4px;
   z-index:200;
-  position: absolute;
-  background-color: rgba($button, .8);
+  position: fixed;
+  background-color: rgba($jetblue, .8);
   color:$white;
   box-shadow:0 0 20px rgba($black, .3);
   margin:auto;
   transform: translateY(10px);
   opacity:0;
   left:-100000px;
+  @media screen and (min-width: 520px) {
+    // margin:auto 10px;
+    // top:38%;
+  }
+  @media screen and (min-width: $modal-break-two) {
+    margin:0 0 80px 0;
+  } 
 }
 .dialog.active {
   left:0;
   right:0;
-  top:38%;
-  margin:auto;
+  top:20%;
+  margin:auto 10px;
   animation-name: fade-in;
   animation-play-state: running;
   animation-iteration-count: 1;
   animation-duration: 1s;
   animation-timing-function: cubic-bezier(.02,.06,.24,.9);
   animation-fill-mode: forwards;
+  @media screen and (min-width: $modal-break-one) {
+    margin:auto;
+  }
+  @media screen and (min-width: $modal-break-two) {
+    margin:0 auto;
+    top:38%;
+  } 
+  .btn {
+    display:inline-block;
+    margin:0;
+    &:nth-child(2) {
+      margin:0 10px 0 0;
+    }
+  }
 }
 // .backdrop.active {
 //    .dialog {
@@ -516,7 +537,7 @@ h2 {
         transition: opacity .3s;
         position:static;
         &:hover {
-          background-color:lighten($button, 50);
+          background-color:$jetblue;
           transition: background-color .2s;
         }
         &:last-child {
@@ -616,7 +637,7 @@ h2 {
         color: $med;
         // background-image:none;
         &:hover {
-          background-color:lighten($button, 50);
+          background-color:$jetblue;
           color:$dark;
         }
       }
@@ -772,12 +793,13 @@ button.btn-close {
   left:-1000000px;
   max-width:500px;
   padding:24px;
-  width:100%;
+  margin:0 10px;
+  width:auto;
   text-align:center;
   font-size:18px;
   font-weight:bold;
   border-radius:5px;
-  background-color: rgba($button, .8);
+  background-color: rgba($jetblue, .8);
   color:$white;
   box-shadow:0 0 20px rgba($black, .3);
   opacity:0;
@@ -786,16 +808,23 @@ button.btn-close {
 }
 .toast.active {
   position:fixed;
-  top:38%;
+  top:20%;
   left:0;
   right:0;
-  margin:0 auto;
   animation-name: fade-in-out;
   animation-play-state: running;
   animation-iteration-count: 1;
   animation-duration: 2.5s;
   animation-timing-function: cubic-bezier(.02,.06,.24,.9);
   animation-fill-mode: forwards;
+  @media screen and (min-width: 520px) {
+    margin:auto;
+    top:30%;
+  }
+  @media screen and (min-width: 800px) {
+    margin:auto;
+    top:38%;
+  }
 }
 @keyframes fade-in-out {
   0% {
@@ -849,13 +878,14 @@ button.btn-close {
   transform: translateY(0);
   opacity:1;
   transition:opacity .2s ease-in-out, transform .4s ease-in-out;
+  overflow-y: auto;
   @media screen and (min-width: $modal-break-one) {
     padding:42px;
     width:calc(100% - 30px);
   } 
   @media screen and (min-width: $modal-break-two) {
     top:36px;
-    max-width:1000px;
+    max-width:850px;
     box-shadow:0 10px 28px rgba($black, .3);
     height:calc(100vh - 36px);
     padding:60px;
@@ -864,6 +894,7 @@ button.btn-close {
 }
 .output-module-wrapper {
   display:flex;
+  margin:0 0 48px;
   @media screen and (min-width: $modal-break-one) {
     min-height:100px;
   }
