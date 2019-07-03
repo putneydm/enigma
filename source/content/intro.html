@@ -1,0 +1,32 @@
+<h1 id="react-enigma-simulator">React Enigma Simulator</h1>
+<p>This project is meant to simulate an Enigma machine, a World War II-era machine that could decode and encode messages, with the machine&#39;s functions repicated in JavaScript and an interface built in React.</p>
+<h2 id="what-s-an-enigma-machine-">What&#39;s an Enigma machine?</h2>
+<p>In a nutshell, an Enigma machine creates a substitution cipher -- one letter takes the place of another -- except the substitution changes every time a character in the message is entered.</p>
+<p>The machine itself looked a bit like an an oversized portable typewriter and included a keyboard. However, actuating a key caused a letter on the letterboard to light up rather than to print a letter on paper.</p>
+<p>The encoding mechanism was both electrical and mechanical, with three slots into which a user could place a rotor with all 26 letters on the rim. These rotors crosswired one letter to another -- eg. it might enter the rotor as a <em>a</em> and exit the rotor as a <em>k</em>. </p>
+<p>A signal created by a keypress would trace a circuit path through the three rotors and be assigned a new, randomized value on enter and exit, six times total. </p>
+<p>Further randomization occurred each time a letter was entered. The first rotor would rotate one position. A full rotation would move the second rotor one notch. Likewise for the second and third rotors, like an odometer.</p>
+<p>Additionally, a plugboard allowed the user to specifically cross connect letters. The result was more than 500 trillion possible machine setups. To decode a message, the user would need to set up their machine the same as the machine on which the message was encoded. </p>
+<p>Code books contained a setup for each day&#39;s messages. They were encoded with this setup and sent out to users to be decoded using the same setup. Capturing a code book did little good without a machine. </p>
+<p>A detailed explanation of an Engima machine and how it works can be found <a href="https://www.cryptomuseum.com/crypto/enigma/working.htm">here</a>.</p>
+<h2 id="how-do-i-use-this-">How do I use this?</h2>
+<p>This step is to set up the machine. Setups included: </p>
+<ul>
+<li>Which of six unique rotors were to be used and the slot they were placed</li>
+<li>The starting position of the rotors </li>
+<li>The locking ring position of the rotors, which advanced or de-advanced the rotor values and set the rotation point for the adjacent rotor.</li>
+<li>Which letters were crosswired on the plugboard.</li>
+</ul>
+<p>Likewise, this simulator requires these setups. To best see how an Engima machine encoded and decoded, </p>
+<ul>
+<li>Set up the rotors and the plugboard values</li>
+<li>Save the machine settings</li>
+<li>Encode your message and capture the encoded result</li>
+<li>Load your saved machine settings</li>
+<li>Enter your coded message </li>
+</ul>
+<p>A few caveats. It&#39;s not an exact simulation in that the &quot;crosswiring&quot; of the rotors, while random, are not the same values as the orginal machines. </p>
+<h2 id="why-did-i-make-it-">Why did I make it?</h2>
+<p>The Enigma machine was used by the Germans -- let&#39;s just be honest here, Nazis -- to handle coded messages on the battlefield and was a key factor in their ability to quickly mobilize and coordinate their attacks. So, there&#39;s that.</p>
+<p>I&#39;m not passing moral judgment by making this. The Enigma was a pioneering computing device in and of itself. More importantly, the Allied effort to decode Enigma messages, led by Alan Turing, led to the creation of the first true computer, Colossus and laid the groundwork for modern computing.</p>
+<p>As student of history and technology, the Enigma has long facinated me. As a student of React, it was a coding challenge beyond the notes apps that I had been making. </p>

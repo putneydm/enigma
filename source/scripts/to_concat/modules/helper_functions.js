@@ -65,6 +65,14 @@ const handleNoScroll = (val) => {
     }
 }
 
+const introWrapper = document.querySelector(".intro-wrapper")
+
+introWrapper.addEventListener("click", (e) => {
+    if (e.target.id === "clicker") {
+        introWrapper.classList.toggle("active")
+    }
+})
+
 const handleRotorsReady = (r) => {
     const rotorsReady = r.some(el => Object.values(el).some(val => val===undefined ))
     return rotorsReady
