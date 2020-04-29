@@ -65,7 +65,7 @@
   "dependencies": {
     "Sentimental": "^1.0.1",
     "browserify": "^11.0.0",
-    "jquery": "^2.1.4",
+    "jquery": "^3.5.0",
     "lodash": "^3.10.0",
     "pos": "^0.2.0",
     "vinyl-source-stream": "^1.1.0"
